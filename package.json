@@ -7,6 +7,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "index.js",
+    "package.json",
+    "LICENSE"
+  ],
   "author": "Juga Paazmaya",
   "license": "MIT",
   "dependencies": {
