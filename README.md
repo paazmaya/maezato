@@ -24,6 +24,7 @@ maezato <username> <path>
 
 ## Version history
 
+2015-10-26    v0.2.0    Using `gh-got` for network connectivity
 2015-10-23    v0.1.0    Gets the job done, hence first release
 
 ## License

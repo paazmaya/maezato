@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Clone all repositories of a given user at GitHub",
   "bin": "index.js",
   "main": "index.js",
@@ -15,7 +15,7 @@
   "author": "Juga Paazmaya",
   "license": "MIT",
   "dependencies": {
-    "mkdirp": "^0.5.1",
-    "sync-request": "^2.1.0"
+    "gh-got": "^2.2.0",
+    "mkdirp": "^0.5.1"
   }
 }
