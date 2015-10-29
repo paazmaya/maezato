@@ -1,7 +1,8 @@
 {
   "name": "maezato",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Clone all repositories of a given user at GitHub",
+  "homepage": "https://github.com/paazmaya/maezato",
   "bin": "index.js",
   "main": "index.js",
   "scripts": {
@@ -12,9 +13,16 @@
     "package.json",
     "LICENSE"
   ],
-  "author": "Juga Paazmaya",
+  "engines": {
+    "node": ">=4.2.0"
+  },
+  "author": {
+    "name": "Juga Paazmaya",
+    "url": "http://paazmaya.fi"
+  },
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.9.0",
     "gh-got": "^2.2.0",
     "mkdirp": "^0.5.1"
   }
