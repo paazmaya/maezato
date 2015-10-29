@@ -16,7 +16,7 @@ const mkdirp = require('mkdirp').sync,
   ghGot = require('gh-got'),
   commander = require('commander');
 
-var pjson = fs.readFileSync('package.json', 'utf8');
+var pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
 var info = parseJson(pjson);
 
 console.log(info.name + ' - Clone all GitHub repositories of a given user');
@@ -26,7 +26,7 @@ commander
   .usage('[options] <username> <target path>')
   .option('-t, --token', 'GitHub API personal authentication token')
   .option('-s, --save-json', 'Save API calls as JSON files, possibly for debugging')
-  .option('-x, --exclude', 'Exclude certain type of repositories, [fork]')
+ // .option('-x, --exclude', 'Exclude certain type of repositories, [fork]')
   .parse(process.argv);
 
 if (commander.args.length !== 2) {
