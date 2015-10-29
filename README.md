@@ -21,14 +21,29 @@ for authentication.
 The token should be set to an environment variable called `GITHUB_TOKEN` or the command line
 option named `--token`.
 
-Use via command line, always with exactly two arguments:
+Use via command line, always with exactly two arguments and with possible options:
 
 ```sh
-maezato <username> <target path>
+maezato [options] <username> <target path>
 ```
 
 The cloning of a given repository uses the `ssh_url` property, hence
 [the SSH keys should be configured properly](https://help.github.com/articles/generating-ssh-keys/).
+
+Possible command line options are:
+
+```sh
+  -h, --help       output usage information
+  -V, --version    output the version number
+  -t, --token      GitHub API personal authentication token
+  -s, --save-json  Save API calls as JSON files, possibly for debugging
+```
+
+For example getting all of the repositories of `@nodejs` under `~/github`:
+
+```sh
+maezato nodejs ~/github
+```
 
 ## Directory structure
 
@@ -45,7 +60,7 @@ The cloning of a given repository uses the `ssh_url` property, hence
 
 ## Version history
 
-* 2015-10-2x    v0.3.0    Command line options
+* 2015-10-29    v0.3.0    Command line options
 * 2015-10-26    v0.2.0    Using `gh-got` for network connectivity
 * 2015-10-23    v0.1.0    Gets the job done, hence first release
 
