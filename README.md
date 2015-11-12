@@ -60,12 +60,12 @@ maezato nodejs ~/github
 
 ## Version history
 
-* 2015-10-29    v0.3.0    Command line options
-* 2015-10-26    v0.2.0    Using `gh-got` for network connectivity
-* 2015-10-23    v0.1.0    Gets the job done, hence first release
+* `v0.3.0` (2015-10-29) Command line options
+* `v0.2.0` (2015-10-26) Using `gh-got` for network connectivity
+* `v0.1.0` (2015-10-23) Gets the job done, hence first release
 
 ## License
 
 Licensed under [the MIT license](LICENSE).
 
-Copyright (c) [Juga Paazmaya](http://paazmaya.fi)
+Copyright (c) [Juga Paazmaya <paazmaya@yahoo.com>](http://paazmaya.fi)

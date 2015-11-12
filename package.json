@@ -6,7 +6,8 @@
   "bin": "index.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc index.js"
   },
   "files": [
     "index.js",
@@ -25,5 +26,8 @@
     "commander": "^2.9.0",
     "gh-got": "^2.2.0",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0"
   }
 }
