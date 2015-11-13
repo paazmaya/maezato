@@ -25,10 +25,9 @@ const mkdirp = require('mkdirp').sync,
 var pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
 var info = parseJson(pjson);
 
-console.log(info.name + ' - Clone all GitHub repositories of a given user');
 
 commander
-  .version('v' + info.version + ' licensed under ' + info.license)
+  .version(info.version)
   .usage('[options] <username> <target path>')
   .option('-t, --token', 'GitHub API personal authentication token')
   .option('-s, --save-json', 'Save API calls as JSON files, possibly for debugging')
