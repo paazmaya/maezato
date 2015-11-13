@@ -22,9 +22,10 @@ const mkdirp = require('mkdirp').sync,
   ghGot = require('gh-got'),
   commander = require('commander');
 
-var pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
-var info = parseJson(pjson);
+const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
+const info = parseJson(pjson);
 
+console.log(`${info.name} - Clone all GitHub repositories of a given user`);
 
 commander
   .version(info.version)
@@ -39,7 +40,7 @@ if (commander.args.length !== 2) {
   process.exit();
 }
 
-var username = commander.args[0],
+const username = commander.args[0],
   cloneBaseDir = path.resolve(commander.args[1]),
   token = commander.token || process.env.GITHUB_TOKEN,
   userAgent = info.name + ' v' + info.version;
@@ -50,10 +51,10 @@ if (!token) {
   process.exit();
 }
 
-console.log(' Cloning to a structure under "' + cloneBaseDir + '"');
+console.log(` Cloning to a structure under "${cloneBaseDir}"`);
 mkdirp(cloneBaseDir);
 
-var gotOptions = {
+const gotOptions = {
   headers: {
     'user-agent': userAgent
   },
@@ -63,11 +64,11 @@ var gotOptions = {
 
 getRepos();
 
-function getRepos() {
-  console.log(' Fetching information about all the user repositories for ' + username);
+function getRepos () {
+  console.log(` Fetching information about all the user repositories for ${username}`);
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
-  ghGot('users/' + username + '/repos?type=all&per_page=100', gotOptions)
+  ghGot(`users/${username}/repos?type=all&per_page=100`, gotOptions)
     .then(response => {
       handleRepos(response.body);
     })
@@ -77,8 +78,44 @@ function getRepos() {
     });
 }
 
-function getFork(forkPath, user, repo) {
-  ghGot('repos/' + user + '/' + repo, gotOptions)
+
+function saveJson (filepath, data) {
+  if (commander.saveJson) {
+    fs.writeFileSync(filepath, JSON.stringify(data, null, '  '), 'utf8');
+  }
+}
+
+
+function handleFork (item, forkPath) {
+  saveJson(path.join(cloneBaseDir, `${item.owner.login}-fork-${item.name}.json`), item);
+
+  console.log(' Adding remote information to the fork clone');
+  /*
+  parent is the repository this repository was forked from,
+  source is the ultimate source for the network.
+  */
+
+  let args = ['remote', 'add', 'upstream', item.parent.git_url];
+  const options = {
+    cwd: forkPath,
+    env: process.env,
+    encoding: 'utf8'
+  };
+  let output = spawnSync('git', args, options);
+
+  if (output.error) {
+    console.error(` Adding remote "upstream" failed for ${item.name}. Error: ${output.error.errno}`);
+  }
+
+  args = ['remote', 'add', 'original', item.source.git_url];
+  output = spawnSync('git', args, options);
+  if (output.error) {
+    console.error(` Adding remote "original" failed for ${item.name}. Error: ${output.error.errno}`);
+  }
+}
+
+function getFork (forkPath, user, repo) {
+  ghGot(`repos/${user}/${repo}`, gotOptions)
     .then(response => {
       handleFork(response.body, forkPath);
     })
@@ -88,57 +125,25 @@ function getFork(forkPath, user, repo) {
     });
 }
 
-function saveJson(filepath, data) {
-  if (commander.saveJson) {
-    fs.writeFileSync(filepath, JSON.stringify(data, null, '  '), 'utf8');
-  }
-}
-
-
-function handleFork(item, forkPath) {
-  saveJson(path.join(cloneBaseDir, item.owner.login + '-fork-' + item.name + '.json'), item);
-
-  console.log(' Adding remote information to the fork clone');
-  /*
-  parent is the repository this repository was forked from,
-  source is the ultimate source for the network.
-  */
-
-  var args = ['remote', 'add', 'upstream', item.parent.git_url];
-  var options = {
-    cwd: forkPath,
-    env: process.env,
-    encoding: 'utf8'
-  };
-  var output = spawnSync('git', args, options);
-  if (output.error) {
-    console.error(' Adding remote "upstream" failed for ' + item.name + '. Error: ' + output.error.errno);
-  }
-
-  args = ['remote', 'add', 'original', item.source.git_url];
-  output = spawnSync('git', args, options);
-  if (output.error) {
-    console.error(' Adding remote "original" failed for ' + item.name + '. Error: ' + output.error.errno);
-  }
-}
-
-function cloneRepo(item) {
-  var type = item.fork ? 'fork' :
+function cloneRepo (item) {
+  const type = item.fork ? 'fork' :
     (item.owner.login === username ? 'mine' : 'contributing');
 
-  var clonePath = path.join(cloneBaseDir, username, type);
+  const clonePath = path.join(cloneBaseDir, username, type);
+
   mkdirp(clonePath);
 
-  var args = ['clone', item.ssh_url];
-  var options = {
+  const args = ['clone', item.ssh_url];
+  const options = {
     cwd: clonePath,
     env: process.env,
     encoding: 'utf8'
   };
 
-  var output = spawnSync('git', args, options);
+  const output = spawnSync('git', args, options);
+
   if (output.error) {
-    console.error(' Cloning failed for ' + item.name + '. Error: ' + output.error.errno);
+    console.error(` Cloning failed for ${item.name}. Error: ${output.error.errno}`);
   }
   else if (item.fork) {
     // Get information about the parent repository
@@ -146,25 +151,26 @@ function cloneRepo(item) {
   }
 }
 
-function handleRepos(data) {
-  saveJson(path.join(cloneBaseDir, username + '-repositories.json'), data);
-  console.log('Total of ' + data.length + ' repositories to process');
+function handleRepos (data) {
+  saveJson(path.join(cloneBaseDir, `${username}-repositories.json`), data);
+  console.log(`Total of ${data.length} repositories to process`);
   console.log('');
 
-	data.forEach(function (item) {
-    console.log('Processing ' + item.full_name);
+	data.forEach(function eachItem (item) {
+    console.log(`Processing ${item.full_name}`);
     cloneRepo(item);
     console.log('');
 	});
 }
 
-function parseJson(text) {
-  var data;
+function parseJson (text) {
+  let data;
+
   try {
     data = JSON.parse(text);
   }
   catch (error) {
-    console.error(' Parsing JSON failed. ' + error);
+    console.error(` Parsing JSON failed. ${error}`);
   }
   return data;
 }
