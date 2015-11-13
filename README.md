@@ -58,6 +58,17 @@ maezato nodejs ~/github
             [repositories which the user owns but are not forks]
 ```
 
+## Contributing
+
+First thing to do is to file [an issue](https://github.com/paazmaya/maezato/issues).
+Then possibly open a Pull Request for solving the given issue.
+ESLint is used for linting the code, please use it by doing:
+
+```sh
+npm install
+npm run lint
+```
+
 ## Version history
 
 * `v0.3.0` (2015-10-29) Command line options
