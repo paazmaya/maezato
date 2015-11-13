@@ -25,7 +25,6 @@ const mkdirp = require('mkdirp').sync,
 const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
 const info = parseJson(pjson);
 
-console.log(`${info.name} - Clone all GitHub repositories of a given user`);
 
 commander
   .version(info.version)
@@ -42,8 +41,8 @@ if (commander.args.length !== 2) {
 
 const username = commander.args[0],
   cloneBaseDir = path.resolve(commander.args[1]),
-  token = commander.token || process.env.GITHUB_TOKEN,
-  userAgent = info.name + ' v' + info.version;
+  token = commander.token || process.env.GITHUB_TOKEN,
+  userAgent = `${info.name} v${info.version}`;
 
 if (!token) {
   console.log(' GitHub authentication token missing');
@@ -51,6 +50,7 @@ if (!token) {
   process.exit();
 }
 
+console.log(`${info.name} - Clone all GitHub repositories of a given user`);
 console.log(` Cloning to a structure under "${cloneBaseDir}"`);
 mkdirp(cloneBaseDir);
 
@@ -69,10 +69,10 @@ function getRepos () {
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
   ghGot(`users/${username}/repos?type=all&per_page=100`, gotOptions)
-    .then(response => {
+    .then((response) => {
       handleRepos(response.body);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(' Fetching repository list failed.');
       console.error(error.response.body);
     });
@@ -90,6 +90,7 @@ function handleFork (item, forkPath) {
   saveJson(path.join(cloneBaseDir, `${item.owner.login}-fork-${item.name}.json`), item);
 
   console.log(' Adding remote information to the fork clone');
+
   /*
   parent is the repository this repository was forked from,
   source is the ultimate source for the network.
@@ -116,10 +117,10 @@ function handleFork (item, forkPath) {
 
 function getFork (forkPath, user, repo) {
   ghGot(`repos/${user}/${repo}`, gotOptions)
-    .then(response => {
+    .then((response) => {
       handleFork(response.body, forkPath);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(' Getting fork details failed.');
       console.error(error.response.body);
     });
@@ -156,7 +157,7 @@ function handleRepos (data) {
   console.log(`Total of ${data.length} repositories to process`);
   console.log('');
 
-	data.forEach(function eachItem (item) {
+	data.forEach((item) => {
     console.log(`Processing ${item.full_name}`);
     cloneRepo(item);
     console.log('');
