@@ -3,4 +3,4 @@ language: node_js
 node_js:
   - "4.2"
   - "5"
-before_script: "./index.js -V"
+before_script: "node index.js -V"

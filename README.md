@@ -3,6 +3,8 @@
 > Clone all repositories of a given user at GitHub,
 > by ordering them according to fork/contributing/mine
 
+[![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
+
 ## Installation
 
 Install globally with `npm`, as this tool is a command line tool:
