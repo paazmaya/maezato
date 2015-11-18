@@ -1,9 +1,15 @@
-# maezato
+# maezato (前里)
 
 > Clone all repositories of a given user at GitHub,
 > by ordering them according to fork/contributing/mine
 
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
+
+The name of this project, `maezato` is a tribute to the late [Mr Shinken Taira](https://en.wikipedia.org/wiki/Taira_Shinken) (平 信賢)
+from Kumejima, Okinawa, Japan, who was one of the greatest individuals for preserving
+the history of the Ryukyu Martial Arts and thus enabling the students of those arts
+to study them today. Without his efforts, it is very likely that several pieces of information
+would have been lost for good.
 
 ## Installation
 
@@ -73,6 +79,7 @@ npm run lint
 
 ## Version history
 
+* `v0.4.0` (2015-11-18) Everything with Promises. Back to using `got` instead of `gh-got`
 * `v0.3.0` (2015-10-29) Command line options
 * `v0.2.0` (2015-10-26) Using `gh-got` for network connectivity
 * `v0.1.0` (2015-10-23) Gets the job done, hence first release
@@ -81,4 +88,4 @@ npm run lint
 
 Licensed under [the MIT license](LICENSE).
 
-Copyright (c) [Juga Paazmaya <paazmaya@yahoo.com>](http://paazmaya.fi)
+Copyright (c) [Juga Paazmaya](http://paazmaya.fi) <paazmaya@yahoo.com>
