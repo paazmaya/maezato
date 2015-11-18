@@ -22,23 +22,24 @@ const fs = require('fs'),
 
 const mkdirp = require('mkdirp').sync,
   got = require('got'),
+  each = require('promise-each'),
   commander = require('commander');
 
 const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
 const info = parseJson(pjson),
   API_URL = 'https://api.github.com/';
 
-
 commander
   .version(info.version)
   .usage('[options] <username> <target path>')
+  .option('-v, --verbose', 'Print out more stuff')
   .option('-t, --token', 'GitHub API personal authentication token')
   .option('-s, --save-json', 'Save API calls as JSON files, possibly for debugging')
  // .option('-x, --exclude', 'Exclude certain type of repositories, [fork]')
   .parse(process.argv);
 
 if (commander.args.length !== 2) {
-  console.log(' Seem to be missing <username> or <target path> hence exiting');
+  console.log('Seem to be missing <username> or <target path> hence exiting');
   process.exit();
 }
 
@@ -48,36 +49,39 @@ const username = commander.args[0],
   userAgent = `${info.name} v${info.version}`;
 
 if (!token) {
-  console.log(' GitHub authentication token missing');
-  console.log(' Please set it via GITHUB_TOKEN environment variable or --token option');
+  console.log('GitHub authentication token missing');
+  console.log('Please set it via GITHUB_TOKEN environment variable or --token option');
   process.exit();
 }
 
 console.log(`${info.name} - Clone all GitHub repositories of a given user`);
-console.log(` Cloning to a structure under "${cloneBaseDir}"`);
+console.log(`Cloning to a structure under "${cloneBaseDir}"`);
 mkdirp(cloneBaseDir);
 
 const gotOptions = {
   headers: {
+    accept: 'application/vnd.github.v3+json',
     'user-agent': userAgent,
     authorization: `token ${token}`
   },
   json: true
 };
 
-
-getRepos();
+getRepos().then((data) => {
+  return handleRepos(data);
+}).then((results) => {
+  console.log('All done, thank you!');
+});
 
 function getRepos () {
-  console.log(` Fetching information about all the user repositories for ${username}`);
+  if (commander.verbose) {
+    console.log(`Fetching information about all the user repositories for ${username}`);
+  }
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
   return got(`${API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
     .then((response) => {
       return saveJson(response.body, path.join(cloneBaseDir, `${username}-repositories.json`));
-    })
-    .then((data) => {
-      return handleRepos(data);
     })
     .catch((error) => {
       console.error(' Fetching repository list failed.');
@@ -96,17 +100,20 @@ function getRepos () {
 function saveJson (data, filepath) {
   return new Promise(function (fulfill, reject) {
     if (commander.saveJson) {
+      if (commander.verbose) {
+        console.log(` Saving JSON file: ${filepath}`);
+      }
       fs.writeFile(filepath, JSON.stringify(data, null, '  '), 'utf8', function (error) {
         if (error) {
           reject(error);
         }
         else {
-          fullfill(data);
+          fulfill(data);
         }
       });
     }
     else {
-      fullfill(data);
+      fulfill(data);
     }
   });
 }
@@ -123,8 +130,12 @@ function saveJson (data, filepath) {
  * @returns {Promise}
  */
 function getFork (forkPath, user, repo) {
-  return got(`${API_URL}repos/${user}/${repo}`, gotOptions)
+  const url = `${API_URL}repos/${user}/${repo}`;
+  return got(url, gotOptions)
     .then((response) => {
+      if (commander.verbose) {
+        console.log(` Received fork data for URL: ${url}`);
+      }
       return response.body;
     })
     .then((item) => {
@@ -158,16 +169,11 @@ function addRemote (item, forkPath, name, url) {
       encoding: 'utf8'
     };
 
-  console.log(` Adding remote information, ${name} ==>  ${url}`);
+  if (commander.verbose) {
+    console.log(` Adding remote information, ${name} ==>  ${url}`);
+  }
   return new Promise(function (fulfill, reject) {
     exec(command, options, function (error, stdout, stderr) {
-      // console.log(error);
-      //console.log(stdout);
-      // console.log(stderr);
-
-      // It might be that
-      // fatal: remote upstream already exists.
-      // And that should be just fine
       if (error && stderr.indexOf(`remote ${name} already exists`) === -1) {
         console.error(` Adding remote "${name}" failed for ${url}`);
         reject(error, stderr);
@@ -195,7 +201,6 @@ function cloneRepo (item) {
 
   mkdirp(clonePath);
 
-
   const command = `git clone ${item.ssh_url}`,
     options = {
       cwd: clonePath,
@@ -203,13 +208,12 @@ function cloneRepo (item) {
       encoding: 'utf8'
     };
 
-  console.log(` Cloning repository ${item.ssh_url}`);
+  if (commander.verbose) {
+    console.log(`Cloning repository ${item.ssh_url}`);
+  }
   return new Promise(function (fulfill, reject) {
     exec(command, options, function (error, stdout, stderr) {
-      console.log(error);
-      console.log(stdout);
-      console.log(stderr);
-      if (error) {
+      if (error && stderr.indexOf('already exists and is not an empty directory') === -1) {
         console.error(` Cloning failed for ${item.ssh_url}`);
         reject(error, stderr);
       }
@@ -217,30 +221,33 @@ function cloneRepo (item) {
         fulfill(item);
       }
     });
+  }).then((item) => {
+    if (item.fork) {
+      return getFork(path.join(clonePath, item.name), item.owner.login, item.name);
+    }
+
+    return item;
   });
 }
 
+/**
+ *
+ * @returns {Promise}
+ */
 function handleRepos (data) {
   console.log(`Total of ${data.length} repositories to process`);
   console.log('');
 
-  Promise.all(data.map((item) => {
-    console.log(`Processing ${item.full_name}`);
-
-    return cloneRepo(item).then((item) => {
-      if (item.fork) {
-        return getFork(path.join(clonePath, item.name), item.owner.login, item.name);
-      }
-      return Promise.resolve();
-    });
-
-  })).then((results) => {
-    console.log('All done, thank you!');
-  });
+  return Promise.resolve(data).then(each(cloneRepo));
 }
 
 
-
+/**
+ * Safe parsing JSON
+ *
+ * @param {strin} text  JSON string
+ * @return {object}
+ */
 function parseJson (text) {
   let data;
 
