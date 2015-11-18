@@ -43,6 +43,7 @@ Possible command line options are:
 ```sh
   -h, --help       output usage information
   -V, --version    output the version number
+  -v, --verbose    Print out more stuff
   -t, --token      GitHub API personal authentication token
   -s, --save-json  Save API calls as JSON files, possibly for debugging
 ```

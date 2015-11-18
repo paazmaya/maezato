@@ -2,7 +2,7 @@
   "rules": {
     "accessor-pairs": 2,
     "array-bracket-spacing": 2,
-    "arrow-body-style": 2,
+    "arrow-body-style": [2, "always"],
     "arrow-parens":  [2, "always"],
     "arrow-spacing": 2,
     "block-scoped-var": 2,

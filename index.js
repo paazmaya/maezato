@@ -16,8 +16,6 @@
 
 const fs = require('fs'),
 	path = require('path'),
-  spawnSync = require('child_process').spawnSync,
-  spawn = require('child_process').spawn,
   exec = require('child_process').exec;
 
 const mkdirp = require('mkdirp').sync,
@@ -27,7 +25,8 @@ const mkdirp = require('mkdirp').sync,
 
 const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
 const info = parseJson(pjson),
-  API_URL = 'https://api.github.com/';
+  API_URL = 'https://api.github.com/',
+  INDEX_NOT_FOUND = -1;
 
 commander
   .version(info.version)
@@ -69,7 +68,7 @@ const gotOptions = {
 
 getRepos().then((data) => {
   return handleRepos(data);
-}).then((results) => {
+}).then(() => {
   console.log('All done, thank you!');
 });
 
@@ -98,12 +97,12 @@ function getRepos () {
  * @returns {Promise}
  */
 function saveJson (data, filepath) {
-  return new Promise(function (fulfill, reject) {
+  return new Promise((fulfill, reject) => {
     if (commander.saveJson) {
       if (commander.verbose) {
         console.log(` Saving JSON file: ${filepath}`);
       }
-      fs.writeFile(filepath, JSON.stringify(data, null, '  '), 'utf8', function (error) {
+      fs.writeFile(filepath, JSON.stringify(data, null, '  '), 'utf8', (error) => {
         if (error) {
           reject(error);
         }
@@ -131,6 +130,7 @@ function saveJson (data, filepath) {
  */
 function getFork (forkPath, user, repo) {
   const url = `${API_URL}repos/${user}/${repo}`;
+
   return got(url, gotOptions)
     .then((response) => {
       if (commander.verbose) {
@@ -156,6 +156,7 @@ function getFork (forkPath, user, repo) {
 /**
  * Item is passed on success
  *
+ * @param {object} item      Meta data for the given repository
  * @param {string} forkPath  File path where the repository has been cloned
  * @param {string} name      Remote name
  * @param {string} url       Remote URL
@@ -172,9 +173,9 @@ function addRemote (item, forkPath, name, url) {
   if (commander.verbose) {
     console.log(` Adding remote information, ${name} ==>  ${url}`);
   }
-  return new Promise(function (fulfill, reject) {
-    exec(command, options, function (error, stdout, stderr) {
-      if (error && stderr.indexOf(`remote ${name} already exists`) === -1) {
+  return new Promise((fulfill, reject) => {
+    exec(command, options, (error, stdout, stderr) => {
+      if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
         console.error(` Adding remote "${name}" failed for ${url}`);
         reject(error, stderr);
       }
@@ -184,8 +185,6 @@ function addRemote (item, forkPath, name, url) {
     });
   });
 }
-
-
 
 /**
  * Clone a repository
@@ -211,9 +210,9 @@ function cloneRepo (item) {
   if (commander.verbose) {
     console.log(`Cloning repository ${item.ssh_url}`);
   }
-  return new Promise(function (fulfill, reject) {
-    exec(command, options, function (error, stdout, stderr) {
-      if (error && stderr.indexOf('already exists and is not an empty directory') === -1) {
+  return new Promise((fulfill, reject) => {
+    exec(command, options, (error, stdout, stderr) => {
+      if (error && stderr.indexOf('already exists and is not an empty directory') === INDEX_NOT_FOUND) {
         console.error(` Cloning failed for ${item.ssh_url}`);
         reject(error, stderr);
       }
@@ -221,26 +220,26 @@ function cloneRepo (item) {
         fulfill(item);
       }
     });
-  }).then((item) => {
-    if (item.fork) {
-      return getFork(path.join(clonePath, item.name), item.owner.login, item.name);
+  }).then((data) => {
+    if (data.fork) {
+      return getFork(path.join(clonePath, data.name), data.owner.login, data.name);
     }
 
-    return item;
+    return data;
   });
 }
 
 /**
  *
+ * @param {array} list  List of repositories for the given user
  * @returns {Promise}
  */
-function handleRepos (data) {
-  console.log(`Total of ${data.length} repositories to process`);
+function handleRepos (list) {
+  console.log(`Total of ${list.length} repositories to process`);
   console.log('');
 
-  return Promise.resolve(data).then(each(cloneRepo));
+  return Promise.resolve(list).then(each(cloneRepo));
 }
-
 
 /**
  * Safe parsing JSON
@@ -259,5 +258,3 @@ function parseJson (text) {
   }
   return data;
 }
-
-
