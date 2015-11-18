@@ -19,11 +19,12 @@ const fs = require('fs'),
   spawnSync = require('child_process').spawnSync;
 
 const mkdirp = require('mkdirp').sync,
-  ghGot = require('gh-got'),
+  got = require('got'),
   commander = require('commander');
 
 const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
-const info = parseJson(pjson);
+const info = parseJson(pjson),
+  API_URL = 'https://api.github.com/';
 
 
 commander
@@ -56,11 +57,12 @@ mkdirp(cloneBaseDir);
 
 const gotOptions = {
   headers: {
-    'user-agent': userAgent
+    'user-agent': userAgent,
+    authorization: `token ${token}`
   },
-  json: true,
-  token: token
+  json: true
 };
+
 
 getRepos();
 
@@ -68,7 +70,7 @@ function getRepos () {
   console.log(` Fetching information about all the user repositories for ${username}`);
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
-  ghGot(`users/${username}/repos?type=all&per_page=100`, gotOptions)
+  got(`${API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
     .then((response) => {
       handleRepos(response.body);
     })
@@ -116,7 +118,7 @@ function handleFork (item, forkPath) {
 }
 
 function getFork (forkPath, user, repo) {
-  ghGot(`repos/${user}/${repo}`, gotOptions)
+  got(`${API_URL}repos/${user}/${repo}`, gotOptions)
     .then((response) => {
       handleFork(response.body, forkPath);
     })

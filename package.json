@@ -19,12 +19,13 @@
   },
   "author": {
     "name": "Juga Paazmaya",
+    "email": "paazmaya@yahoo.com",
     "url": "http://paazmaya.fi"
   },
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
-    "gh-got": "^2.2.0",
+    "got": "^5.1.0",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
