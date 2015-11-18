@@ -81,4 +81,4 @@ npm run lint
 
 Licensed under [the MIT license](LICENSE).
 
-Copyright (c) [Juga Paazmaya <paazmaya@yahoo.com>](http://paazmaya.fi)
+Copyright (c) [Juga Paazmaya](http://paazmaya.fi) <paazmaya@yahoo.com>
