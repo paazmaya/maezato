@@ -5,6 +5,8 @@
 
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
 
+![maezato project logo](./icon.png)
+
 The name of this project, `maezato` is a tribute to the late [Mr Shinken Taira](https://en.wikipedia.org/wiki/Taira_Shinken) (平 信賢)
 from Kumejima, Okinawa, Japan, who was one of the greatest individuals for preserving
 the history of the Ryukyu Martial Arts and thus enabling the students of those arts
