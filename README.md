@@ -26,10 +26,8 @@ Please note that `git` should be available in the system where this tool is plan
 ## Usage
 
 It is possible to use this tool to retrieve all public repositories for a given
-user from Bitbucket or GitHub.
-Both of these services require to use an authentication token
-
-https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html
+user from [Bitbucket](https://bitbucket.org/) or [GitHub](https://github.com/).
+Authentication is currently used only for GitHub, while Bitbucket is used via public API interface.
 
 This tool uses [the GitHub API v3](https://developer.github.com/v3/)
 and requires [a personal API token](https://github.com/blog/1509-personal-api-tokens)
@@ -39,8 +37,6 @@ option named `--token`.
 
 ```sh
 export GITHUB_TOKEN=123456789123456789123456789123456789
-export BITBUCKET_CONSUMER_KEY=12345678345678934
-export BITBUCKET_SECRET_KEY=1234567891234567891234567891234
 ```
 
 Use via command line, always with exactly two arguments and with possible options:
