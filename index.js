@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * maezato
  * https://github.com/paazmaya/maezato
@@ -30,7 +28,6 @@ let cmdOptions,
   token,
   username,
   cloneBaseDir;
-
 
 const gotOptions = {
   headers: {

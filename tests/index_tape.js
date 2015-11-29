@@ -18,8 +18,23 @@ const fs = require('fs'),
 const tape = require('tape'),
   maezato = require('../index');
 
-tape('a function is exported', function (test) {
-  test.plan(1);
+tape('several functions are exported', (test) => {
+  test.plan(3);
 
-  test.equal(typeof maezato, 'function');
+  test.equal(typeof maezato.run, 'function');
+  test.equal(typeof maezato.parseJson, 'function');
+  test.equal(typeof maezato.saveJson, 'function');
 });
+
+
+tape('parsing json', (test) => {
+  test.plan(2);
+
+  const data = maezato.parseJson('{"text": "Success"}');
+  test.equal(data.text, 'Success');
+
+  test.notOk(maezato.parseJson('-'));
+});
+
+
+
