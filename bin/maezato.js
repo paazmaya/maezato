@@ -15,41 +15,96 @@
 'use strict';
 
 const fs = require('fs'),
-  path = require('path'),
-  exec = require('child_process').exec;
+  path = require('path');
 
 const mkdirp = require('mkdirp').sync,
-  commander = require('commander');
+  optionator = require('optionator');
 
 const maezato = require('../index');
 
-const pjson = fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8');
-const info = maezato.parseJson(pjson);
+const pjson = fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'),
+  pkg = maezato.parseJson(pjson);
 
-commander
-  .version(info.version)
-  .usage('[options] <username> <target path>')
-  .option('-v, --verbose', 'Print out more stuff')
-  .option('-t, --token', 'GitHub API personal authentication token')
-  .option('-s, --save-json', 'Save API calls as JSON files, possibly for debugging')
- // .option('-x, --exclude', 'Exclude certain type of repositories, [fork]')
-  .parse(process.argv);
+const optsParser = optionator({
+  prepend: `${pkg.name} [options] <username> <directory>`,
+  append: `Version ${pkg.version}`,
+  options: [
+    {
+      option: 'help',
+      alias: 'h',
+      type: 'Boolean',
+      description: 'Help and usage instructions'
+    },
+    {
+      option: 'version',
+      alias: 'V',
+      type: 'Boolean',
+      description: 'Version number',
+      example: '-V'
+    },
+    {
+      option: 'verbose',
+      alias: 'v',
+      type: 'Boolean',
+      description: 'Verbose output, will print which file is currently being processed'
+    },
+    {
+      option: 'token',
+      alias: 't',
+      type: 'String',
+      description: 'GitHub API personal authentication token'
+    },
+    {
+      option: 'save-json',
+      alias: 's',
+      type: 'Boolean',
+      description: 'Save API calls as JSON files, possibly for debugging'
+    }/*,
+    {
+      option: 'exclude',
+      alias: 'x',
+      type: 'String',
+      description: 'Exclude certain type of repositories, [fork]'
+    }
+    */
+  ]
+});
 
-if (commander.args.length !== 2) {
-  console.log('Seem to be missing <username> or <target path> hence exiting');
-  process.exit();
+let opts;
+
+try {
+  opts = optsParser.parse(process.argv);
+}
+catch (error) {
+  console.error(error.message);
+  process.exit(1);
 }
 
-const token = commander.token || process.env.GITHUB_TOKEN;
+if (opts.version) {
+  console.log(pkg.version);
+  process.exit(0);
+}
+
+if (opts.help) {
+  console.log(optsParser.generateHelp());
+  process.exit(0);
+}
+
+if (opts._.length !== 2) {
+  console.log('Seem to be missing <username> or <target path> hence exiting');
+  process.exit(1);
+}
+
+const token = opts.token || process.env.GITHUB_TOKEN;
 
 if (!token) {
   console.log('GitHub authentication token missing');
   console.log('Please set it via GITHUB_TOKEN environment variable or --token option');
-  process.exit();
+  process.exit(1);
 }
 
-console.log(`${info.name} - Clone all GitHub repositories of a given user`);
+console.log(`${pkg.name} - Clone all GitHub repositories of a given user`);
 
-commander.token = token;
-maezato.run(commander);
+opts.token = token;
+maezato.run(opts);
 

@@ -81,15 +81,18 @@ maezato nodejs ~/github
 
 First thing to do is to file [an issue](https://github.com/paazmaya/maezato/issues).
 Then possibly open a Pull Request for solving the given issue.
-ESLint is used for linting the code, please use it by doing:
+[ESLint](http://eslint.org/) is used for linting the code and
+[tape](https://www.npmjs.com/package/tape) for unit testing.
+Please use them by doing:
 
 ```sh
 npm install
-npm run lint
+npm test
 ```
 
 ## Version history
 
+* `v0.5.0` (2015-11-29) Command line code separation so testing can be started
 * `v0.4.0` (2015-11-18) Everything with Promises. Back to using `got` instead of `gh-got`
 * `v0.3.0` (2015-10-29) Command line options
 * `v0.2.0` (2015-10-26) Using `gh-got` for network connectivity
