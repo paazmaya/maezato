@@ -8,7 +8,7 @@
   "scripts": {
     "test": "node tests/index_tape.js && npm run lint",
     "coverage": "istanbul cover tests/index_tape.js --report lcovonly",
-    "lint": "eslint -c .eslintrc.json index.js"
+    "lint": "eslint -c .eslintrc.json index.js bin/maezato.js"
   },
   "files": [
     "index.js",

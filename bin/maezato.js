@@ -17,8 +17,7 @@
 const fs = require('fs'),
   path = require('path');
 
-const mkdirp = require('mkdirp').sync,
-  optionator = require('optionator');
+const optionator = require('optionator');
 
 const maezato = require('../index');
 

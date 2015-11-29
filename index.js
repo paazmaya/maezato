@@ -231,7 +231,7 @@ function handleRepos (list) {
  * Safe parsing JSON
  *
  * @param {string} text  JSON string
- * @return {object}
+ * @returns {object}
  */
 function parseJson (text) {
   let data;
@@ -246,7 +246,7 @@ function parseJson (text) {
 }
 
 module.exports = {
-  run: run,
-  parseJson: parseJson,
-  saveJson: saveJson
+  run,
+  parseJson,
+  saveJson
 };
