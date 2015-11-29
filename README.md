@@ -4,6 +4,7 @@
 > by ordering them according to fork/contributing/mine
 
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
+![codecov.io](https://codecov.io/github/paazmaya/maezato/branch.svg?branch=master)
 
 ![maezato project logo](./icon.png)
 

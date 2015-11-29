@@ -7,6 +7,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node tests/index_tape.js && npm run lint",
+    "coverage": "istanbul cover tests/index_tape.js --report lcovonly",
     "lint": "eslint -c .eslintrc.json index.js"
   },
   "files": [
@@ -37,7 +38,9 @@
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
+    "codecov": "^1.0.1",
     "eslint": "^1.10.1",
+    "istanbul": "^0.4.1",
     "tape": "^4.2.2"
   }
 }
