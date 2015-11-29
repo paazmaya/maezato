@@ -3,10 +3,10 @@
   "version": "0.4.0",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
-  "bin": "index.js",
+  "bin": "bin/maezato.js",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint",
+    "test": "node tests/index_tape.js && npm run lint",
     "lint": "eslint -c .eslintrc.json index.js"
   },
   "files": [
@@ -37,6 +37,7 @@
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
-    "eslint": "^1.10.1"
+    "eslint": "^1.10.1",
+    "tape": "^4.2.2"
   }
 }

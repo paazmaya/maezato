@@ -20,42 +20,17 @@ const fs = require('fs'),
 
 const mkdirp = require('mkdirp').sync,
   got = require('got'),
-  each = require('promise-each'),
-  commander = require('commander');
+  each = require('promise-each');
 
-const pjson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
-const info = parseJson(pjson),
-  API_URL = 'https://api.github.com/',
-  INDEX_NOT_FOUND = -1;
+const API_URL = 'https://api.github.com/',
+  INDEX_NOT_FOUND = -1,
+  userAgent = 'maezato cloner';
 
-commander
-  .version(info.version)
-  .usage('[options] <username> <target path>')
-  .option('-v, --verbose', 'Print out more stuff')
-  .option('-t, --token', 'GitHub API personal authentication token')
-  .option('-s, --save-json', 'Save API calls as JSON files, possibly for debugging')
- // .option('-x, --exclude', 'Exclude certain type of repositories, [fork]')
-  .parse(process.argv);
+let cmdOptions,
+  token,
+  username,
+  cloneBaseDir;
 
-if (commander.args.length !== 2) {
-  console.log('Seem to be missing <username> or <target path> hence exiting');
-  process.exit();
-}
-
-const username = commander.args[0],
-  cloneBaseDir = path.resolve(commander.args[1]),
-  token = commander.token || process.env.GITHUB_TOKEN,
-  userAgent = `${info.name} v${info.version}`;
-
-if (!token) {
-  console.log('GitHub authentication token missing');
-  console.log('Please set it via GITHUB_TOKEN environment variable or --token option');
-  process.exit();
-}
-
-console.log(`${info.name} - Clone all GitHub repositories of a given user`);
-console.log(`Cloning to a structure under "${cloneBaseDir}"`);
-mkdirp(cloneBaseDir);
 
 const gotOptions = {
   headers: {
@@ -66,14 +41,25 @@ const gotOptions = {
   json: true
 };
 
-getRepos().then((data) => {
-  return handleRepos(data);
-}).then(() => {
-  console.log('All done, thank you!');
-});
+function run (options) {
+  cmdOptions = options;
+  token = options.token;
+  username = options.args[0];
+  cloneBaseDir = path.resolve(options.args[1]);
+
+  console.log(`Cloning to a structure under "${cloneBaseDir}"`);
+
+  mkdirp(cloneBaseDir);
+
+  getRepos().then((data) => {
+    return handleRepos(data);
+  }).then(() => {
+    console.log('All done, thank you!');
+  });
+}
 
 function getRepos () {
-  if (commander.verbose) {
+  if (cmdOptions.verbose) {
     console.log(`Fetching information about all the user repositories for ${username}`);
   }
 
@@ -98,8 +84,8 @@ function getRepos () {
  */
 function saveJson (data, filepath) {
   return new Promise((fulfill, reject) => {
-    if (commander.saveJson) {
-      if (commander.verbose) {
+    if (cmdOptions.saveJson) {
+      if (cmdOptions.verbose) {
         console.log(` Saving JSON file: ${filepath}`);
       }
       fs.writeFile(filepath, JSON.stringify(data, null, '  '), 'utf8', (error) => {
@@ -119,6 +105,39 @@ function saveJson (data, filepath) {
 
 
 /**
+ * Item is passed on success
+ *
+ * @param {object} item      Meta data for the given repository
+ * @param {string} forkPath  File path where the repository has been cloned
+ * @param {string} name      Remote name
+ * @param {string} url       Remote URL
+ * @returns {Promise}
+ */
+function addRemote (item, forkPath, name, url) {
+  const command = `git remote add ${name} ${url}`,
+    options = {
+      cwd: forkPath,
+      env: process.env,
+      encoding: 'utf8'
+    };
+
+  if (cmdOptions.verbose) {
+    console.log(` Adding remote information, ${name} ==>  ${url}`);
+  }
+  return new Promise((fulfill, reject) => {
+    exec(command, options, (error, stdout, stderr) => {
+      if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
+        console.error(` Adding remote "${name}" failed for ${url}`);
+        reject(error, stderr);
+      }
+      else {
+        fulfill(item);
+      }
+    });
+  });
+}
+
+/**
  * Get the information for a fork repository.
  * - parent is the repository this repository was forked from
  * - source is the ultimate source for the network
@@ -133,7 +152,7 @@ function getFork (forkPath, user, repo) {
 
   return got(url, gotOptions)
     .then((response) => {
-      if (commander.verbose) {
+      if (cmdOptions.verbose) {
         console.log(` Received fork data for URL: ${url}`);
       }
       return response.body;
@@ -151,39 +170,6 @@ function getFork (forkPath, user, repo) {
       console.error(' Getting fork details failed.');
       console.error(error.response.body);
     });
-}
-
-/**
- * Item is passed on success
- *
- * @param {object} item      Meta data for the given repository
- * @param {string} forkPath  File path where the repository has been cloned
- * @param {string} name      Remote name
- * @param {string} url       Remote URL
- * @returns {Promise}
- */
-function addRemote (item, forkPath, name, url) {
-  const command = `git remote add ${name} ${url}`,
-    options = {
-      cwd: forkPath,
-      env: process.env,
-      encoding: 'utf8'
-    };
-
-  if (commander.verbose) {
-    console.log(` Adding remote information, ${name} ==>  ${url}`);
-  }
-  return new Promise((fulfill, reject) => {
-    exec(command, options, (error, stdout, stderr) => {
-      if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
-        console.error(` Adding remote "${name}" failed for ${url}`);
-        reject(error, stderr);
-      }
-      else {
-        fulfill(item);
-      }
-    });
-  });
 }
 
 /**
@@ -207,7 +193,7 @@ function cloneRepo (item) {
       encoding: 'utf8'
     };
 
-  if (commander.verbose) {
+  if (cmdOptions.verbose) {
     console.log(`Cloning repository ${item.ssh_url}`);
   }
   return new Promise((fulfill, reject) => {
@@ -244,7 +230,7 @@ function handleRepos (list) {
 /**
  * Safe parsing JSON
  *
- * @param {strin} text  JSON string
+ * @param {string} text  JSON string
  * @return {object}
  */
 function parseJson (text) {
@@ -258,3 +244,9 @@ function parseJson (text) {
   }
   return data;
 }
+
+module.exports = {
+  run: run,
+  parseJson: parseJson,
+  saveJson: saveJson
+};
