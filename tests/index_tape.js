@@ -31,6 +31,7 @@ tape('parsing json', (test) => {
   test.plan(2);
 
   const data = maezato.parseJson('{"text": "Success"}');
+
   test.equal(data.text, 'Success');
 
   test.notOk(maezato.parseJson('-'));

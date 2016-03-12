@@ -4,7 +4,7 @@
 > by ordering them according to fork/contributing/mine
 
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
-![codecov.io](https://codecov.io/github/paazmaya/maezato/branch.svg?branch=master)
+[![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
 
 ![maezato project logo](./icon.png)
 
@@ -93,11 +93,18 @@ npm test
 
 ## Version history
 
-* `v0.5.0` (2015-11-29) Command line code separation so testing can be started
-* `v0.4.0` (2015-11-18) Everything with Promises. Back to using `got` instead of `gh-got`
-* `v0.3.0` (2015-10-29) Command line options
-* `v0.2.0` (2015-10-26) Using `gh-got` for network connectivity
-* `v0.1.0` (2015-10-23) Gets the job done, hence first release
+* `v0.5.0` (2016-03-12)
+  - Command line code separation so testing can be started
+  - Update dependencies plenty
+* `v0.4.0` (2015-11-18)
+  - Everything with Promises
+  - Back to using `got` instead of `gh-got`
+* `v0.3.0` (2015-10-29)
+  - Command line options
+* `v0.2.0` (2015-10-26)
+  - Using `gh-got` for network connectivity
+* `v0.1.0` (2015-10-23)
+  - Gets the job done, hence first release
 
 ## License
 
