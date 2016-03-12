@@ -13,7 +13,7 @@
 'use strict';
 
 const fs = require('fs'),
-	path = require('path'),
+  path = require('path'),
   exec = require('child_process').exec;
 
 const mkdirp = require('mkdirp').sync,
@@ -27,22 +27,27 @@ const API_URL = 'https://api.github.com/',
 let cmdOptions,
   token,
   username,
-  cloneBaseDir;
+  cloneBaseDir,
+  gotOptions;
 
-const gotOptions = {
-  headers: {
-    accept: 'application/vnd.github.v3+json',
-    'user-agent': userAgent,
-    authorization: `token ${token}`
-  },
-  json: true
+const getGotOptions = () => {
+  return {
+    headers: {
+      accept: 'application/vnd.github.v3+json',
+      'user-agent': userAgent,
+      authorization: `token ${token}`
+    },
+    json: true
+  };
 };
 
 function run (options) {
   cmdOptions = options;
   token = options.token;
-  username = options.args[0];
-  cloneBaseDir = path.resolve(options.args[1]);
+  username = options.username;
+  cloneBaseDir = options.cloneBaseDir;
+
+  gotOptions = getGotOptions();
 
   console.log(`Cloning to a structure under "${cloneBaseDir}"`);
 

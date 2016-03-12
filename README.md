@@ -93,6 +93,8 @@ npm test
 
 ## Version history
 
+* `v0.5.1` (2016-03-12)
+  - Wrong properties used
 * `v0.5.0` (2016-03-12)
   - Command line code separation so testing can be started
   - Update dependencies plenty

@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
