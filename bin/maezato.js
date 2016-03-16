@@ -25,7 +25,7 @@ const pjson = fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'),
   pkg = maezato.parseJson(pjson);
 
 const optsParser = optionator({
-  prepend: `${pkg.name} [options] <username> <directory>`,
+  prepend: `Usage: ${pkg.name} [options] <username> <directory>`,
   append: `Version ${pkg.version}`,
   options: [
     {
@@ -69,6 +69,8 @@ const optsParser = optionator({
   ]
 });
 
+console.log(`${pkg.name} - ${pkg.description}`);
+
 let opts;
 
 try {
@@ -102,8 +104,11 @@ if (!token) {
   process.exit(1);
 }
 
-console.log(`${pkg.name} - Clone all GitHub repositories of a given user`);
-
-opts.token = token;
-maezato.run(opts);
+maezato.run({
+  token: token,
+  verbose: typeof opts.verbose === 'boolean' ? opts.verbose : false,
+  saveJson: typeof opts.saveJson === 'boolean' ? opts.saveJson : false,
+  username: opts._[0],
+  cloneBaseDir: path.resolve(opts._[1])
+});
 
