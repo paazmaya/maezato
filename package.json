@@ -32,15 +32,15 @@
   },
   "license": "MIT",
   "dependencies": {
-    "got": "^6.2.0",
+    "got": "^6.3.0",
     "mkdirp": "^0.5.1",
     "optionator": "^0.8.1",
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
     "codecov": "^1.0.1",
-    "eslint": "^2.5.3",
-    "istanbul": "^0.4.2",
+    "eslint": "^2.7.0",
+    "istanbul": "^0.4.3",
     "tape": "^4.5.1"
   }
 }

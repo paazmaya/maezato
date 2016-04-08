@@ -58,7 +58,7 @@ const optsParser = optionator({
       alias: 's',
       type: 'Boolean',
       description: 'Save API calls as JSON files, possibly for debugging'
-    }/*,
+    }/* ,
     {
       option: 'exclude',
       alias: 'x',
@@ -111,4 +111,3 @@ maezato.run({
   username: opts._[0],
   cloneBaseDir: path.resolve(opts._[1])
 });
-

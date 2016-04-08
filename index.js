@@ -220,7 +220,7 @@ function cloneRepo (item) {
 /**
  *
  * @param {array} list  List of repositories for the given user
- * @returns {Promise}
+ * @returns {Promise} Promise that should have resolve all
  */
 function handleRepos (list) {
   console.log(`Total of ${list.length} repositories to process`);
@@ -233,7 +233,7 @@ function handleRepos (list) {
  * Safe parsing JSON
  *
  * @param {string} text  JSON string
- * @returns {object}
+ * @returns {object} Data object
  */
 function parseJson (text) {
   let data;
