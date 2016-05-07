@@ -41,7 +41,7 @@ const getGotOptions = () => {
   };
 };
 
-function run (options) {
+const run = (options) => {
   cmdOptions = options;
   token = options.token;
   username = options.username;
@@ -58,9 +58,13 @@ function run (options) {
   }).then(() => {
     console.log('All done, thank you!');
   });
-}
+};
 
-function getRepos () {
+/**
+ * [description]
+ * @return {[type]} [description]
+ */
+const getRepos = () => {
   if (cmdOptions.verbose) {
     console.log(`Fetching information about all the user repositories for ${username}`);
   }
@@ -74,7 +78,7 @@ function getRepos () {
       console.error(' Fetching repository list failed.');
       console.error(error.response.body);
     });
-}
+};
 
 
 /**
@@ -84,7 +88,7 @@ function getRepos () {
  * @param {string} filepath  Destination file path
  * @returns {Promise}
  */
-function saveJson (data, filepath) {
+const saveJson = (data, filepath) => {
   return new Promise((fulfill, reject) => {
     if (cmdOptions.saveJson) {
       if (cmdOptions.verbose) {
@@ -103,7 +107,7 @@ function saveJson (data, filepath) {
       fulfill(data);
     }
   });
-}
+};
 
 
 /**
@@ -115,7 +119,7 @@ function saveJson (data, filepath) {
  * @param {string} url       Remote URL
  * @returns {Promise}
  */
-function addRemote (item, forkPath, name, url) {
+const addRemote = (item, forkPath, name, url) => {
   const command = `git remote add ${name} ${url}`,
     options = {
       cwd: forkPath,
@@ -137,7 +141,7 @@ function addRemote (item, forkPath, name, url) {
       }
     });
   });
-}
+};
 
 /**
  * Get the information for a fork repository.
@@ -149,7 +153,7 @@ function addRemote (item, forkPath, name, url) {
  * @param {string} repo      Repository name
  * @returns {Promise}
  */
-function getFork (forkPath, user, repo) {
+const getFork = (forkPath, user, repo) => {
   const url = `${API_URL}repos/${user}/${repo}`;
 
   return got(url, gotOptions)
@@ -172,7 +176,7 @@ function getFork (forkPath, user, repo) {
       console.error(' Getting fork details failed.');
       console.error(error.response.body);
     });
-}
+};
 
 /**
  * Clone a repository
@@ -180,9 +184,9 @@ function getFork (forkPath, user, repo) {
  * @param {object} item  Meta data for the given repository
  * @returns {Promise}
  */
-function cloneRepo (item) {
+const cloneRepo = (item) => {
   const type = item.fork ? 'fork' :
-    (item.owner.login === username ? 'mine' : 'contributing');
+    item.owner.login === username ? 'mine' : 'contributing';
 
   const clonePath = path.join(cloneBaseDir, username, type);
 
@@ -215,19 +219,19 @@ function cloneRepo (item) {
 
     return data;
   });
-}
+};
 
 /**
  *
  * @param {array} list  List of repositories for the given user
  * @returns {Promise} Promise that should have resolve all
  */
-function handleRepos (list) {
+const handleRepos = (list) => {
   console.log(`Total of ${list.length} repositories to process`);
   console.log('');
 
   return Promise.resolve(list).then(each(cloneRepo));
-}
+};
 
 /**
  * Safe parsing JSON
@@ -235,7 +239,7 @@ function handleRepos (list) {
  * @param {string} text  JSON string
  * @returns {object} Data object
  */
-function parseJson (text) {
+const parseJson = (text) => {
   let data;
 
   try {
@@ -245,7 +249,7 @@ function parseJson (text) {
     console.error(` Parsing JSON failed. ${error}`);
   }
   return data;
-}
+};
 
 module.exports = {
   run,
