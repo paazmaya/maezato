@@ -40,7 +40,7 @@
   "devDependencies": {
     "codecov": "^1.0.1",
     "eslint": "^2.9.0",
-    "eslint-config-paazmaya": "^1.0.1",
+    "eslint-config-paazmaya": "^2.0.0",
     "istanbul": "^0.4.3",
     "tape": "^4.5.1"
   }
