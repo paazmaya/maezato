@@ -20,7 +20,7 @@ const mkdirp = require('mkdirp').sync,
   got = require('got'),
   each = require('promise-each');
 
-const API_URL = 'https://api.github.com/',
+const GH_API_URL = 'https://api.github.com/',
   INDEX_NOT_FOUND = -1,
   userAgent = 'maezato cloner';
 
@@ -75,6 +75,24 @@ const saveJson = (data, filepath) => {
 };
 
 /**
+ * Safe parsing JSON
+ *
+ * @param {string} text  JSON string
+ * @returns {object} Data object
+ */
+const parseJson = (text) => {
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  }
+  catch (error) {
+    console.error(` Parsing JSON failed. ${error}`);
+  }
+  return data;
+};
+
+/**
  * Get a list of repositories
  *
  * @return {Promise} [description]
@@ -85,7 +103,7 @@ const getRepos = () => {
   }
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
-  return got(`${API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
+  return got(`${GH_API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
     .then((response) => {
       return saveJson(response.body, path.join(cloneBaseDir, `${username}-repositories.json`));
     })
@@ -139,7 +157,7 @@ const addRemote = (item, forkPath, name, url) => {
  * @returns {Promise}
  */
 const getFork = (forkPath, user, repo) => {
-  const url = `${API_URL}repos/${user}/${repo}`;
+  const url = `${GH_API_URL}repos/${user}/${repo}`;
 
   return got(url, gotOptions)
     .then((response) => {
@@ -219,24 +237,6 @@ const handleRepos = (list) => {
 };
 
 /**
- * Safe parsing JSON
- *
- * @param {string} text  JSON string
- * @returns {object} Data object
- */
-const parseJson = (text) => {
-  let data;
-
-  try {
-    data = JSON.parse(text);
-  }
-  catch (error) {
-    console.error(` Parsing JSON failed. ${error}`);
-  }
-  return data;
-};
-
-/**
  * Executioner
  * @param  {object} options Options
  * @return {void}
@@ -260,9 +260,14 @@ const run = (options) => {
   });
 };
 
+module.exports = run;
+module.exports.parseJson = parseJson;
+module.exports.saveJson = saveJson;
 
-module.exports = {
-  run,
-  parseJson,
-  saveJson
-};
+// Exported for testing
+module.exports._getGotOptions = getGotOptions;
+module.exports._getRepos = getRepos;
+module.exports._addRemote = addRemote;
+module.exports._getFork = getFork;
+module.exports._cloneRepo = cloneRepo;
+module.exports._handleRepos = handleRepos;

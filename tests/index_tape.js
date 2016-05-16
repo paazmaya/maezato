@@ -19,11 +19,19 @@ const tape = require('tape'),
   maezato = require('../index');
 
 tape('several functions are exported', (test) => {
-  test.plan(3);
+  test.plan(10);
 
-  test.equal(typeof maezato.run, 'function');
+  test.equal(typeof maezato, 'function');
+  test.equal(maezato.length, 1, 'takes a single argument');
   test.equal(typeof maezato.parseJson, 'function');
   test.equal(typeof maezato.saveJson, 'function');
+
+  test.equal(typeof maezato._getGotOptions, 'function');
+  test.equal(typeof maezato._getRepos, 'function');
+  test.equal(typeof maezato._addRemote, 'function');
+  test.equal(typeof maezato._getFork, 'function');
+  test.equal(typeof maezato._cloneRepo, 'function');
+  test.equal(typeof maezato._handleRepos, 'function');
 });
 
 
@@ -36,6 +44,4 @@ tape('parsing json', (test) => {
 
   test.notOk(maezato.parseJson('-'));
 });
-
-
 

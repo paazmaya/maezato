@@ -105,7 +105,7 @@ if (!token) {
   process.exit(1);
 }
 
-maezato.run({
+maezato({
   token: token,
   verbose: typeof opts.verbose === 'boolean' ? opts.verbose : false,
   saveJson: typeof opts.saveJson === 'boolean' ? opts.saveJson : false,

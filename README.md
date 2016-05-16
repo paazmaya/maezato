@@ -95,6 +95,7 @@ npm test
 
 * `v0.6.0` (2016-05)
   - Version info does not print tool name #9
+  - Using shared ESLint configuration #8
 * `v0.5.1` (2016-03-12)
   - Wrong properties used
 * `v0.5.0` (2016-03-12)
@@ -104,9 +105,9 @@ npm test
   - Everything with Promises
   - Back to using `got` instead of `gh-got`
 * `v0.3.0` (2015-10-29)
-  - Command line options
+  - Command line options #2
 * `v0.2.0` (2015-10-26)
-  - Using `gh-got` for network connectivity
+  - Using `gh-got` for network connectivity #1
 * `v0.1.0` (2015-10-23)
   - Gets the job done, hence first release
 
