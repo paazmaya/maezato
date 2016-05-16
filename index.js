@@ -30,6 +30,11 @@ let cmdOptions,
   cloneBaseDir,
   gotOptions;
 
+/**
+ * Options for got module
+ *
+ * @returns {Object} Options for got module
+ */
 const getGotOptions = () => {
   return {
     headers: {
@@ -40,46 +45,6 @@ const getGotOptions = () => {
     json: true
   };
 };
-
-const run = (options) => {
-  cmdOptions = options;
-  token = options.token;
-  username = options.username;
-  cloneBaseDir = options.cloneBaseDir;
-
-  gotOptions = getGotOptions();
-
-  console.log(`Cloning to a structure under "${cloneBaseDir}"`);
-
-  mkdirp(cloneBaseDir);
-
-  getRepos().then((data) => {
-    return handleRepos(data);
-  }).then(() => {
-    console.log('All done, thank you!');
-  });
-};
-
-/**
- * [description]
- * @return {[type]} [description]
- */
-const getRepos = () => {
-  if (cmdOptions.verbose) {
-    console.log(`Fetching information about all the user repositories for ${username}`);
-  }
-
-  // TODO: take care of paging. Someone might have more than 100 repositories...
-  return got(`${API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
-    .then((response) => {
-      return saveJson(response.body, path.join(cloneBaseDir, `${username}-repositories.json`));
-    })
-    .catch((error) => {
-      console.error(' Fetching repository list failed.');
-      console.error(error.response.body);
-    });
-};
-
 
 /**
  * Save a JSON file, in case it has been requested
@@ -109,6 +74,26 @@ const saveJson = (data, filepath) => {
   });
 };
 
+/**
+ * Get a list of repositories
+ *
+ * @return {Promise} [description]
+ */
+const getRepos = () => {
+  if (cmdOptions.verbose) {
+    console.log(`Fetching information about all the user repositories for ${username}`);
+  }
+
+  // TODO: take care of paging. Someone might have more than 100 repositories...
+  return got(`${API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
+    .then((response) => {
+      return saveJson(response.body, path.join(cloneBaseDir, `${username}-repositories.json`));
+    })
+    .catch((error) => {
+      console.error(' Fetching repository list failed.');
+      console.error(error.response.body);
+    });
+};
 
 /**
  * Item is passed on success
@@ -250,6 +235,31 @@ const parseJson = (text) => {
   }
   return data;
 };
+
+/**
+ * Executioner
+ * @param  {object} options Options
+ * @return {void}
+ */
+const run = (options) => {
+  cmdOptions = options;
+  token = options.token;
+  username = options.username;
+  cloneBaseDir = options.cloneBaseDir;
+
+  gotOptions = getGotOptions();
+
+  console.log(`Cloning to a structure under "${cloneBaseDir}"`);
+
+  mkdirp(cloneBaseDir);
+
+  getRepos().then((data) => {
+    return handleRepos(data);
+  }).then(() => {
+    console.log('All done, thank you!');
+  });
+};
+
 
 module.exports = {
   run,

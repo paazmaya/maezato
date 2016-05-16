@@ -6,7 +6,7 @@
   "bin": "bin/maezato.js",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/index_tape.js && npm run lint",
+    "test": "npm run lint && node tests/index_tape.js",
     "coverage": "istanbul cover tests/index_tape.js --report lcovonly && codecov",
     "lint": "eslint -c .eslintrc.json index.js bin/maezato.js"
   },

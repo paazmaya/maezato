@@ -93,6 +93,8 @@ npm test
 
 ## Version history
 
+* `v0.6.0` (2016-05)
+  - Version info does not print tool name #9
 * `v0.5.1` (2016-03-12)
   - Wrong properties used
 * `v0.5.0` (2016-03-12)

@@ -69,7 +69,6 @@ const optsParser = optionator({
   ]
 });
 
-console.log(`${pkg.name} - ${pkg.description}`);
 
 let opts;
 
@@ -85,6 +84,8 @@ if (opts.version) {
   console.log(pkg.version);
   process.exit(0);
 }
+
+console.log(`${pkg.name} - ${pkg.description}`);
 
 if (opts.help) {
   console.log(optsParser.generateHelp());
