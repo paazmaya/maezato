@@ -8,7 +8,7 @@
  * by ordering them according to fork/contributing/mine
  * @see https://developer.github.com/v3/repos/#list-user-repositories
  *
- * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.fi)
+ * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (https://paazmaya.fi)
  * Licensed under the MIT license
  */
 
@@ -21,7 +21,7 @@ const optionator = require('optionator');
 
 const maezato = require('../index');
 
-const pjson = fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'),
+const pjson = fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'),
   pkg = maezato.parseJson(pjson);
 
 const optsParser = optionator({

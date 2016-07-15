@@ -6,7 +6,7 @@
  * by ordering them according to fork/contributing/mine
  * @see https://developer.github.com/v3/repos/#list-user-repositories
  *
- * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (http://paazmaya.fi)
+ * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (https://paazmaya.fi)
  * Licensed under the MIT license
  */
 
