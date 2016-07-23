@@ -4,9 +4,10 @@
 > by ordering them according to fork/contributing/mine
 
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
+[![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
 [![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
 
-![maezato project logo](./icon.png)
+![maezato project logo](icon.png)
 
 The name of this project, `maezato` is a tribute to the late [Mr Shinken Taira](https://en.wikipedia.org/wiki/Taira_Shinken) (平 信賢)
 from Kumejima, Okinawa, Japan, who was one of the greatest individuals for preserving
@@ -93,9 +94,10 @@ npm test
 
 ## Version history
 
-* `v0.6.0` (2016-05)
+* `v0.6.0` (2016-07)
   - Version info does not print tool name #9
   - Using shared ESLint configuration #8
+  - Started testing with Windows at AppVeyor
 * `v0.5.1` (2016-03-12)
   - Wrong properties used
 * `v0.5.0` (2016-03-12)
