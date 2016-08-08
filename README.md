@@ -89,15 +89,24 @@ Please use them by doing:
 
 ```sh
 npm install
+npm run lint
 npm test
 ```
 
+[Please refer to a GitHub blog post on how to create somewhat perfect pull request.](https://github.com/blog/1943-how-to-write-the-perfect-pull-request "How to write the perfect pull request")
+
+Unit tests are written with [`tape`](https://github.com/substack/tape) and can be executed with `npm test`.
+Code coverage is inspected with [`nyc`](https://github.com/istanbuljs/nyc) and
+can be executed with `npm run coverage` after running `npm test`.
+Please make sure it is over 90% at all times.
+
 ## Version history
 
-* `v0.6.0` (2016-07)
+* `v0.6.0` (2016-08-)
   - Version info does not print tool name #9
   - Using shared ESLint configuration #8
   - Started testing with Windows at AppVeyor
+  - Move code coverage from `instanbul` to `nyc`
 * `v0.5.1` (2016-03-12)
   - Wrong properties used
 * `v0.5.0` (2016-03-12)
