@@ -102,7 +102,7 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v0.6.0` (2016-08-)
+* `v0.5.2` (2016-08-08)
   - Version info does not print tool name #9
   - Using shared ESLint configuration #8
   - Started testing with Windows at AppVeyor

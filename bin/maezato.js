@@ -93,7 +93,8 @@ if (opts.help) {
 }
 
 if (opts._.length !== 2) {
-  console.log('Seem to be missing <username> or <target path> hence exiting');
+  console.log('Seem to be missing <username> or <target path>');
+  console.log(optsParser.generateHelp());
   process.exit(1);
 }
 
