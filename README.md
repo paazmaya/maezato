@@ -102,6 +102,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.5.3` (2016-08-13)
+  - `bin` was not included in the npm package
 * `v0.5.2` (2016-08-08)
   - Version info does not print tool name #9
   - Using shared ESLint configuration #8

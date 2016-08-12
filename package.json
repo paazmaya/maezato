@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -11,6 +11,7 @@
     "lint": "eslint -c .eslintrc.json index.js bin/maezato.js"
   },
   "files": [
+    "bin",
     "index.js",
     "package.json",
     "LICENSE"
