@@ -89,6 +89,7 @@ const parseJson = (text) => {
   catch (error) {
     console.error(` Parsing JSON failed. ${error}`);
   }
+
   return data;
 };
 
@@ -133,6 +134,7 @@ const addRemote = (item, forkPath, name, url) => {
   if (cmdOptions.verbose) {
     console.log(` Adding remote information, ${name} ==>  ${url}`);
   }
+
   return new Promise((fulfill, reject) => {
     exec(command, options, (error, stdout, stderr) => {
       if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
@@ -164,6 +166,7 @@ const getFork = (forkPath, user, repo) => {
       if (cmdOptions.verbose) {
         console.log(` Received fork data for URL: ${url}`);
       }
+
       return response.body;
     })
     .then((item) => {
@@ -188,8 +191,11 @@ const getFork = (forkPath, user, repo) => {
  * @returns {Promise}
  */
 const cloneRepo = (item) => {
-  const type = item.fork ? 'fork' :
-    item.owner.login === username ? 'mine' : 'contributing';
+  const type = item.fork ?
+    'fork' :
+    item.owner.login === username ?
+    'mine' :
+    'contributing';
 
   const clonePath = path.join(cloneBaseDir, username, type);
 
@@ -205,6 +211,7 @@ const cloneRepo = (item) => {
   if (cmdOptions.verbose) {
     console.log(`Cloning repository ${item.ssh_url}`);
   }
+
   return new Promise((fulfill, reject) => {
     exec(command, options, (error, stdout, stderr) => {
       if (error && stderr.indexOf('already exists and is not an empty directory') === INDEX_NOT_FOUND) {

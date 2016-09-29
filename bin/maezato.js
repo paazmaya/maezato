@@ -108,8 +108,12 @@ if (!token) {
 
 maezato({
   token: token,
-  verbose: typeof opts.verbose === 'boolean' ? opts.verbose : false,
-  saveJson: typeof opts.saveJson === 'boolean' ? opts.saveJson : false,
+  verbose: typeof opts.verbose === 'boolean' ?
+    opts.verbose :
+    false,
+  saveJson: typeof opts.saveJson === 'boolean' ?
+    opts.saveJson :
+    false,
   username: opts._[0],
   cloneBaseDir: path.resolve(opts._[1])
 });
