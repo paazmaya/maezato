@@ -8,7 +8,7 @@
   "scripts": {
     "test": "nyc --exclude tests tape tests/*_test.js",
     "coverage": "nyc --exclude tests report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "eslint -c .eslintrc.json index.js bin/maezato.js"
+    "lint": "eslint index.js bin/maezato.js"
   },
   "files": [
     "bin",
@@ -40,9 +40,9 @@
   },
   "devDependencies": {
     "codecov": "^2.1.0",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "eslint-config-paazmaya": "^3.2.0",
-    "nyc": "^10.2.0",
+    "nyc": "^10.3.0",
     "tape": "^4.6.3"
   }
 }
