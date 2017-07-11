@@ -33,16 +33,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "got": "^7.0.0",
+    "got": "^7.1.0",
     "mkdirp": "^0.5.1",
     "optionator": "^0.8.2",
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
     "codecov": "^2.2.0",
-    "eslint": "^4.0.0",
+    "eslint": "^4.2.0",
     "eslint-config-paazmaya": "^4.0.0",
-    "nyc": "^11.0.2",
-    "tape": "^4.6.3"
+    "nyc": "^11.0.3",
+    "tape": "^4.7.0"
   }
 }

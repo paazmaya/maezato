@@ -27,6 +27,9 @@ npm install --global maezato
 
 Please note that `git` should be available in the system where this tool is planned to be used.
 
+Please note that this tool requires the minimum [Node.js](https://nodejs.org/en/)
+version to be `6.9.5`, which is the Long Term Support (LTS) version.
+
 ## Usage
 
 It is possible to use this tool to retrieve all public repositories for a given
@@ -109,6 +112,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.6.0` (2017-07)
+  - Minimum Node.js version lifted from `4.2.0` to `6.9.5`
 * `v0.5.3` (2016-08-13)
   - `bin` was not included in the npm package
 * `v0.5.2` (2016-08-08)
