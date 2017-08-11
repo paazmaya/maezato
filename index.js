@@ -194,8 +194,8 @@ const cloneRepo = (item) => {
   const type = item.fork ?
     'fork' :
     item.owner.login === username ?
-    'mine' :
-    'contributing';
+      'mine' :
+      'contributing';
 
   const clonePath = path.join(cloneBaseDir, username, type);
 
