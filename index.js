@@ -51,7 +51,7 @@ const getGotOptions = () => {
  *
  * @param {object} data      Whatever JSON data there is to be saved
  * @param {string} filepath  Destination file path
- * @returns {Promise}
+ * @returns {Promise} Promise that solves when file has saved
  */
 const saveJson = (data, filepath) => {
   return new Promise((fulfill, reject) => {
@@ -96,7 +96,7 @@ const parseJson = (text) => {
 /**
  * Get a list of repositories
  *
- * @return {Promise} [description]
+ * @return {Promise} Promise that solves when got received
  */
 const getRepos = () => {
   if (cmdOptions.verbose) {
@@ -121,7 +121,7 @@ const getRepos = () => {
  * @param {string} forkPath  File path where the repository has been cloned
  * @param {string} name      Remote name
  * @param {string} url       Remote URL
- * @returns {Promise}
+ * @returns {Promise} Promise that solves when git remote has added
  */
 const addRemote = (item, forkPath, name, url) => {
   const command = `git remote add ${name} ${url}`,
@@ -156,7 +156,7 @@ const addRemote = (item, forkPath, name, url) => {
  * @param {string} forkPath  File path where the repository has been cloned
  * @param {string} user      GitHub username
  * @param {string} repo      Repository name
- * @returns {Promise}
+ * @returns {Promise} Promise that solves when got has received and git commands are done
  */
 const getFork = (forkPath, user, repo) => {
   const url = `${GH_API_URL}repos/${user}/${repo}`;
@@ -188,7 +188,7 @@ const getFork = (forkPath, user, repo) => {
  * Clone a repository
  *
  * @param {object} item  Meta data for the given repository
- * @returns {Promise}
+ * @returns {Promise} Promise that solved when git has cloned
  */
 const cloneRepo = (item) => {
   const type = item.fork ?
@@ -234,7 +234,7 @@ const cloneRepo = (item) => {
 /**
  *
  * @param {array} list  List of repositories for the given user
- * @returns {Promise} Promise that should have resolve all
+ * @returns {Promise} Promise that should have resolved everything
  */
 const handleRepos = (list) => {
   console.log(`Total of ${list.length} repositories to process`);
