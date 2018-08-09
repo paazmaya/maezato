@@ -92,10 +92,15 @@ if (opts.help) {
   process.exit(0);
 }
 
-if (opts._.length !== 2) {
+if (opts._.length !== 1 && opts._.length !== 2) {
   console.log('Seem to be missing <username> or <target path>');
   console.log(optsParser.generateHelp());
   process.exit(1);
+}
+
+// Default path shall be current working directory
+if (opts._.length === 1) {
+  opts._.push('.');
 }
 
 const token = opts.token || process.env.GITHUB_TOKEN;
