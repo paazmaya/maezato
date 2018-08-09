@@ -25,7 +25,7 @@ const pjson = fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'
   pkg = maezato.parseJson(pjson);
 
 const optsParser = optionator({
-  prepend: `Usage: ${pkg.name} [options] <username> <directory>`,
+  prepend: `Usage: ${pkg.name} [options] <username> <target path, defaults to current directory>`,
   append: `Version ${pkg.version}`,
   options: [
     {

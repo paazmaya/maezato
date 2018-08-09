@@ -48,7 +48,7 @@ export GITHUB_TOKEN=123456789123456789123456789123456789
 Use via command line, always with exactly two arguments and with possible options:
 
 ```sh
-maezato [options] <username> <target path>
+maezato [options] <username> <target path, defaults to current directory>
 ```
 
 The cloning of a given repository uses the `ssh_url` property, hence
@@ -111,8 +111,10 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v0.6.0` (2017-07)
-  - Minimum Node.js version lifted from `4.2.0` to `6.9.5`
+* `v0.6.0` (2018-08-10)
+  - Minimum Node.js version lifted from `4.2.0` to `8.11.1`
+  - Default to current working directory when path not defined #14
+  - Display progress #12
 * `v0.5.3` (2016-08-13)
   - `bin` was not included in the npm package
 * `v0.5.2` (2016-08-08)

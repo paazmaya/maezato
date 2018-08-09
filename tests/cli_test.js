@@ -33,7 +33,7 @@ tape('cli should output help by default', (test) => {
   test.plan(1);
 
   execFile('node', [pkg.bin], null, (err, stdout) => {
-    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <directory>') !== -1, 'Help appeared');
+    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
   });
 
 });
@@ -42,8 +42,7 @@ tape('cli should output help when requested', (test) => {
   test.plan(1);
 
   execFile('node', [pkg.bin, '--help'], null, (err, stdout) => {
-    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <directory>') !== -1, 'Help appeared');
+    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
   });
 
 });
-

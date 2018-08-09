@@ -18,13 +18,15 @@ const fs = require('fs'),
 
 const mkdirp = require('mkdirp').sync,
   got = require('got'),
-  each = require('promise-each');
+  each = require('promise-each'),
+  Progress = require('progress');
 
 const GH_API_URL = 'https://api.github.com/',
   INDEX_NOT_FOUND = -1,
   userAgent = 'maezato cloner';
 
-let cmdOptions,
+let progressBar,
+  cmdOptions,
   token,
   username,
   cloneBaseDir,
@@ -214,6 +216,9 @@ const cloneRepo = (item) => {
 
   return new Promise((fulfill, reject) => {
     exec(command, options, (error, stdout, stderr) => {
+      progressBar.tick();
+      progressBar.render();
+
       if (error && stderr.indexOf('already exists and is not an empty directory') === INDEX_NOT_FOUND) {
         console.error(` Cloning failed for ${item.ssh_url}`);
         reject(error, stderr);
@@ -227,6 +232,9 @@ const cloneRepo = (item) => {
       return getFork(path.join(clonePath, data.name), data.owner.login, data.name);
     }
 
+    progressBar.tick();
+    progressBar.render();
+
     return data;
   });
 };
@@ -237,8 +245,13 @@ const cloneRepo = (item) => {
  * @returns {Promise} Promise that should have resolved everything
  */
 const handleRepos = (list) => {
-  console.log(`Total of ${list.length} repositories to process`);
-  console.log('');
+
+  // Show command line progress.
+  progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
+    total: list.length * 2,
+    complete: '#',
+    incomplete: '-'
+  });
 
   return Promise.resolve(list).then(each(cloneRepo));
 };
