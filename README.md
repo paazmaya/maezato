@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.org/paazmaya/maezato.svg?branch=master)](https://travis-ci.org/paazmaya/maezato)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
 [![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
+[![dependencies Status](https://david-dm.org/paazmaya/maezato/status.svg)](https://david-dm.org/paazmaya/maezato)
 
 ![maezato project logo](icon.png)
 
