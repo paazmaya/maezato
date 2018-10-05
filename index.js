@@ -30,6 +30,7 @@ let progressBar,
   token,
   username,
   cloneBaseDir,
+  omitUsername,
   gotOptions;
 
 /**
@@ -199,7 +200,9 @@ const cloneRepo = (item) => {
       'mine' :
       'contributing';
 
-  const clonePath = path.join(cloneBaseDir, username, type);
+  const clonePath = omitUsername ?
+    path.join(cloneBaseDir, type) :
+    path.join(cloneBaseDir, username, type);
 
   mkdirp(clonePath);
 
@@ -266,10 +269,11 @@ const run = (options) => {
   token = options.token;
   username = options.username;
   cloneBaseDir = options.cloneBaseDir;
+  omitUsername = options.omitUsername;
 
   gotOptions = getGotOptions();
 
-  console.log(`Cloning to a structure under "${cloneBaseDir}"`);
+  console.log(`Cloning to a structure under "${path.join(cloneBaseDir, username)}"`);
 
   mkdirp(cloneBaseDir);
 

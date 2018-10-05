@@ -54,6 +54,12 @@ const optsParser = optionator({
       description: 'GitHub API personal authentication token'
     },
     {
+      option: 'omit-username',
+      alias: 'O',
+      type: 'Boolean',
+      description: 'Omit the username directory when creating directory structure'
+    },
+    {
       option: 'save-json',
       alias: 's',
       type: 'Boolean',
@@ -115,6 +121,9 @@ maezato({
   token: token,
   verbose: typeof opts.verbose === 'boolean' ?
     opts.verbose :
+    false,
+  omitUsername: typeof opts.omitUsername === 'boolean' ?
+    opts.omitUsername :
     false,
   saveJson: typeof opts.saveJson === 'boolean' ?
     opts.saveJson :
