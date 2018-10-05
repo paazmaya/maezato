@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -17,7 +17,8 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=8.11.1"
+    "node": ">=8.11.1",
+    "npm": ">=5.0.0"
   },
   "author": {
     "name": "Juga Paazmaya",
@@ -33,15 +34,15 @@
   },
   "license": "MIT",
   "dependencies": {
-    "got": "^9.2.0",
+    "got": "^9.2.2",
     "mkdirp": "^0.5.1",
     "optionator": "^0.8.2",
     "progress": "^2.0.0",
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
-    "codecov": "^3.0.4",
-    "eslint": "^5.4.0",
+    "codecov": "^3.1.0",
+    "eslint": "^5.6.1",
     "eslint-config-paazmaya": "^5.0.0",
     "nyc": "^13.0.1",
     "tape": "^4.9.1"
