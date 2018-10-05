@@ -113,6 +113,8 @@ Please make sure it is over 90% at all times.
 ## Version history
 
 * `v0.7.0` (2018-10-10)
+  - Option for omitting the username directory from the resulting directory structure #15
+  - Include `npm-shrinkwrap.json` in the package to ensure working dependency versions
 * `v0.6.0` (2018-08-10)
   - Minimum Node.js version lifted from `4.2.0` to `8.11.1`
   - Default to current working directory when path not defined #14

@@ -13,6 +13,7 @@
   "files": [
     "bin",
     "index.js",
+    "npm-shrinkwrap.json",
     "package.json",
     "LICENSE"
   ],
