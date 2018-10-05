@@ -58,11 +58,12 @@ The cloning of a given repository uses the `ssh_url` property, hence
 Possible command line options are:
 
 ```sh
-  -h, --help       output usage information
-  -V, --version    output the version number
-  -v, --verbose    Print out more stuff
-  -t, --token      GitHub API personal authentication token
-  -s, --save-json  Save API calls as JSON files, possibly for debugging
+-h, --help           Help and usage instructions
+-V, --version        Version number
+-v, --verbose        Verbose output, will print which file is currently being processed
+-t, --token String   GitHub API personal authentication token
+-O, --omit-username  Omit the username directory when creating directory structure
+-s, --save-json      Save API calls as JSON files, possibly for debugging
 ```
 
 For example getting all of the repositories of `@nodejs` under `~/github`:
@@ -112,7 +113,7 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v0.7.0` (2018-10-10)
+* `v0.7.0` (2018-10-05)
   - Option for omitting the username directory from the resulting directory structure #15
   - Include `npm-shrinkwrap.json` in the package to ensure working dependency versions
 * `v0.6.0` (2018-08-10)
