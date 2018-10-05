@@ -27,10 +27,6 @@ const GH_API_URL = 'https://api.github.com/',
 
 let progressBar,
   cmdOptions,
-  token,
-  username,
-  cloneBaseDir,
-  omitUsername,
   gotOptions;
 
 /**
@@ -43,7 +39,7 @@ const getGotOptions = () => {
     headers: {
       accept: 'application/vnd.github.v3+json',
       'user-agent': userAgent,
-      authorization: `token ${token}`
+      authorization: `token ${cmdOptions.token}`
     },
     json: true
   };
@@ -103,13 +99,13 @@ const parseJson = (text) => {
  */
 const getRepos = () => {
   if (cmdOptions.verbose) {
-    console.log(`Fetching information about all the user repositories for ${username}`);
+    console.log(`Fetching information about all the user repositories for "${cmdOptions.username}"`);
   }
 
   // TODO: take care of paging. Someone might have more than 100 repositories...
-  return got(`${GH_API_URL}users/${username}/repos?type=all&per_page=100`, gotOptions)
+  return got(`${GH_API_URL}users/${cmdOptions.username}/repos?type=all&per_page=100`, gotOptions)
     .then((response) => {
-      return saveJson(response.body, path.join(cloneBaseDir, `${username}-repositories.json`));
+      return saveJson(response.body, path.join(cmdOptions.cloneBaseDir, `${cmdOptions.username}-repositories.json`));
     })
     .catch((error) => {
       console.error(' Fetching repository list failed.');
@@ -173,7 +169,7 @@ const getFork = (forkPath, user, repo) => {
       return response.body;
     })
     .then((item) => {
-      return saveJson(item, path.join(cloneBaseDir, `${item.owner.login}-fork-${item.name}.json`));
+      return saveJson(item, path.join(cmdOptions.cloneBaseDir, `${item.owner.login}-fork-${item.name}.json`));
     })
     .then((item) => {
       return addRemote(item, forkPath, 'upstream', item.parent.git_url);
@@ -196,13 +192,13 @@ const getFork = (forkPath, user, repo) => {
 const cloneRepo = (item) => {
   const type = item.fork ?
     'fork' :
-    item.owner.login === username ?
+    item.owner.login === cmdOptions.username ?
       'mine' :
       'contributing';
 
-  const clonePath = omitUsername ?
-    path.join(cloneBaseDir, type) :
-    path.join(cloneBaseDir, username, type);
+  const clonePath = cmdOptions.omitUsername ?
+    path.join(cmdOptions.cloneBaseDir, type) :
+    path.join(cmdOptions.cloneBaseDir, cmdOptions.username, type);
 
   mkdirp(clonePath);
 
@@ -261,21 +257,23 @@ const handleRepos = (list) => {
 
 /**
  * Executioner
+ *
  * @param  {object} options Options
+ * @param  {string} options.token GitHub API token
+ * @param  {boolean} options.verbose Enable more verbose output
+ * @param  {boolean} options.omitUsername Skip creating the username directory
+ * @param  {boolean} options.saveJson Save incoming JSON payload to files
+ * @param  {string} options.username GitHub username
+ * @param  {string} options.cloneBaseDir Base directory for cloning
  * @return {void}
  */
 const run = (options) => {
   cmdOptions = options;
-  token = options.token;
-  username = options.username;
-  cloneBaseDir = options.cloneBaseDir;
-  omitUsername = options.omitUsername;
-
   gotOptions = getGotOptions();
 
-  console.log(`Cloning to a structure under "${path.join(cloneBaseDir, username)}"`);
+  console.log(`Cloning to a structure under "${cmdOptions.cloneBaseDir}"`);
 
-  mkdirp(cloneBaseDir);
+  mkdirp(cmdOptions.cloneBaseDir);
 
   getRepos().then((data) => {
     return handleRepos(data);
