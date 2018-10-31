@@ -6,8 +6,8 @@
   "bin": "bin/maezato.js",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --exclude tests tape tests/*_test.js",
-    "coverage": "nyc --exclude tests report --reporter=text-lcov > coverage.lcov && codecov",
+    "test": "nyc --all --exclude tests tape tests/*_test.js",
+    "coverage": "nyc --all --exclude tests report --reporter=text-lcov > coverage.lcov && codecov",
     "lint": "eslint index.js bin"
   },
   "files": [
