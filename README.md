@@ -113,6 +113,9 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.8.0` (2018-11)
+  - Fixed progress bar not filling to the end due to not counting forks
+  - Removed `saveJson` option, since it was initially just for debugging the API payload
 * `v0.7.0` (2018-10-05)
   - Option for omitting the username directory from the resulting directory structure #15
   - Include `npm-shrinkwrap.json` in the package to ensure working dependency versions

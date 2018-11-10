@@ -58,12 +58,6 @@ const optsParser = optionator({
       alias: 'O',
       type: 'Boolean',
       description: 'Omit the username directory when creating directory structure'
-    },
-    {
-      option: 'save-json',
-      alias: 's',
-      type: 'Boolean',
-      description: 'Save API calls as JSON files, possibly for debugging'
     }/* ,
     {
       option: 'exclude',
@@ -124,9 +118,6 @@ maezato({
     false,
   omitUsername: typeof opts.omitUsername === 'boolean' ?
     opts.omitUsername :
-    false,
-  saveJson: typeof opts.saveJson === 'boolean' ?
-    opts.saveJson :
     false,
   username: opts._[0],
   cloneBaseDir: path.resolve(opts._[1])

@@ -46,34 +46,6 @@ const getGotOptions = () => {
 };
 
 /**
- * Save a JSON file, in case it has been requested
- *
- * @param {object} data      Whatever JSON data there is to be saved
- * @param {string} filepath  Destination file path
- * @returns {Promise} Promise that solves when file has saved
- */
-const saveJson = (data, filepath) => {
-  return new Promise((fulfill, reject) => {
-    if (cmdOptions.saveJson) {
-      if (cmdOptions.verbose) {
-        console.log(` Saving JSON file: ${filepath}`);
-      }
-      fs.writeFile(filepath, JSON.stringify(data, null, '  '), 'utf8', (error) => {
-        if (error) {
-          reject(error);
-        }
-        else {
-          fulfill(data);
-        }
-      });
-    }
-    else {
-      fulfill(data);
-    }
-  });
-};
-
-/**
  * Safe parsing JSON
  *
  * @param {string} text  JSON string
@@ -105,7 +77,7 @@ const getRepos = () => {
   // TODO: take care of paging. Someone might have more than 100 repositories...
   return got(`${GH_API_URL}users/${cmdOptions.username}/repos?type=all&per_page=100`, gotOptions)
     .then((response) => {
-      return saveJson(response.body, path.join(cmdOptions.cloneBaseDir, `${cmdOptions.username}-repositories.json`));
+      return response.body;
     })
     .catch((error) => {
       console.error(' Fetching repository list failed.');
@@ -169,9 +141,6 @@ const getFork = (forkPath, user, repo) => {
       return response.body;
     })
     .then((item) => {
-      return saveJson(item, path.join(cmdOptions.cloneBaseDir, `${item.owner.login}-fork-${item.name}.json`));
-    })
-    .then((item) => {
       return addRemote(item, forkPath, 'upstream', item.parent.git_url);
     })
     .then((item) => {
@@ -227,12 +196,13 @@ const cloneRepo = (item) => {
       }
     });
   }).then((data) => {
-    if (data.fork) {
-      return getFork(path.join(clonePath, data.name), data.owner.login, data.name);
-    }
 
     progressBar.tick();
     progressBar.render();
+
+    if (data.fork) {
+      return getFork(path.join(clonePath, data.name), data.owner.login, data.name);
+    }
 
     return data;
   });
@@ -262,7 +232,6 @@ const handleRepos = (list) => {
  * @param  {string} options.token GitHub API token
  * @param  {boolean} options.verbose Enable more verbose output
  * @param  {boolean} options.omitUsername Skip creating the username directory
- * @param  {boolean} options.saveJson Save incoming JSON payload to files
  * @param  {string} options.username GitHub username
  * @param  {string} options.cloneBaseDir Base directory for cloning
  * @return {void}
@@ -284,7 +253,6 @@ const run = (options) => {
 
 module.exports = run;
 module.exports.parseJson = parseJson;
-module.exports.saveJson = saveJson;
 
 // Exported for testing
 module.exports._getGotOptions = getGotOptions;
