@@ -20,29 +20,14 @@ const mkdirp = require('mkdirp').sync,
   each = require('promise-each'),
   Progress = require('progress');
 
+const gotConfig = require('./lib/got-config');
+
 const GH_API_URL = 'https://api.github.com/',
-  INDEX_NOT_FOUND = -1,
-  userAgent = 'maezato cloner';
+  INDEX_NOT_FOUND = -1;
 
 let progressBar,
   cmdOptions,
   gotOptions;
-
-/**
- * Options for got module
- *
- * @returns {Object} Options for got module
- */
-const getGotOptions = () => {
-  return {
-    headers: {
-      accept: 'application/vnd.github.v3+json',
-      'user-agent': userAgent,
-      authorization: `token ${cmdOptions.token}`
-    },
-    json: true
-  };
-};
 
 /**
  * Safe parsing JSON
@@ -237,7 +222,7 @@ const handleRepos = (list) => {
  */
 const run = (options) => {
   cmdOptions = options;
-  gotOptions = getGotOptions();
+  gotOptions = gotConfig(options.token);
 
   console.log(`Cloning to a structure under "${cmdOptions.cloneBaseDir}"`);
 
@@ -254,7 +239,6 @@ module.exports = run;
 module.exports.parseJson = parseJson;
 
 // Exported for testing
-module.exports._getGotOptions = getGotOptions;
 module.exports._getRepos = getRepos;
 module.exports._addRemote = addRemote;
 module.exports._getFork = getFork;

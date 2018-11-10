@@ -63,7 +63,6 @@ Possible command line options are:
 -v, --verbose        Verbose output, will print which file is currently being processed
 -t, --token String   GitHub API personal authentication token
 -O, --omit-username  Omit the username directory when creating directory structure
--s, --save-json      Save API calls as JSON files, possibly for debugging
 ```
 
 For example getting all of the repositories of `@nodejs` under `~/github`:
