@@ -112,6 +112,7 @@ const addRemote = (item, forkPath, name, url) => {
  * @param {string} user      GitHub username
  * @param {string} repo      Repository name
  * @returns {Promise} Promise that solves when got has received and git commands are done
+ * @see https://developer.github.com/v3/repos/#get
  */
 const getFork = (forkPath, user, repo) => {
   const url = `${GH_API_URL}repos/${user}/${repo}`;
@@ -125,10 +126,10 @@ const getFork = (forkPath, user, repo) => {
       return response.body;
     })
     .then((item) => {
-      return addRemote(item, forkPath, 'upstream', item.parent.git_url);
+      return addRemote(item, forkPath, 'upstream', item.parent.ssh_url);
     })
     .then((item) => {
-      return addRemote(item, forkPath, 'original', item.source.git_url);
+      return addRemote(item, forkPath, 'original', item.source.ssh_url);
     })
     .catch((error) => {
       console.error(' Getting fork details failed.');

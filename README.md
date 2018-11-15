@@ -71,7 +71,7 @@ For example getting all of the repositories of `@nodejs` under `~/github`:
 maezato nodejs ~/github
 ```
 
-## Directory structure
+## Directory structure and git remotes
 
 ```sh
 <target path>/
@@ -82,6 +82,18 @@ maezato nodejs ~/github
             [fork repositories ...]
         mine/
             [repositories which the user owns but are not forks]
+```
+
+The fork repositories will have several git remote urls:
+
+* `origin` is the given fork repository
+* `upstream` is the repository from which this is a direct fork
+* `original` is the ultimate source repository for the fork
+
+There remote urls can be seen with the `git` command:
+
+```sh
+git remote -v
 ```
 
 ## Contributing
@@ -115,6 +127,7 @@ Please make sure it is over 90% at all times.
 * `v0.8.0` (2018-11)
   - Fixed progress bar not filling to the end due to not counting forks
   - Removed `saveJson` option, since it was initially just for debugging the API payload
+  - Use SSH urls for fork remotes #16
 * `v0.7.0` (2018-10-05)
   - Option for omitting the username directory from the resulting directory structure #15
   - Include `npm-shrinkwrap.json` in the package to ensure working dependency versions
