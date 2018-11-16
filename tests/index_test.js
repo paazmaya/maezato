@@ -19,19 +19,17 @@ const tape = require('tape'),
   maezato = require('../index');
 
 tape('several functions are exported', (test) => {
-  test.plan(8);
+  test.plan(7);
 
   test.equal(typeof maezato, 'function');
   test.equal(maezato.length, 1, 'takes a single argument');
   test.equal(typeof maezato.parseJson, 'function');
 
-  test.equal(typeof maezato._getRepos, 'function');
   test.equal(typeof maezato._addRemote, 'function');
   test.equal(typeof maezato._getFork, 'function');
   test.equal(typeof maezato._cloneRepo, 'function');
   test.equal(typeof maezato._handleRepos, 'function');
 });
-
 
 tape('parsing json', (test) => {
   test.plan(2);

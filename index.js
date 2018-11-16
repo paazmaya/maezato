@@ -12,7 +12,8 @@
 
 'use strict';
 
-const path = require('path'),
+const fs = require('fs'),
+  path = require('path'),
   exec = require('child_process').exec;
 
 const mkdirp = require('mkdirp').sync,
@@ -20,14 +21,14 @@ const mkdirp = require('mkdirp').sync,
   each = require('promise-each'),
   Progress = require('progress');
 
-const gotConfig = require('./lib/got-config');
+const gotConfig = require('./lib/got-config'),
+  getRepos = require('./lib/get-repos');
 
 const GH_API_URL = 'https://api.github.com/',
   INDEX_NOT_FOUND = -1;
 
 let progressBar,
-  cmdOptions,
-  gotOptions;
+  cmdOptions;
 
 /**
  * Safe parsing JSON
@@ -49,27 +50,6 @@ const parseJson = (text) => {
 };
 
 /**
- * Get a list of repositories
- *
- * @return {Promise} Promise that solves when got received
- */
-const getRepos = () => {
-  if (cmdOptions.verbose) {
-    console.log(`Fetching information about all the user repositories for "${cmdOptions.username}"`);
-  }
-
-  // TODO: take care of paging. Someone might have more than 100 repositories...
-  return got(`${GH_API_URL}users/${cmdOptions.username}/repos?type=all&per_page=100`, gotOptions)
-    .then((response) => {
-      return response.body;
-    })
-    .catch((error) => {
-      console.error(' Fetching repository list failed.');
-      console.error(error.response.body);
-    });
-};
-
-/**
  * Item is passed on success
  *
  * @param {object} item      Meta data for the given repository
@@ -80,7 +60,7 @@ const getRepos = () => {
  */
 const addRemote = (item, forkPath, name, url) => {
   const command = `git remote add ${name} ${url}`,
-    options = {
+    opts = {
       cwd: forkPath,
       env: process.env,
       encoding: 'utf8'
@@ -91,7 +71,7 @@ const addRemote = (item, forkPath, name, url) => {
   }
 
   return new Promise((fulfill, reject) => {
-    exec(command, options, (error, stdout, stderr) => {
+    exec(command, opts, (error, stdout, stderr) => {
       if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
         console.error(` Adding remote "${name}" failed for ${url}`);
         reject(error, stderr);
@@ -115,13 +95,16 @@ const addRemote = (item, forkPath, name, url) => {
  * @see https://developer.github.com/v3/repos/#get
  */
 const getFork = (forkPath, user, repo) => {
-  const url = `${GH_API_URL}repos/${user}/${repo}`;
+  const url = `${GH_API_URL}repos/${user}/${repo}`,
+    opts = gotConfig(cmdOptions.token);
 
-  return got(url, gotOptions)
+  return got(url, opts)
     .then((response) => {
       if (cmdOptions.verbose) {
         console.log(` Received fork data for URL: ${url}`);
       }
+
+      fs.writeFileSync(`repos-${user}-${repo}.json`, JSON.stringify(response.body, null, '  '), 'utf8');
 
       return response.body;
     })
@@ -140,35 +123,41 @@ const getFork = (forkPath, user, repo) => {
 /**
  * Clone a repository
  *
- * @param {object} item  Meta data for the given repository
+ * @param  {object}  item             Meta data for the given repository
+ * @param  {object}  options          Options
+ * @param  {string}  options.token    GitHub API token
+ * @param  {boolean} options.verbose  Enable more verbose output
+ * @param  {boolean} options.omitUsername Skip creating the username directory
+ * @param  {string}  options.username GitHub username
+ * @param  {string}  options.cloneBaseDir Base directory for cloning
  * @returns {Promise} Promise that solved when git has cloned
  */
-const cloneRepo = (item) => {
+const cloneRepo = (item, options) => {
   const type = item.fork ?
     'fork' :
-    item.owner.login === cmdOptions.username ?
+    item.owner.login === options.username ?
       'mine' :
       'contributing';
 
-  const clonePath = cmdOptions.omitUsername ?
-    path.join(cmdOptions.cloneBaseDir, type) :
-    path.join(cmdOptions.cloneBaseDir, cmdOptions.username, type);
+  const clonePath = options.omitUsername ?
+    path.join(options.cloneBaseDir, type) :
+    path.join(options.cloneBaseDir, options.username, type);
 
   mkdirp(clonePath);
 
   const command = `git clone ${item.ssh_url}`,
-    options = {
+    opts = {
       cwd: clonePath,
       env: process.env,
       encoding: 'utf8'
     };
 
-  if (cmdOptions.verbose) {
+  if (options.verbose) {
     console.log(`Cloning repository ${item.ssh_url}`);
   }
 
   return new Promise((fulfill, reject) => {
-    exec(command, options, (error, stdout, stderr) => {
+    exec(command, opts, (error, stdout, stderr) => {
       progressBar.tick();
       progressBar.render();
 
@@ -207,7 +196,7 @@ const handleRepos = (list) => {
     incomplete: '-'
   });
 
-  return Promise.resolve(list).then(each(cloneRepo));
+  return Promise.resolve(list).then(each((item) => cloneRepo(item, cmdOptions)));
 };
 
 /**
@@ -223,24 +212,30 @@ const handleRepos = (list) => {
  */
 const run = (options) => {
   cmdOptions = options;
-  gotOptions = gotConfig(options.token);
 
-  console.log(`Cloning to a structure under "${cmdOptions.cloneBaseDir}"`);
+  console.log(`Cloning to a structure under "${options.cloneBaseDir}"`);
 
-  mkdirp(cmdOptions.cloneBaseDir);
+  mkdirp(options.cloneBaseDir);
 
-  getRepos().then((data) => {
-    return handleRepos(data);
-  }).then(() => {
-    console.log('All done, thank you!');
-  });
+  getRepos(options)
+    .then((data) => {
+      console.log(Object.keys(data));
+      fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
+      return handleRepos(data);
+    })
+    .then(() => {
+      console.log('All done, thank you!');
+    })
+    .catch((error) => {
+      console.error('Something failed here.');
+      console.error(error);
+    });
 };
 
 module.exports = run;
 module.exports.parseJson = parseJson;
 
 // Exported for testing
-module.exports._getRepos = getRepos;
 module.exports._addRemote = addRemote;
 module.exports._getFork = getFork;
 module.exports._cloneRepo = cloneRepo;

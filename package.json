@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -45,6 +45,7 @@
     "codecov": "^3.1.0",
     "eslint": "^5.8.0",
     "eslint-config-paazmaya": "^5.0.0",
+    "nock": "^10.0.2",
     "nyc": "^13.1.0",
     "tape": "^4.9.1"
   }
