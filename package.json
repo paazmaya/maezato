@@ -35,17 +35,17 @@
   },
   "license": "MIT",
   "dependencies": {
-    "got": "^9.3.1",
+    "got": "^9.4.0",
     "mkdirp": "^0.5.1",
     "optionator": "^0.8.2",
-    "progress": "^2.0.1",
+    "progress": "^2.0.3",
     "promise-each": "^2.2.0"
   },
   "devDependencies": {
     "codecov": "^3.1.0",
-    "eslint": "^5.8.0",
-    "eslint-config-paazmaya": "^5.0.0",
-    "nock": "^10.0.2",
+    "eslint": "^5.10.0",
+    "eslint-config-paazmaya": "^5.1.0",
+    "nock": "^10.0.4",
     "nyc": "^13.1.0",
     "tape": "^4.9.1"
   }
