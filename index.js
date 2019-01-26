@@ -12,8 +12,8 @@
 
 'use strict';
 
-const fs = require('fs'),
-  path = require('path'),
+//const fs = require('fs');
+const path = require('path'),
   exec = require('child_process').exec;
 
 const mkdirp = require('mkdirp').sync,
@@ -104,7 +104,7 @@ const getFork = (forkPath, user, repo) => {
         console.log(` Received fork data for URL: ${url}`);
       }
 
-      fs.writeFileSync(`repos-${user}-${repo}.json`, JSON.stringify(response.body, null, '  '), 'utf8');
+      //fs.writeFileSync(`repos-${user}-${repo}.json`, JSON.stringify(response.body, null, '  '), 'utf8');
 
       return response.body;
     })
@@ -220,7 +220,8 @@ const run = (options) => {
   getRepos(options)
     .then((data) => {
       console.log(Object.keys(data));
-      fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
+      //fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
+
       return handleRepos(data);
     })
     .then(() => {

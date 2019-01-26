@@ -124,7 +124,7 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v0.8.0` (2018-11)
+* `v0.8.0` (2019-01-27)
   - Fixed progress bar not filling to the end due to not counting forks
   - Removed `saveJson` option, since it was initially just for debugging the API payload
   - Use SSH urls for fork remotes #16
