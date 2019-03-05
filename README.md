@@ -124,6 +124,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.8.1` (2019-03-05)
+  - Takes long to notice crucial bugs, such as not having `lib` folder in the package #17
 * `v0.8.0` (2019-01-27)
   - Fixed progress bar not filling to the end due to not counting forks
   - Removed `saveJson` option, since it was initially just for debugging the API payload

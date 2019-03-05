@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -12,6 +12,7 @@
   },
   "files": [
     "bin",
+    "lib",
     "index.js",
     "npm-shrinkwrap.json",
     "package.json",
