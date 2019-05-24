@@ -13,14 +13,14 @@
 'use strict';
 
 const tape = require('tape'),
-  gotConfig = require('../../lib/got-config');
+  getFork = require('../../lib/get-fork');
 
-tape('gotConfig - token gets used', (test) => {
+tape('getFork - token gets used', (test) => {
   test.plan(1);
 
-  const input = 'hoplaa';
+  const output = getFork('1', '2', '3', {
+    verbose: true
+  });
 
-  const output = gotConfig(input);
-
-  test.equal(output.headers.authorization, 'token hoplaa');
+  test.equal(output, 'token hoplaa');
 });

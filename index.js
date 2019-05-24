@@ -14,21 +14,20 @@
 
 //const fs = require('fs');
 const path = require('path'),
-  exec = require('child_process').exec;
+  {
+    exec
+  } = require('child_process');
 
 const mkdirp = require('mkdirp').sync,
-  got = require('got'),
   each = require('promise-each'),
   Progress = require('progress');
 
-const gotConfig = require('./lib/got-config'),
-  getRepos = require('./lib/get-repos');
+const getRepos = require('./lib/get-repos'),
+  getFork = require('./lib/get-fork');
 
-const GH_API_URL = 'https://api.github.com/',
-  INDEX_NOT_FOUND = -1;
+const INDEX_NOT_FOUND = -1;
 
-let progressBar,
-  cmdOptions;
+let progressBar;
 
 /**
  * Safe parsing JSON
@@ -50,86 +49,16 @@ const parseJson = (text) => {
 };
 
 /**
- * Item is passed on success
- *
- * @param {object} item      Meta data for the given repository
- * @param {string} forkPath  File path where the repository has been cloned
- * @param {string} name      Remote name
- * @param {string} url       Remote URL
- * @returns {Promise} Promise that solves when git remote has added
- */
-const addRemote = (item, forkPath, name, url) => {
-  const command = `git remote add ${name} ${url}`,
-    opts = {
-      cwd: forkPath,
-      env: process.env,
-      encoding: 'utf8'
-    };
-
-  if (cmdOptions.verbose) {
-    console.log(` Adding remote information, ${name} ==>  ${url}`);
-  }
-
-  return new Promise((fulfill, reject) => {
-    exec(command, opts, (error, stdout, stderr) => {
-      if (error && stderr.indexOf(`remote ${name} already exists`) === INDEX_NOT_FOUND) {
-        console.error(` Adding remote "${name}" failed for ${url}`);
-        reject(error, stderr);
-      }
-      else {
-        fulfill(item);
-      }
-    });
-  });
-};
-
-/**
- * Get the information for a fork repository.
- * - parent is the repository this repository was forked from
- * - source is the ultimate source for the network
- *
- * @param {string} forkPath  File path where the repository has been cloned
- * @param {string} user      GitHub username
- * @param {string} repo      Repository name
- * @returns {Promise} Promise that solves when got has received and git commands are done
- * @see https://developer.github.com/v3/repos/#get
- */
-const getFork = (forkPath, user, repo) => {
-  const url = `${GH_API_URL}repos/${user}/${repo}`,
-    opts = gotConfig(cmdOptions.token);
-
-  return got(url, opts)
-    .then((response) => {
-      if (cmdOptions.verbose) {
-        console.log(` Received fork data for URL: ${url}`);
-      }
-
-      //fs.writeFileSync(`repos-${user}-${repo}.json`, JSON.stringify(response.body, null, '  '), 'utf8');
-
-      return response.body;
-    })
-    .then((item) => {
-      return addRemote(item, forkPath, 'upstream', item.parent.ssh_url);
-    })
-    .then((item) => {
-      return addRemote(item, forkPath, 'original', item.source.ssh_url);
-    })
-    .catch((error) => {
-      console.error(' Getting fork details failed.');
-      console.error(error.response.body);
-    });
-};
-
-/**
  * Clone a repository
  *
- * @param  {object}  item             Meta data for the given repository
- * @param  {object}  options          Options
- * @param  {string}  options.token    GitHub API token
- * @param  {boolean} options.verbose  Enable more verbose output
- * @param  {boolean} options.omitUsername Skip creating the username directory
- * @param  {string}  options.username GitHub username
- * @param  {string}  options.cloneBaseDir Base directory for cloning
+ * @param {object}  item             Meta data for the given repository
+ * @param {object}  options          Options
+ * @param {string}  options.token    GitHub API token
+ * @param {boolean} options.verbose  Enable more verbose output
+ * @param {boolean} options.omitUsername Skip creating the username directory
+ * @param {string}  options.username GitHub username
+ * @param {string}  options.cloneBaseDir Base directory for cloning
+ *
  * @returns {Promise} Promise that solved when git has cloned
  */
 const cloneRepo = (item, options) => {
@@ -175,7 +104,7 @@ const cloneRepo = (item, options) => {
     progressBar.render();
 
     if (data.fork) {
-      return getFork(path.join(clonePath, data.name), data.owner.login, data.name);
+      return getFork(path.join(clonePath, data.name), data.owner.login, data.name, options);
     }
 
     return data;
@@ -185,9 +114,16 @@ const cloneRepo = (item, options) => {
 /**
  *
  * @param {array} list  List of repositories for the given user
+ * @param  {object} options Options
+ * @param  {string} options.token GitHub API token
+ * @param  {boolean} options.verbose Enable more verbose output
+ * @param  {boolean} options.omitUsername Skip creating the username directory
+ * @param  {string} options.username GitHub username
+ * @param  {string} options.cloneBaseDir Base directory for cloning
+ *
  * @returns {Promise} Promise that should have resolved everything
  */
-const handleRepos = (list) => {
+const handleRepos = (list, options) => {
 
   // Show command line progress.
   progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
@@ -196,7 +132,7 @@ const handleRepos = (list) => {
     incomplete: '-'
   });
 
-  return Promise.resolve(list).then(each((item) => cloneRepo(item, cmdOptions)));
+  return Promise.resolve(list).then(each((item) => cloneRepo(item, options)));
 };
 
 /**
@@ -208,21 +144,19 @@ const handleRepos = (list) => {
  * @param  {boolean} options.omitUsername Skip creating the username directory
  * @param  {string} options.username GitHub username
  * @param  {string} options.cloneBaseDir Base directory for cloning
- * @return {void}
+ *
+ * @returns {void}
  */
 const run = (options) => {
-  cmdOptions = options;
-
   console.log(`Cloning to a structure under "${options.cloneBaseDir}"`);
 
   mkdirp(options.cloneBaseDir);
 
   getRepos(options)
     .then((data) => {
-      console.log(Object.keys(data));
       //fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
 
-      return handleRepos(data);
+      return handleRepos(data, options);
     })
     .then(() => {
       console.log('All done, thank you!');
@@ -237,7 +171,5 @@ module.exports = run;
 module.exports.parseJson = parseJson;
 
 // Exported for testing
-module.exports._addRemote = addRemote;
-module.exports._getFork = getFork;
 module.exports._cloneRepo = cloneRepo;
 module.exports._handleRepos = handleRepos;

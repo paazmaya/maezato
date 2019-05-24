@@ -12,21 +12,16 @@
 
 'use strict';
 
-const fs = require('fs'),
-  path = require('path');
-
 const tape = require('tape'),
   maezato = require('../index');
 
 tape('several functions are exported', (test) => {
-  test.plan(7);
+  test.plan(5);
 
   test.equal(typeof maezato, 'function');
   test.equal(maezato.length, 1, 'takes a single argument');
   test.equal(typeof maezato.parseJson, 'function');
 
-  test.equal(typeof maezato._addRemote, 'function');
-  test.equal(typeof maezato._getFork, 'function');
   test.equal(typeof maezato._cloneRepo, 'function');
   test.equal(typeof maezato._handleRepos, 'function');
 });

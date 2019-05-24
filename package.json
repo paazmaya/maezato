@@ -8,7 +8,7 @@
   "scripts": {
     "test": "nyc --all --exclude tests tape tests/*_test.js tests/lib/*_test.js",
     "coverage": "nyc --all --exclude tests report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "eslint index.js bin"
+    "lint": "eslint index.js bin lib"
   },
   "files": [
     "bin",
