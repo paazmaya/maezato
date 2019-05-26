@@ -23,9 +23,8 @@ const mkdirp = require('mkdirp').sync,
   Progress = require('progress');
 
 const getRepos = require('./lib/get-repos'),
-  getFork = require('./lib/get-fork');
-
-const INDEX_NOT_FOUND = -1;
+  getFork = require('./lib/get-fork'),
+  literals = require('./literals');
 
 let progressBar;
 
@@ -90,7 +89,7 @@ const cloneRepo = (item, options) => {
       progressBar.tick();
       progressBar.render();
 
-      if (error && stderr.indexOf('already exists and is not an empty directory') === INDEX_NOT_FOUND) {
+      if (error && stderr.indexOf('already exists and is not an empty directory') === literals.INDEX_NOT_FOUND) {
         console.error(` Cloning failed for ${item.ssh_url}`);
         reject(error, stderr);
       }
