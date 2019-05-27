@@ -17,14 +17,15 @@ const fs = require('fs');
 const tape = require('tape'),
   nock = require('nock');
 
-const getRepos = require('../../lib/get-repos');
+const getRepos = require('../../lib/get-repos'),
+  literals = require('../../lib/literals');
 
 const payload = fs.readFileSync('tests/fixtures/users-tonttu-repos.json', 'utf8');
 
 tape('getRepos - stuff is fetched', (test) => {
   test.plan(1);
 
-  nock('https://api.github.com')
+  nock(literals.GITHUB_API_URL)
     .get('/users/tonttu/repos')
     .query({
       type: 'all',

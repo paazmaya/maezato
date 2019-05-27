@@ -12,8 +12,10 @@
 
 'use strict';
 
-const tape = require('tape'),
-  gotConfig = require('../../lib/got-config');
+const tape = require('tape');
+
+const gotConfig = require('../../lib/got-config'),
+  literals = require('../../lib/literals');
 
 tape('gotConfig - token gets used', (test) => {
   test.plan(1);

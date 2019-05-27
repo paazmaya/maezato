@@ -12,15 +12,29 @@
 
 'use strict';
 
+const fs = require('fs');
+
 const tape = require('tape'),
-  getFork = require('../../lib/get-fork');
+  nock = require('nock');
 
-tape('getFork - token gets used', (test) => {
-  test.plan(1);
+const getFork = require('../../lib/get-fork'),
+  literals = require('../../lib/literals');
 
-  const output = getFork('1', '2', '3', {
-    verbose: true
+const payload = fs.readFileSync('tests/fixtures/repos-tonttu-takka.json', 'utf8');
+
+tape('getFork - gets the data from url', (test) => {
+  test.plan(2);
+
+  nock(literals.GITHUB_API_URL)
+    .get('/repos/tonttu/takka')
+    .reply(200, payload);
+
+  getFork('tonttu', 'takka', {
+    verbose: true,
+    token: 'hoplaa'
+  }).then((output) => {
+    test.equal(output.name, 'takka');
+    test.equal(output.git_url, 'git://github.com/tonttu/takka.git');
   });
 
-  test.equal(output, 'token hoplaa');
 });

@@ -23,8 +23,9 @@ const mkdirp = require('mkdirp').sync,
   Progress = require('progress');
 
 const getRepos = require('./lib/get-repos'),
+  addRemote = require('./lib/add-remote'),
   getFork = require('./lib/get-fork'),
-  literals = require('./literals');
+  literals = require('./lib/literals');
 
 let progressBar;
 
@@ -103,7 +104,12 @@ const cloneRepo = (item, options) => {
     progressBar.render();
 
     if (data.fork) {
-      return getFork(path.join(clonePath, data.name), data.owner.login, data.name, options);
+      const forkPath = path.join(clonePath, data.name);
+
+      return getFork(forkPath, data.owner.login, data.name, options)
+        .then((body) => addRemote(body, forkPath, 'upstream', body.parent.ssh_url, options))
+        .then((body) => addRemote(body, forkPath, 'original', body.source.ssh_url, options))
+        .catch((error) => console.error(error.message));
     }
 
     return data;

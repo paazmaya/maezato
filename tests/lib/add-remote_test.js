@@ -12,15 +12,18 @@
 
 'use strict';
 
-const tape = require('tape'),
-  addRemote = require('../../lib/add-remote');
+const tape = require('tape');
 
-tape('addRemote - token gets used', (test) => {
+const addRemote = require('../../lib/add-remote'),
+  literals = require('../../lib/literals');
+
+tape('addRemote - adding remote hoplaa to a non-existing project', (test) => {
   test.plan(1);
 
-  const output = addRemote('1', '2', '3', '3', {
+  addRemote({}, 'fork cloned somewhere here', 'hoplaa', 'git:////////hoplaa', {
     verbose: true
+  }).then().catch(() => {
+    test.ok('failed as expected');
   });
 
-  test.equal(output, 'token hoplaa');
 });
