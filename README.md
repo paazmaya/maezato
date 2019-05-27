@@ -124,6 +124,10 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.8.2` (2019-05-27)
+  - Started testing against Node.js version 12
+  - Using `renovate` to keep dependencies up to date via Pull Requests
+  - Minor refaction for clearer code structure and better unit test coverage
 * `v0.8.1` (2019-03-05)
   - Takes long to notice crucial bugs, such as not having `lib` folder in the package #17
 * `v0.8.0` (2019-01-27)
