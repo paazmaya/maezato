@@ -124,6 +124,9 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.9.0` (2019-06-07)
+  - User agent now contains the version of this tool
+  - In case an error occurs against the API, show the URL used
 * `v0.8.2` (2019-05-27)
   - Started testing against Node.js version 12
   - Using `renovate` to keep dependencies up to date via Pull Requests

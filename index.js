@@ -90,8 +90,9 @@ const cloneRepo = (item, options) => {
       progressBar.tick();
       progressBar.render();
 
+      // TODO: how about terminals with other languages?
       if (error && stderr.indexOf('already exists and is not an empty directory') === literals.INDEX_NOT_FOUND) {
-        console.error(` Cloning failed for ${item.ssh_url}`);
+        console.error(`Failed to clone "${item.ssh_url}"`);
         reject(error, stderr);
       }
       else {
