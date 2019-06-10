@@ -108,12 +108,14 @@ const cloneRepo = (item, options) => {
       const forkPath = path.join(clonePath, data.name);
 
       return getFork(data.owner.login, data.name, options)
-        .then((forkData) => addRemote(forkData, forkPath, 'upstream', body.parent.ssh_url, options))
-        .then((forkData) => addRemote(forkData, forkPath, 'original', body.source.ssh_url, options))
+        .then((forkData) => addRemote(forkData, forkPath, 'upstream', forkData.parent.ssh_url, options))
+        .then((forkData) => addRemote(forkData, forkPath, 'original', forkData.source.ssh_url, options))
         .catch((error) => console.error(error.message));
     }
 
     return data;
+  }).catch((error) => {
+    console.error(error);
   });
 };
 
