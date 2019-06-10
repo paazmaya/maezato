@@ -107,9 +107,9 @@ const cloneRepo = (item, options) => {
     if (data.fork) {
       const forkPath = path.join(clonePath, data.name);
 
-      return getFork(forkPath, data.owner.login, data.name, options)
-        .then((body) => addRemote(body, forkPath, 'upstream', body.parent.ssh_url, options))
-        .then((body) => addRemote(body, forkPath, 'original', body.source.ssh_url, options))
+      return getFork(data.owner.login, data.name, options)
+        .then((forkData) => addRemote(forkData, forkPath, 'upstream', body.parent.ssh_url, options))
+        .then((forkData) => addRemote(forkData, forkPath, 'original', body.source.ssh_url, options))
         .catch((error) => console.error(error.message));
     }
 

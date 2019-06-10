@@ -124,6 +124,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.9.1` (2019-06-10)
+  * Fork data fetching failed due to function refactoring which changed the number of arguments
 * `v0.9.0` (2019-06-07)
   - User agent now contains the version of this tool
   - In case an error occurs against the API, show the URL used

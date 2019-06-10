@@ -22,6 +22,13 @@ const getFork = require('../../lib/get-fork'),
 
 const payload = fs.readFileSync('tests/fixtures/repos-tonttu-takka.json', 'utf8');
 
+tape('getFork - exposes function', (test) => {
+  test.plan(2);
+
+  test.equal(typeof getFork, 'function');
+  test.equal(getFork.length, 3, 'takes three arguments');
+});
+
 tape('getFork - gets the data from url', (test) => {
   test.plan(2);
 

@@ -17,6 +17,13 @@ const tape = require('tape');
 const addRemote = require('../../lib/add-remote'),
   literals = require('../../lib/literals');
 
+tape('addRemote - exposes function', (test) => {
+  test.plan(2);
+
+  test.equal(typeof addRemote, 'function');
+  test.equal(addRemote.length, 5, 'takes FIVE arguments');
+});
+
 tape('addRemote - adding remote hoplaa to a non-existing project', (test) => {
   test.plan(1);
 

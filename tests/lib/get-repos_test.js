@@ -22,6 +22,13 @@ const getRepos = require('../../lib/get-repos'),
 
 const payload = fs.readFileSync('tests/fixtures/users-tonttu-repos.json', 'utf8');
 
+tape('getRepos - exposes function', (test) => {
+  test.plan(2);
+
+  test.equal(typeof getRepos, 'function');
+  test.equal(getRepos.length, 1, 'takes one argument');
+});
+
 tape('getRepos - stuff is fetched', (test) => {
   test.plan(1);
 

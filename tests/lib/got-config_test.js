@@ -17,6 +17,13 @@ const tape = require('tape');
 const gotConfig = require('../../lib/got-config'),
   literals = require('../../lib/literals');
 
+tape('gotConfig - exposes function', (test) => {
+  test.plan(2);
+
+  test.equal(typeof gotConfig, 'function');
+  test.equal(gotConfig.length, 1, 'takes one argument');
+});
+
 tape('gotConfig - token gets used', (test) => {
   test.plan(1);
 
