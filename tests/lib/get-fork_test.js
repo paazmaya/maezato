@@ -42,6 +42,25 @@ tape('getFork - gets the data from url', (test) => {
   }).then((output) => {
     test.equal(output.name, 'takka');
     test.equal(output.git_url, 'git://github.com/tonttu/takka.git');
+  }).catch((error) => {
+    test.fail(error.message);
+  });
+
+});
+
+tape('getFork - should fail when not found', (test) => {
+  test.plan(1);
+
+  nock(literals.GITHUB_API_URL)
+    .get('/repos/tonttu/takka')
+    .reply(404);
+
+  getFork('tonttu', 'takka', {
+    token: 'hoplaa'
+  }).then((output) => {
+    test.notOk(output);
+  }).catch((error) => {
+    test.fail(error.message);
   });
 
 });

@@ -25,16 +25,22 @@ const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'
 tape('cli should output version number', (test) => {
   test.plan(1);
 
-  execFile('node', [pkg.bin, '-V'], null, (err, stdout) => {
+  execFile('node', [pkg.bin, '-V'], null, (error, stdout) => {
+    if (error) {
+      test.fail(error);
+    }
     test.equals(stdout.trim(), pkg.version, 'Version is the same as in package.json');
   });
 
 });
 
 tape('cli should output help by default', (test) => {
-  test.plan(1);
+  test.plan(2);
 
-  execFile('node', [pkg.bin], null, (err, stdout) => {
+  execFile('node', [pkg.bin], null, (error, stdout) => {
+    if (error) {
+      test.ok('Exists with non-zero code');
+    }
     test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
   });
 
@@ -43,7 +49,10 @@ tape('cli should output help by default', (test) => {
 tape('cli should output help when requested', (test) => {
   test.plan(1);
 
-  execFile('node', [pkg.bin, '--help'], null, (err, stdout) => {
+  execFile('node', [pkg.bin, '--help'], null, (error, stdout) => {
+    if (error) {
+      test.fail(error);
+    }
     test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
   });
 

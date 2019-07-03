@@ -14,8 +14,7 @@
 
 const tape = require('tape');
 
-const gotConfig = require('../../lib/got-config'),
-  literals = require('../../lib/literals');
+const gotConfig = require('../../lib/got-config');
 
 tape('gotConfig - exposes function', (test) => {
   test.plan(2);

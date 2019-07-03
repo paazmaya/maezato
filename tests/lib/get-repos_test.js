@@ -46,5 +46,7 @@ tape('getRepos - stuff is fetched', (test) => {
     verbose: true
   }).then((output) => {
     test.equal(output.length, 3);
+  }).catch((error) => {
+    test.fail(error.message);
   });
 });

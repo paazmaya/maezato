@@ -14,8 +14,7 @@
 
 const tape = require('tape');
 
-const addRemote = require('../../lib/add-remote'),
-  literals = require('../../lib/literals');
+const addRemote = require('../../lib/add-remote');
 
 tape('addRemote - exposes function', (test) => {
   test.plan(2);
@@ -31,6 +30,8 @@ tape('addRemote - adding remote hoplaa to a non-existing project', (test) => {
     verbose: true
   }).then().catch(() => {
     test.ok('failed as expected');
+  }).catch((error) => {
+    test.fail(error.message);
   });
 
 });
