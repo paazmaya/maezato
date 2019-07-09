@@ -1567,9 +1567,9 @@
       "dev": true
     },
     "nock": {
-      "version": "11.0.0-beta.21",
-      "resolved": "https://registry.npmjs.org/nock/-/nock-11.0.0-beta.21.tgz",
-      "integrity": "sha512-t/gf913pdw34y4ZbkWsDXXd9ShtCRcScZTFLzd1LPcr/W6lUrGYQxtQ4zWwUnnLqcG2mejOaCP8tcckc7QsXEA==",
+      "version": "11.0.0-beta.22",
+      "resolved": "https://registry.npmjs.org/nock/-/nock-11.0.0-beta.22.tgz",
+      "integrity": "sha512-2b2QH8GSW2E9RXxMJL+bBmcKYHTA/fxumaBISi1x+i95NDzwA74JNHLFgfum9C3Tu00JtN9moVzZ5A8jDxVN4g==",
       "dev": true,
       "requires": {
         "chai": "^4.1.2",
