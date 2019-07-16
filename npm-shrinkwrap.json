@@ -1567,19 +1567,27 @@
       "dev": true
     },
     "nock": {
-      "version": "11.0.0-beta.26",
-      "resolved": "https://registry.npmjs.org/nock/-/nock-11.0.0-beta.26.tgz",
-      "integrity": "sha512-0nwr5RrkQh9CblGk/9NCihmh+mbCUSDwMss+v/RgpHafM3/Eo3UQZe+Z8vrDfjcf1Lv8/4OFdgfpl2qhufAI7g==",
+      "version": "11.0.0-beta.27",
+      "resolved": "https://registry.npmjs.org/nock/-/nock-11.0.0-beta.27.tgz",
+      "integrity": "sha512-zhKQHORiqlwew8Bufthfil1kYzSeCthDvDSBb8mePllftt72jmmpW5vxxJyiYlxOINx9+AJ5EkCps7XVl7O1KQ==",
       "dev": true,
       "requires": {
         "chai": "^4.1.2",
         "debug": "^4.1.0",
         "deep-equal": "^1.0.0",
         "json-stringify-safe": "^5.0.1",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.13",
         "mkdirp": "^0.5.0",
         "propagate": "^2.0.0",
         "qs": "^6.5.1"
+      },
+      "dependencies": {
+        "lodash": {
+          "version": "4.17.14",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.14.tgz",
+          "integrity": "sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==",
+          "dev": true
+        }
       }
     },
     "node-fetch": {
