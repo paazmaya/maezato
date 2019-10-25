@@ -22,7 +22,7 @@ const mkdirp = require('mkdirp').sync,
   each = require('promise-each'),
   Progress = require('progress');
 
-const getRepos = require('./lib/get-repos'),
+const getRepos = require('./lib/get-repos-graphql'),
   addRemote = require('./lib/add-remote'),
   getFork = require('./lib/get-fork'),
   literals = require('./lib/literals');
@@ -109,7 +109,7 @@ const cloneRepo = (item, options) => {
 
       return getFork(data.owner.login, data.name, options)
         .then((forkData) => addRemote(forkData, forkPath, 'upstream', forkData.parent.ssh_url, options))
-        .then((forkData) => addRemote(forkData, forkPath, 'original', forkData.source.ssh_url, options))
+        // .then((forkData) => addRemote(forkData, forkPath, 'original', forkData.source.ssh_url, options))
         .catch((error) => console.error(error.message));
     }
 
