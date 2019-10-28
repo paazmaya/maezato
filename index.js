@@ -12,7 +12,7 @@
 
 'use strict';
 
-//const fs = require('fs');
+const fs = require('fs');
 const path = require('path'),
   {
     exec
@@ -109,7 +109,6 @@ const cloneRepo = (item, options) => {
 
       return getFork(data.owner.login, data.name, options)
         .then((forkData) => addRemote(forkData, forkPath, 'upstream', forkData.parent.ssh_url, options))
-        // .then((forkData) => addRemote(forkData, forkPath, 'original', forkData.source.ssh_url, options))
         .catch((error) => console.error(error.message));
     }
 
@@ -162,7 +161,7 @@ const run = (options) => {
 
   getRepos(options)
     .then((data) => {
-      //fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
+      fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
 
       return handleRepos(data, options);
     })

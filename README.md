@@ -36,7 +36,7 @@ It is possible to use this tool to retrieve all public repositories for a given
 user from [Bitbucket](https://bitbucket.org/) or [GitHub](https://github.com/).
 Authentication is currently used only for GitHub, while Bitbucket is used via public API interface.
 
-This tool uses [the GitHub API v3](https://developer.github.com/v3/)
+This tool uses [the GitHub API v4](https://developer.github.com/v4/)
 and requires [a personal API token](https://github.com/blog/1509-personal-api-tokens)
 for authentication.
 The token should be set to an environment variable called `GITHUB_TOKEN` or the command line
@@ -88,7 +88,6 @@ The fork repositories will have several git remote urls:
 
 * `origin` is the given fork repository
 * `upstream` is the repository from which this is a direct fork
-* `original` is the ultimate source repository for the fork
 
 There remote urls can be seen with the `git` command:
 
@@ -124,6 +123,9 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v1.0.0` (2019-10-)
+  - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
+  - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
 * `v0.9.2` (2019-06-10)
   - Linting helps to find `undefined` items...
 * `v0.9.1` (2019-06-10)
