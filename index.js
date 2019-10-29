@@ -24,7 +24,6 @@ const mkdirp = require('mkdirp').sync,
 
 const getRepos = require('./lib/get-repos-graphql'),
   addRemote = require('./lib/add-remote'),
-  getFork = require('./lib/get-fork'),
   literals = require('./lib/literals');
 
 let progressBar;
@@ -107,9 +106,7 @@ const cloneRepo = (item, options) => {
     if (data.fork) {
       const forkPath = path.join(clonePath, data.name);
 
-      return getFork(data.owner.login, data.name, options)
-        .then((forkData) => addRemote(forkData, forkPath, 'upstream', forkData.parent.ssh_url, options))
-        .catch((error) => console.error(error.message));
+      return addRemote(data, forkPath, 'upstream', data.parent.ssh_url, options);
     }
 
     return data;
@@ -161,7 +158,7 @@ const run = (options) => {
 
   getRepos(options)
     .then((data) => {
-      fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
+      // fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
 
       return handleRepos(data, options);
     })
