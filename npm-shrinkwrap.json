@@ -802,6 +802,15 @@
         "v8-compile-cache": "^2.0.3"
       },
       "dependencies": {
+        "mkdirp": {
+          "version": "0.5.1",
+          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
+          "integrity": "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=",
+          "dev": true,
+          "requires": {
+            "minimist": "0.0.8"
+          }
+        },
         "optionator": {
           "version": "0.8.3",
           "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.8.3.tgz",
@@ -1750,16 +1759,14 @@
     },
     "minimist": {
       "version": "0.0.8",
-      "resolved": "http://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz",
-      "integrity": "sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0="
+      "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz",
+      "integrity": "sha1-hX/Kv8M5fSYluCKCYuhqp6ARsF0=",
+      "dev": true
     },
     "mkdirp": {
-      "version": "0.5.1",
-      "resolved": "http://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
-      "integrity": "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=",
-      "requires": {
-        "minimist": "0.0.8"
-      }
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.1.tgz",
+      "integrity": "sha512-epSaAwmT1sXxKNHFtzxrNEepE0qneey1uVReE15tN3Zvba3ifzx01eStvvvyb8dQeI50CVuGZ5qnSk2wMtsysg=="
     },
     "ms": {
       "version": "2.1.1",
@@ -1795,6 +1802,17 @@
         "lodash": "^4.17.13",
         "mkdirp": "^0.5.0",
         "propagate": "^2.0.0"
+      },
+      "dependencies": {
+        "mkdirp": {
+          "version": "0.5.1",
+          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
+          "integrity": "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=",
+          "dev": true,
+          "requires": {
+            "minimist": "0.0.8"
+          }
+        }
       }
     },
     "node-fetch": {
@@ -2699,6 +2717,17 @@
       "dev": true,
       "requires": {
         "mkdirp": "^0.5.1"
+      },
+      "dependencies": {
+        "mkdirp": {
+          "version": "0.5.1",
+          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz",
+          "integrity": "sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=",
+          "dev": true,
+          "requires": {
+            "minimist": "0.0.8"
+          }
+        }
       }
     },
     "write-file-atomic": {
