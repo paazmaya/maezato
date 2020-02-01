@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=8.11.1",
+    "node": ">=10.13.0",
     "npm": ">=5.0.0"
   },
   "author": {
