@@ -10,7 +10,7 @@
  * Licensed under the MIT license
  */
 
-'use strict';
+
 
 const tape = require('tape'),
   maezato = require('../index');
