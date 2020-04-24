@@ -49,6 +49,6 @@
     "eslint-config-paazmaya": "6.1.0",
     "nock": "12.0.3",
     "nyc": "15.0.1",
-    "tape": "4.13.2"
+    "tape": "5.0.0"
   }
 }
