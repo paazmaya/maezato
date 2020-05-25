@@ -16,13 +16,13 @@
 const fs = require('fs');
 
 const tape = require('tape');
-// const nock = require('nock');
+const nock = require('nock');
 
 const getReposGraphQL = require('../../lib/get-repos-graphql');
+const literals = require('../../lib/literals');
 
-// const literals = require('../../lib/literals');
-
-// const payload = fs.readFileSync('tests/fixtures/users-tonttu-repos-gql.json', 'utf8');
+const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos-gql.json', 'utf8');
+const response = JSON.parse(payload);
 
 tape('getReposGraphQL - exposes function', (test) => {
   test.plan(2);
@@ -33,17 +33,16 @@ tape('getReposGraphQL - exposes function', (test) => {
 
 // const TOKEN = '<INSERT YOUR TOKEN HERE>';
 const TOKEN = 'hoplaa';
-const USERNAME = 'tonttu';
+const USERNAME = 'paazmaya';
 
 tape('getReposGraphQL - stuff is fetched', (test) => {
   test.plan(1);
-
   /**
    * Had to comment this part for the tests to run
    */
-  // nock(literals.GITHUB_API_URL)
-  //   .post('/graphql')
-  //   .reply(200, payload);
+  const scope = nock(literals.GITHUB_API_URL)
+    .post('/graphql')
+    .reply(200, response);
 
   getReposGraphQL({
     username: USERNAME,
@@ -51,6 +50,7 @@ tape('getReposGraphQL - stuff is fetched', (test) => {
     verbose: true
   }).then((output) => {
     test.equal(output.length, 14);
+    scope.done();
   }).catch((error) => {
     test.fail(error.message);
   });
