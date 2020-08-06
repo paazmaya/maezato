@@ -124,9 +124,10 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v1.0.0` (2019-10-)
+* `v1.0.0` (2020-06-)
   - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
   - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
+  - Run tests also against Node.js version 14. Now versions 10 (Travis), 12 (AppVeyor), and 14 (Travis) of Node.js are covered
 * `v0.9.2` (2019-06-10)
   - Linting helps to find `undefined` items...
 * `v0.9.1` (2019-06-10)
