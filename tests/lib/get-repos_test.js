@@ -11,31 +11,29 @@
  * Licensed under the MIT license
  */
 
-
-
 const fs = require('fs');
 
 const tape = require('tape');
 const nock = require('nock');
 
-const getReposGraphQL = require('../../lib/get-repos-graphql');
+const getRepos = require('../../lib/get-repos');
 const literals = require('../../lib/literals');
 
 const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos-gql.json', 'utf8');
 const response = JSON.parse(payload);
 
-tape('getReposGraphQL - exposes function', (test) => {
+tape('getRepos - exposes function', (test) => {
   test.plan(2);
 
-  test.equal(typeof getReposGraphQL, 'function');
-  test.equal(getReposGraphQL.length, 1, 'takes one argument');
+  test.equal(typeof getRepos, 'function');
+  test.equal(getRepos.length, 1, 'takes one argument');
 });
 
 // const TOKEN = '<INSERT YOUR TOKEN HERE>';
 const TOKEN = 'hoplaa';
 const USERNAME = 'paazmaya';
 
-tape('getReposGraphQL - stuff is fetched', (test) => {
+tape('getRepos - stuff is fetched', (test) => {
   test.plan(1);
   /**
    * Had to comment this part for the tests to run
@@ -44,7 +42,7 @@ tape('getReposGraphQL - stuff is fetched', (test) => {
     .post('/graphql')
     .reply(200, response);
 
-  getReposGraphQL({
+  getRepos({
     username: USERNAME,
     token: TOKEN,
     verbose: true

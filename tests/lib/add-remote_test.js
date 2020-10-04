@@ -10,8 +10,6 @@
  * Licensed under the MIT license
  */
 
-
-
 const tape = require('tape');
 
 const addRemote = require('../../lib/add-remote');

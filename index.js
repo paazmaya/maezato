@@ -10,8 +10,6 @@
  * Licensed under the MIT license
  */
 
-
-const fs = require('fs');
 const path = require('path'),
   {
     exec
@@ -21,7 +19,7 @@ const mkdirp = require('mkdirp').sync,
   each = require('promise-each'),
   Progress = require('progress');
 
-const getRepos = require('./lib/get-repos-graphql'),
+const getRepos = require('./lib/get-repos'),
   addRemote = require('./lib/add-remote'),
   literals = require('./lib/literals');
 
