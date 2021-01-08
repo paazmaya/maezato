@@ -44,7 +44,7 @@
     "promise-each": "2.2.0"
   },
   "devDependencies": {
-    "codecov": "3.8.0",
+    "codecov": "3.8.1",
     "eslint": "7.17.0",
     "eslint-config-paazmaya": "7.0.0",
     "nock": "13.0.5",
