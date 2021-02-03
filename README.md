@@ -124,12 +124,12 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-  - Need to migrate all but one test execution away from Travis CI due to free account limitations
-  - Now using GitHub Actions to execute tests with Node.js v14
-* `v1.0.0` (2020-06-)
+* `v0.10.0` (2020-06-)
   - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
   - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
-  - Run tests also against Node.js version 14. Now versions 10 (Travis), 12 (AppVeyor), and 14 (Travis) of Node.js are covered
+  - Need to migrate all but one test execution away from Travis CI due to free account limitations
+  - Now using GitHub Actions to execute tests with Node.js v14 and AppVeyor for v12, while Travis CI handles v10
+  - Minimum Node.js version lifted from `8.11.1` to `10.13.0`
 * `v0.9.2` (2019-06-10)
   - Linting helps to find `undefined` items...
 * `v0.9.1` (2019-06-10)
