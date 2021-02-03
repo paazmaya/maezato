@@ -124,6 +124,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+  - Need to migrate all but one test execution away from Travis CI due to free account limitations
+  - Now using GitHub Actions to execute tests with Node.js v14
 * `v1.0.0` (2020-06-)
   - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
   - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
