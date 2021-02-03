@@ -124,7 +124,7 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
-* `v0.10.0` (2020-06-)
+* `v0.10.0` (2021-02-03)
   - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
   - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
   - Need to migrate all but one test execution away from Travis CI due to free account limitations
