@@ -47,7 +47,7 @@ tape('getRepos - stuff is fetched', (test) => {
     token: TOKEN,
     verbose: true
   }).then((output) => {
-    test.equal(output.length, 14);
+    test.equal(output.length, 64);
     scope.done();
   }).catch((error) => {
     test.fail(error.message);
