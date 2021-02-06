@@ -124,6 +124,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.10.1` (2021-02-06)
+  - GraphQL query had a requirement to always provide next cursor, which caused issues that have now been solved
 * `v0.10.0` (2021-02-03)
   - Migrated GitHub API from v3 to v4 and started using GraphQL which reduces the network utilisation #78
   - Forks no longer have the remote called `original`, which contained the `ssh_url` of the ultimate source repository for the fork
