@@ -19,7 +19,7 @@ const nock = require('nock');
 const getRepos = require('../../lib/get-repos');
 const literals = require('../../lib/literals');
 
-const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos-gql.json', 'utf8');
+const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos.json', 'utf8');
 const response = JSON.parse(payload);
 
 tape('getRepos - exposes function', (test) => {
@@ -47,7 +47,7 @@ tape('getRepos - stuff is fetched', (test) => {
     token: TOKEN,
     verbose: true
   }).then((output) => {
-    test.equal(output.length, 64);
+    test.equal(output.length, 66);
     scope.done();
   }).catch((error) => {
     test.fail(error.message);

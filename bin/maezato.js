@@ -12,7 +12,6 @@
  * Licensed under the MIT license
  */
 
-
 const fs = require('fs'),
   path = require('path');
 
@@ -51,6 +50,12 @@ const optsParser = optionator({
       alias: 't',
       type: 'String',
       description: 'GitHub API personal authentication token'
+    },
+    {
+      option: 'include-archived',
+      alias: 'a',
+      type: 'Boolean',
+      description: 'Include also repositories that have been archived'
     },
     {
       option: 'omit-username',
@@ -114,6 +119,9 @@ maezato({
   token: token,
   verbose: typeof opts.verbose === 'boolean' ?
     opts.verbose :
+    false,
+  includeArchived: typeof opts.includeArchived === 'boolean' ?
+    opts.includeArchived :
     false,
   omitUsername: typeof opts.omitUsername === 'boolean' ?
     opts.omitUsername :

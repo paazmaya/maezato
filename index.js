@@ -52,6 +52,7 @@ const parseJson = (text) => {
  * @param {string}  options.token    GitHub API token
  * @param {boolean} options.verbose  Enable more verbose output
  * @param {boolean} options.omitUsername Skip creating the username directory
+ * @param {boolean} options.includeArchived Include also repositories that have been archived
  * @param {string}  options.username GitHub username
  * @param {string}  options.cloneBaseDir Base directory for cloning
  *
@@ -60,7 +61,7 @@ const parseJson = (text) => {
 const cloneRepo = (item, options) => {
   const type = item.fork ?
     'fork' :
-    item.owner.login === options.username ?
+    item.owner === options.username ?
       'mine' :
       'contributing';
 
@@ -115,16 +116,22 @@ const cloneRepo = (item, options) => {
 /**
  *
  * @param {array} list  List of repositories for the given user
- * @param  {object} options Options
- * @param  {string} options.token GitHub API token
- * @param  {boolean} options.verbose Enable more verbose output
- * @param  {boolean} options.omitUsername Skip creating the username directory
- * @param  {string} options.username GitHub username
- * @param  {string} options.cloneBaseDir Base directory for cloning
+ * @param {object} options Options
+ * @param {string} options.token GitHub API token
+ * @param {boolean} options.verbose Enable more verbose output
+ * @param {boolean} options.omitUsername Skip creating the username directory
+ * @param {boolean} options.includeArchived Include also repositories that have been archived
+ * @param {string} options.username GitHub username
+ * @param {string} options.cloneBaseDir Base directory for cloning
  *
  * @returns {Promise} Promise that should have resolved everything
  */
 const handleRepos = (list, options) => {
+  if (!options.includeArchived) {
+    list = list.filter((item) => {
+      return !item.archived;
+    });
+  }
 
   // Show command line progress.
   progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
@@ -143,6 +150,7 @@ const handleRepos = (list, options) => {
  * @param  {string} options.token GitHub API token
  * @param  {boolean} options.verbose Enable more verbose output
  * @param  {boolean} options.omitUsername Skip creating the username directory
+ * @param  {boolean} options.includeArchived Include also repositories that have been archived
  * @param  {string} options.username GitHub username
  * @param  {string} options.cloneBaseDir Base directory for cloning
  *
@@ -151,11 +159,10 @@ const handleRepos = (list, options) => {
 const run = (options) => {
   console.log(`Cloning to a structure under "${options.cloneBaseDir}"`);
 
-  mkdirp(options.cloneBaseDir);
+  //mkdirp(options.cloneBaseDir);
 
   getRepos(options)
     .then((data) => {
-      // fs.writeFileSync(`users-${options.username}-repos.json`, JSON.stringify(data, null, '  '), 'utf8');
 
       return handleRepos(data, options);
     })
@@ -164,7 +171,9 @@ const run = (options) => {
     })
     .catch((error) => {
       console.error('Something failed here.');
-      console.error(error);
+      if (options.verbose) {
+        console.error(error);
+      }
     });
 };
 

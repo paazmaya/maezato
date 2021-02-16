@@ -59,11 +59,12 @@ The cloning of a given repository uses the `ssh_url` property, hence
 Possible command line options are:
 
 ```sh
--h, --help           Help and usage instructions
--V, --version        Version number
--v, --verbose        Verbose output, will print which file is currently being processed
--t, --token String   GitHub API personal authentication token
--O, --omit-username  Omit the username directory when creating directory structure
+-h, --help              Help and usage instructions
+-V, --version           Version number
+-v, --verbose           Verbose output, will print which file is currently being processed
+-t, --token String      GitHub API personal authentication token
+-a, --include-archived  Include also repositories that have been archived
+-O, --omit-username     Omit the username directory when creating directory structure
 ```
 
 For example getting all of the repositories of `@nodejs` under `~/github`:
@@ -124,6 +125,8 @@ Please make sure it is over 90% at all times.
 
 ## Version history
 
+* `v0.11.0` (2021-02-16)
+  - Do not clone an archived repository, unless the option `include-archived` is used
 * `v0.10.1` (2021-02-06)
   - GraphQL query had a requirement to always provide next cursor, which caused issues that have now been solved
 * `v0.10.0` (2021-02-03)
