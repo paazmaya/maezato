@@ -47,7 +47,7 @@
     "codecov": "3.8.1",
     "eslint": "7.20.0",
     "eslint-config-paazmaya": "7.2.0",
-    "nock": "13.0.8",
+    "nock": "13.0.9",
     "nyc": "15.1.0",
     "tape": "5.2.0"
   }
