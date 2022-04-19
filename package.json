@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -20,7 +20,7 @@
   ],
   "engines": {
     "node": ">=14.15.0",
-    "npm": ">=7.0.0"
+    "npm": ">=6.14.8"
   },
   "author": {
     "name": "Juga Paazmaya",

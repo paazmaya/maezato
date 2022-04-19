@@ -4,7 +4,10 @@ This changelog covers the version history and possible upcoming changes.
 It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
 ## Unreleased
-- Minimum supported Node.js version lifted from `10.13.0` to `14.15.0`
+
+## `v0.12.0` (2022-04-19)
+- Minimum supported Node.js version lifted from `10.13.0` to `14.15.0`, along with minimum npm version to `6.14.8`
+- Keep dependencies up to date, to reduce vulnerabilities
 
 ## `v0.11.0` (2021-02-16)
 - Do not clone an archived repository, unless the option `include-archived` is used
