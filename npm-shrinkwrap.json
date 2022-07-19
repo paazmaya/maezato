@@ -23,7 +23,7 @@
         "codecov": "3.8.3",
         "eslint": "8.20.0",
         "eslint-config-paazmaya": "8.0.0",
-        "nock": "13.2.8",
+        "nock": "13.2.9",
         "nyc": "15.1.0",
         "tape": "5.5.3"
       },
@@ -2514,9 +2514,9 @@
       "license": "MIT"
     },
     "node_modules/nock": {
-      "version": "13.2.8",
-      "resolved": "https://registry.npmjs.org/nock/-/nock-13.2.8.tgz",
-      "integrity": "sha512-JT42FrXfQRpfyL4cnbBEJdf4nmBpVP0yoCcSBr+xkT8Q1y3pgtaCKHGAAOIFcEJ3O3t0QbVAmid0S0f2bj3Wpg==",
+      "version": "13.2.9",
+      "resolved": "https://registry.npmjs.org/nock/-/nock-13.2.9.tgz",
+      "integrity": "sha512-1+XfJNYF1cjGB+TKMWi29eZ0b82QOvQs2YoLNzbpWGqFMtRQHTa57osqdGj4FrFPgkO4D4AZinzUJR9VvW3QUA==",
       "dev": true,
       "dependencies": {
         "debug": "^4.1.0",
@@ -5272,9 +5272,9 @@
       "dev": true
     },
     "nock": {
-      "version": "13.2.8",
-      "resolved": "https://registry.npmjs.org/nock/-/nock-13.2.8.tgz",
-      "integrity": "sha512-JT42FrXfQRpfyL4cnbBEJdf4nmBpVP0yoCcSBr+xkT8Q1y3pgtaCKHGAAOIFcEJ3O3t0QbVAmid0S0f2bj3Wpg==",
+      "version": "13.2.9",
+      "resolved": "https://registry.npmjs.org/nock/-/nock-13.2.9.tgz",
+      "integrity": "sha512-1+XfJNYF1cjGB+TKMWi29eZ0b82QOvQs2YoLNzbpWGqFMtRQHTa57osqdGj4FrFPgkO4D4AZinzUJR9VvW3QUA==",
       "dev": true,
       "requires": {
         "debug": "^4.1.0",
