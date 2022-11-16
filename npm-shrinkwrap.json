@@ -9,7 +9,7 @@
       "version": "0.12.0",
       "license": "MIT",
       "dependencies": {
-        "@octokit/graphql": "4.8.0",
+        "@octokit/graphql": "5.0.4",
         "got": "12.5.3",
         "mkdirp": "1.0.4",
         "optionator": "0.9.1",
@@ -428,53 +428,71 @@
       }
     },
     "node_modules/@octokit/endpoint": {
-      "version": "6.0.12",
-      "license": "MIT",
+      "version": "7.0.3",
+      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-7.0.3.tgz",
+      "integrity": "sha512-57gRlb28bwTsdNXq+O3JTQ7ERmBTuik9+LelgcLIVfYwf235VHbN9QNo4kXExtp/h8T423cR5iJThKtFYxC7Lw==",
       "dependencies": {
-        "@octokit/types": "^6.0.3",
+        "@octokit/types": "^8.0.0",
         "is-plain-object": "^5.0.0",
         "universal-user-agent": "^6.0.0"
+      },
+      "engines": {
+        "node": ">= 14"
       }
     },
     "node_modules/@octokit/graphql": {
-      "version": "4.8.0",
-      "license": "MIT",
+      "version": "5.0.4",
+      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-5.0.4.tgz",
+      "integrity": "sha512-amO1M5QUQgYQo09aStR/XO7KAl13xpigcy/kI8/N1PnZYSS69fgte+xA4+c2DISKqUZfsh0wwjc2FaCt99L41A==",
       "dependencies": {
-        "@octokit/request": "^5.6.0",
-        "@octokit/types": "^6.0.3",
+        "@octokit/request": "^6.0.0",
+        "@octokit/types": "^8.0.0",
         "universal-user-agent": "^6.0.0"
+      },
+      "engines": {
+        "node": ">= 14"
       }
     },
     "node_modules/@octokit/openapi-types": {
-      "version": "7.3.2",
-      "license": "MIT"
+      "version": "14.0.0",
+      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-14.0.0.tgz",
+      "integrity": "sha512-HNWisMYlR8VCnNurDU6os2ikx0s0VyEjDYHNS/h4cgb8DeOxQ0n72HyinUtdDVxJhFy3FWLGl0DJhfEWk3P5Iw=="
     },
     "node_modules/@octokit/request": {
-      "version": "5.6.0",
-      "license": "MIT",
+      "version": "6.2.2",
+      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-6.2.2.tgz",
+      "integrity": "sha512-6VDqgj0HMc2FUX2awIs+sM6OwLgwHvAi4KCK3mT2H2IKRt6oH9d0fej5LluF5mck1lRR/rFWN0YIDSYXYSylbw==",
       "dependencies": {
-        "@octokit/endpoint": "^6.0.1",
-        "@octokit/request-error": "^2.1.0",
-        "@octokit/types": "^6.16.1",
+        "@octokit/endpoint": "^7.0.0",
+        "@octokit/request-error": "^3.0.0",
+        "@octokit/types": "^8.0.0",
         "is-plain-object": "^5.0.0",
-        "node-fetch": "^2.6.1",
+        "node-fetch": "^2.6.7",
         "universal-user-agent": "^6.0.0"
+      },
+      "engines": {
+        "node": ">= 14"
       }
     },
     "node_modules/@octokit/request-error": {
-      "version": "2.1.0",
-      "license": "MIT",
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-3.0.2.tgz",
+      "integrity": "sha512-WMNOFYrSaX8zXWoJg9u/pKgWPo94JXilMLb2VManNOby9EZxrQaBe/QSC4a1TzpAlpxofg2X/jMnCyZgL6y7eg==",
       "dependencies": {
-        "@octokit/types": "^6.0.3",
+        "@octokit/types": "^8.0.0",
         "deprecation": "^2.0.0",
         "once": "^1.4.0"
+      },
+      "engines": {
+        "node": ">= 14"
       }
     },
     "node_modules/@octokit/types": {
-      "version": "6.16.4",
-      "license": "MIT",
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-8.0.0.tgz",
+      "integrity": "sha512-65/TPpOJP1i3K4lBJMnWqPUJ6zuOtzhtagDvydAWbEXpbFYA0oMKKyLb95NFZZP0lSh/4b6K+DQlzvYQJQQePg==",
       "dependencies": {
-        "@octokit/openapi-types": "^7.3.2"
+        "@octokit/openapi-types": "^14.0.0"
       }
     },
     "node_modules/@sindresorhus/is": {
@@ -968,7 +986,8 @@
     },
     "node_modules/deprecation": {
       "version": "2.3.1",
-      "license": "ISC"
+      "resolved": "https://registry.npmjs.org/deprecation/-/deprecation-2.3.1.tgz",
+      "integrity": "sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ=="
     },
     "node_modules/doctrine": {
       "version": "3.0.0",
@@ -2153,7 +2172,8 @@
     },
     "node_modules/is-plain-object": {
       "version": "5.0.0",
-      "license": "MIT",
+      "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-5.0.0.tgz",
+      "integrity": "sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==",
       "engines": {
         "node": ">=0.10.0"
       }
@@ -4152,47 +4172,59 @@
       }
     },
     "@octokit/endpoint": {
-      "version": "6.0.12",
+      "version": "7.0.3",
+      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-7.0.3.tgz",
+      "integrity": "sha512-57gRlb28bwTsdNXq+O3JTQ7ERmBTuik9+LelgcLIVfYwf235VHbN9QNo4kXExtp/h8T423cR5iJThKtFYxC7Lw==",
       "requires": {
-        "@octokit/types": "^6.0.3",
+        "@octokit/types": "^8.0.0",
         "is-plain-object": "^5.0.0",
         "universal-user-agent": "^6.0.0"
       }
     },
     "@octokit/graphql": {
-      "version": "4.8.0",
+      "version": "5.0.4",
+      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-5.0.4.tgz",
+      "integrity": "sha512-amO1M5QUQgYQo09aStR/XO7KAl13xpigcy/kI8/N1PnZYSS69fgte+xA4+c2DISKqUZfsh0wwjc2FaCt99L41A==",
       "requires": {
-        "@octokit/request": "^5.6.0",
-        "@octokit/types": "^6.0.3",
+        "@octokit/request": "^6.0.0",
+        "@octokit/types": "^8.0.0",
         "universal-user-agent": "^6.0.0"
       }
     },
     "@octokit/openapi-types": {
-      "version": "7.3.2"
+      "version": "14.0.0",
+      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-14.0.0.tgz",
+      "integrity": "sha512-HNWisMYlR8VCnNurDU6os2ikx0s0VyEjDYHNS/h4cgb8DeOxQ0n72HyinUtdDVxJhFy3FWLGl0DJhfEWk3P5Iw=="
     },
     "@octokit/request": {
-      "version": "5.6.0",
+      "version": "6.2.2",
+      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-6.2.2.tgz",
+      "integrity": "sha512-6VDqgj0HMc2FUX2awIs+sM6OwLgwHvAi4KCK3mT2H2IKRt6oH9d0fej5LluF5mck1lRR/rFWN0YIDSYXYSylbw==",
       "requires": {
-        "@octokit/endpoint": "^6.0.1",
-        "@octokit/request-error": "^2.1.0",
-        "@octokit/types": "^6.16.1",
+        "@octokit/endpoint": "^7.0.0",
+        "@octokit/request-error": "^3.0.0",
+        "@octokit/types": "^8.0.0",
         "is-plain-object": "^5.0.0",
-        "node-fetch": "^2.6.1",
+        "node-fetch": "^2.6.7",
         "universal-user-agent": "^6.0.0"
       }
     },
     "@octokit/request-error": {
-      "version": "2.1.0",
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-3.0.2.tgz",
+      "integrity": "sha512-WMNOFYrSaX8zXWoJg9u/pKgWPo94JXilMLb2VManNOby9EZxrQaBe/QSC4a1TzpAlpxofg2X/jMnCyZgL6y7eg==",
       "requires": {
-        "@octokit/types": "^6.0.3",
+        "@octokit/types": "^8.0.0",
         "deprecation": "^2.0.0",
         "once": "^1.4.0"
       }
     },
     "@octokit/types": {
-      "version": "6.16.4",
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-8.0.0.tgz",
+      "integrity": "sha512-65/TPpOJP1i3K4lBJMnWqPUJ6zuOtzhtagDvydAWbEXpbFYA0oMKKyLb95NFZZP0lSh/4b6K+DQlzvYQJQQePg==",
       "requires": {
-        "@octokit/openapi-types": "^7.3.2"
+        "@octokit/openapi-types": "^14.0.0"
       }
     },
     "@sindresorhus/is": {
@@ -4518,7 +4550,9 @@
       "dev": true
     },
     "deprecation": {
-      "version": "2.3.1"
+      "version": "2.3.1",
+      "resolved": "https://registry.npmjs.org/deprecation/-/deprecation-2.3.1.tgz",
+      "integrity": "sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ=="
     },
     "doctrine": {
       "version": "3.0.0",
@@ -5293,7 +5327,9 @@
       "dev": true
     },
     "is-plain-object": {
-      "version": "5.0.0"
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-5.0.0.tgz",
+      "integrity": "sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q=="
     },
     "is-regex": {
       "version": "1.1.4",
