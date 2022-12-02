@@ -11,13 +11,13 @@
  * Licensed under the MIT license
  */
 
-const fs = require('fs');
+import fs from 'fs';
 
-const tape = require('tape');
-const nock = require('nock');
+import tape from 'tape';
+import nock from 'nock';
 
-const getRepos = require('../../lib/get-repos');
-const literals = require('../../lib/literals');
+import getRepos from '../../lib/get-repos.js';
+import literals from '../../lib/literals.js';
 
 const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos.json', 'utf8');
 const response = JSON.parse(payload);

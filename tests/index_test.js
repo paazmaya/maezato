@@ -10,26 +10,26 @@
  * Licensed under the MIT license
  */
 
-const tape = require('tape'),
-  maezato = require('../index');
+import tape from 'tape';
+import maezato, {cloneRepo, handleRepos, parseJson} from '../index.js';
 
 tape('several functions are exported', (test) => {
   test.plan(5);
 
   test.equal(typeof maezato, 'function');
   test.equal(maezato.length, 1, 'takes a single argument');
-  test.equal(typeof maezato.parseJson, 'function');
+  test.equal(typeof parseJson, 'function');
 
-  test.equal(typeof maezato._cloneRepo, 'function');
-  test.equal(typeof maezato._handleRepos, 'function');
+  test.equal(typeof cloneRepo, 'function');
+  test.equal(typeof handleRepos, 'function');
 });
 
 tape('parsing json', (test) => {
   test.plan(2);
 
-  const data = maezato.parseJson('{"text": "Success"}');
+  const data = parseJson('{"text": "Success"}');
 
   test.equal(data.text, 'Success');
 
-  test.notOk(maezato.parseJson('-'));
+  test.notOk(parseJson('-'));
 });

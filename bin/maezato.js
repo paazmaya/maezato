@@ -12,15 +12,14 @@
  * Licensed under the MIT license
  */
 
-const fs = require('fs'),
-  path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const optionator = require('optionator');
+import optionator from 'optionator';
 
-const maezato = require('../index');
+import maezato from '../index.js';
 
-const pjson = fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'),
-  pkg = maezato.parseJson(pjson);
+import pkg from '../package.json' assert { type: 'json' };
 
 const optsParser = optionator({
   prepend: `Usage: ${pkg.name} [options] <username> <target path, defaults to current directory>`,
@@ -63,7 +62,7 @@ const optsParser = optionator({
       type: 'Boolean',
       description: 'Omit the username directory when creating directory structure'
     }/* ,
-    {
+   {
       option: 'exclude',
       alias: 'x',
       type: 'String',

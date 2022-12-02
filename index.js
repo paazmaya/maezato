@@ -10,18 +10,20 @@
  * Licensed under the MIT license
  */
 
-const path = require('path'),
-  {
-    exec
-  } = require('child_process');
+import path from 'path';
+import {
+  exec
+} from 'child_process';
 
-const mkdirp = require('mkdirp').sync,
-  each = require('promise-each'),
-  Progress = require('progress');
+import each from 'promise-each';
+import Progress from 'progress';
 
-const getRepos = require('./lib/get-repos'),
-  addRemote = require('./lib/add-remote'),
-  literals = require('./lib/literals');
+import mkdirp from 'mkdirp';
+const sync = mkdirp.sync;
+
+import getRepos from './lib/get-repos.js';
+import addRemote from './lib/add-remote.js';
+import literals from './lib/literals.js';
 
 let progressBar;
 
@@ -31,7 +33,7 @@ let progressBar;
  * @param {string} text  JSON string
  * @returns {object} Data object
  */
-const parseJson = (text) => {
+export const parseJson = (text) => {
   let data;
 
   try {
@@ -58,7 +60,7 @@ const parseJson = (text) => {
  *
  * @returns {Promise} Promise that solved when git has cloned
  */
-const cloneRepo = (item, options) => {
+export const cloneRepo = (item, options) => {
   const type = item.fork ?
     'fork' :
     item.owner === options.username ?
@@ -126,7 +128,7 @@ const cloneRepo = (item, options) => {
  *
  * @returns {Promise} Promise that should have resolved everything
  */
-const handleRepos = (list, options) => {
+export const handleRepos = (list, options) => {
   if (!options.includeArchived) {
     list = list.filter((item) => {
       return !item.archived;
@@ -146,13 +148,13 @@ const handleRepos = (list, options) => {
 /**
  * Executioner
  *
- * @param  {object} options Options
- * @param  {string} options.token GitHub API token
- * @param  {boolean} options.verbose Enable more verbose output
- * @param  {boolean} options.omitUsername Skip creating the username directory
- * @param  {boolean} options.includeArchived Include also repositories that have been archived
- * @param  {string} options.username GitHub username
- * @param  {string} options.cloneBaseDir Base directory for cloning
+ * @param {object} options Options
+ * @param {string} options.token GitHub API token
+ * @param {boolean} options.verbose Enable more verbose output
+ * @param {boolean} options.omitUsername Skip creating the username directory
+ * @param {boolean} options.includeArchived Include also repositories that have been archived
+ * @param {string} options.username GitHub username
+ * @param {string} options.cloneBaseDir Base directory for cloning
  *
  * @returns {void}
  */
@@ -177,9 +179,4 @@ const run = (options) => {
     });
 };
 
-module.exports = run;
-module.exports.parseJson = parseJson;
-
-// Exported for testing
-module.exports._cloneRepo = cloneRepo;
-module.exports._handleRepos = handleRepos;
+export default run;

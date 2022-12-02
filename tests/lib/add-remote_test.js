@@ -10,9 +10,9 @@
  * Licensed under the MIT license
  */
 
-const tape = require('tape');
+import tape from 'tape';
 
-const addRemote = require('../../lib/add-remote');
+import addRemote from '../../lib/add-remote.js';
 
 tape('addRemote - exposes function', (test) => {
   test.plan(2);
