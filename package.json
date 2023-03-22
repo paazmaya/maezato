@@ -39,7 +39,7 @@
   "dependencies": {
     "@octokit/graphql": "5.0.5",
     "got": "12.6.0",
-    "mkdirp": "1.0.4",
+    "mkdirp": "2.1.6",
     "optionator": "0.9.1",
     "progress": "2.0.3",
     "promise-each": "2.2.0"

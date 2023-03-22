@@ -11,7 +11,7 @@
       "dependencies": {
         "@octokit/graphql": "5.0.5",
         "got": "12.6.0",
-        "mkdirp": "1.0.4",
+        "mkdirp": "2.1.6",
         "optionator": "0.9.1",
         "progress": "2.0.3",
         "promise-each": "2.2.0"
@@ -2122,13 +2122,17 @@
       }
     },
     "node_modules/mkdirp": {
-      "version": "1.0.4",
-      "license": "MIT",
+      "version": "2.1.6",
+      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-2.1.6.tgz",
+      "integrity": "sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A==",
       "bin": {
-        "mkdirp": "bin/cmd.js"
+        "mkdirp": "dist/cjs/src/bin.js"
       },
       "engines": {
         "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/ms": {
@@ -4522,7 +4526,9 @@
       "dev": true
     },
     "mkdirp": {
-      "version": "1.0.4"
+      "version": "2.1.6",
+      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-2.1.6.tgz",
+      "integrity": "sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A=="
     },
     "ms": {
       "version": "2.1.2",
