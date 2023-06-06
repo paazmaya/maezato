@@ -18,8 +18,7 @@ import {
 import each from 'promise-each';
 import Progress from 'progress';
 
-import mkdirp from 'mkdirp';
-const sync = mkdirp.sync;
+import { mkdirp } from 'mkdirp';
 
 import getRepos from './lib/get-repos.js';
 import addRemote from './lib/add-remote.js';
@@ -71,7 +70,7 @@ export const cloneRepo = (item, options) => {
     path.join(options.cloneBaseDir, type) :
     path.join(options.cloneBaseDir, options.username, type);
 
-  mkdirp(clonePath);
+  mkdirp.sync(clonePath);
 
   const command = `git clone ${item.ssh_url}`,
     opts = {
@@ -161,7 +160,7 @@ export const handleRepos = (list, options) => {
 const run = (options) => {
   console.log(`Cloning to a structure under "${options.cloneBaseDir}"`);
 
-  //mkdirp(options.cloneBaseDir);
+  //mkdirp.sync(options.cloneBaseDir);
 
   getRepos(options)
     .then((data) => {
