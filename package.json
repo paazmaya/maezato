@@ -1,6 +1,6 @@
 {
   "name": "maezato",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Clone all repositories of a given user at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": "bin/maezato.js",
@@ -45,11 +45,11 @@
     "promise-each": "2.2.0"
   },
   "devDependencies": {
+    "c8": "7.14.0",
     "codecov": "3.8.3",
     "eslint": "8.42.0",
     "eslint-config-paazmaya": "9.0.1",
-    "nock": "13.3.1",
-    "c8": "7.14.0",
+    "msw": "1.2.1",
     "tape": "5.6.3"
   }
 }

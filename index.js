@@ -18,7 +18,9 @@ import {
 import each from 'promise-each';
 import Progress from 'progress';
 
-import { mkdirp } from 'mkdirp';
+import {
+  mkdirp
+} from 'mkdirp';
 
 import getRepos from './lib/get-repos.js';
 import addRemote from './lib/add-remote.js';

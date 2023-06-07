@@ -5,6 +5,10 @@ It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
 ## Unreleased
 
+## `v0.13.0` (2023-06-07)
+
+- It's all ES Modules now
+
 ## `v0.12.0` (2022-04-19)
 - Minimum supported Node.js version lifted from `10.13.0` to `14.15.0`, along with minimum npm version to `6.14.8`
 - Keep dependencies up to date, to reduce vulnerabilities

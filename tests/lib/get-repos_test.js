@@ -14,7 +14,8 @@
 import fs from 'fs';
 
 import tape from 'tape';
-import nock from 'nock';
+import { graphql } from 'msw';
+import { setupServer } from 'msw/node';
 
 import getRepos from '../../lib/get-repos.js';
 import literals from '../../lib/literals.js';
@@ -33,23 +34,29 @@ tape('getRepos - exposes function', (test) => {
 const TOKEN = 'hoplaa';
 const USERNAME = 'paazmaya';
 
+// Mock server that catches all GraphQL requests
+const server = setupServer(
+  graphql.operation((req, res, ctx) => {
+    return res(
+      ctx.data(response.data)
+    )  
+  })
+);
+
 tape('getRepos - stuff is fetched', (test) => {
   test.plan(1);
-  /**
-   * Had to comment this part for the tests to run
-   */
-  const scope = nock(literals.GITHUB_API_URL)
-    .post('/graphql')
-    .reply(200, response);
+  //literals.GITHUB_API_URL
+  server.listen();
 
-  getRepos({
+  return getRepos({
     username: USERNAME,
     token: TOKEN,
     verbose: true
   }).then((output) => {
     test.equal(output.length, 66);
-    scope.done();
   }).catch((error) => {
     test.fail(error.message);
+  }).finally(() => {
+    server.close();
   });
 });
