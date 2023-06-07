@@ -29,7 +29,7 @@ npm install --global maezato
 
 Please note that `git` should be available in the system where this tool is planned to be used.
 
-Please note that the minimum supported version of [Node.js](https://nodejs.org/en/) is `14.15.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
+Please note that the minimum supported version of [Node.js](https://nodejs.org/en/) is `16.13.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
 ## Usage
 
@@ -119,8 +119,8 @@ Linting is done with [ESLint](http://eslint.org) and can be executed with `npm r
 There should be no errors appearing after any JavaScript file changes.
 
 Unit tests are written with [`tape`](https://github.com/substack/tape) and can be executed with `npm test`.
-Code coverage is inspected with [`nyc`](https://github.com/istanbuljs/nyc) and
-can be executed with `npm run coverage` after running `npm test`.
+Code coverage is inspected with [`c8`](https://github.com/bcoe/c8) and
+can current status can be seen after running `npm test`.
 Please make sure it is over 90% at all times.
 
 ## Version history
