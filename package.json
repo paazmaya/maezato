@@ -40,7 +40,7 @@
     "@octokit/graphql": "5.0.6",
     "got": "13.0.0",
     "mkdirp": "3.0.1",
-    "optionator": "0.9.1",
+    "optionator": "0.9.3",
     "progress": "2.0.3",
     "promise-each": "2.2.0"
   },
