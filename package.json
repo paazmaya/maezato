@@ -7,8 +7,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "c8 --all --exclude tests tape tests/*_test.js tests/lib/*_test.js",
-    "coverage": "c8 --all --exclude tests report --reporter=text-lcov > coverage.lcov && codecov",
+    "test": "c8 --exclude tests tape tests/*_test.js tests/lib/*_test.js",
+    "coverage": "c8 --exclude tests report --reporter=text-lcov > coverage.lcov",
     "lint": "eslint *.js bin lib"
   },
   "files": [
