@@ -21,15 +21,14 @@
       },
       "devDependencies": {
         "c8": "8.0.0",
-        "codecov": "3.8.3",
         "eslint": "8.43.0",
         "eslint-config-paazmaya": "9.0.1",
         "msw": "1.2.2",
         "tape": "5.6.3"
       },
       "engines": {
-        "node": ">=16.13.0",
-        "npm": ">=8.1.0"
+        "node": ">=18.12.0",
+        "npm": ">=8.19.2"
       }
     },
     "node_modules/@aashutoshrathi/word-wrap": {
@@ -385,14 +384,6 @@
         "node": ">=14.16"
       }
     },
-    "node_modules/@tootallnate/once": {
-      "version": "1.1.2",
-      "dev": true,
-      "license": "MIT",
-      "engines": {
-        "node": ">= 6"
-      }
-    },
     "node_modules/@types/cookie": {
       "version": "0.4.1",
       "resolved": "https://registry.npmjs.org/@types/cookie/-/cookie-0.4.1.tgz",
@@ -483,17 +474,6 @@
         "acorn": "^6.0.0 || ^7.0.0 || ^8.0.0"
       }
     },
-    "node_modules/agent-base": {
-      "version": "6.0.2",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "debug": "4"
-      },
-      "engines": {
-        "node": ">= 6.0.0"
-      }
-    },
     "node_modules/ajv": {
       "version": "6.12.6",
       "dev": true,
@@ -574,21 +554,6 @@
       },
       "engines": {
         "node": ">= 8"
-      }
-    },
-    "node_modules/argparse": {
-      "version": "1.0.10",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "sprintf-js": "~1.0.2"
-      }
-    },
-    "node_modules/argv": {
-      "version": "0.0.2",
-      "dev": true,
-      "engines": {
-        "node": ">=0.6.10"
       }
     },
     "node_modules/array.prototype.every": {
@@ -894,24 +859,6 @@
       "dev": true,
       "engines": {
         "node": ">=0.8"
-      }
-    },
-    "node_modules/codecov": {
-      "version": "3.8.3",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "argv": "0.0.2",
-        "ignore-walk": "3.0.4",
-        "js-yaml": "3.14.1",
-        "teeny-request": "7.1.1",
-        "urlgrey": "1.0.0"
-      },
-      "bin": {
-        "codecov": "bin/codecov"
-      },
-      "engines": {
-        "node": ">=4.0"
       }
     },
     "node_modules/color-convert": {
@@ -1381,18 +1328,6 @@
         "url": "https://opencollective.com/eslint"
       }
     },
-    "node_modules/esprima": {
-      "version": "4.0.1",
-      "dev": true,
-      "license": "BSD-2-Clause",
-      "bin": {
-        "esparse": "bin/esparse.js",
-        "esvalidate": "bin/esvalidate.js"
-      },
-      "engines": {
-        "node": ">=4"
-      }
-    },
     "node_modules/esquery": {
       "version": "1.4.2",
       "resolved": "https://registry.npmjs.org/esquery/-/esquery-1.4.2.tgz",
@@ -1467,19 +1402,6 @@
     },
     "node_modules/fast-levenshtein": {
       "version": "2.0.6",
-      "license": "MIT"
-    },
-    "node_modules/fast-url-parser": {
-      "version": "1.1.3",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "punycode": "^1.3.2"
-      }
-    },
-    "node_modules/fast-url-parser/node_modules/punycode": {
-      "version": "1.4.1",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/fastq": {
@@ -1980,19 +1902,6 @@
       "resolved": "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz",
       "integrity": "sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ=="
     },
-    "node_modules/http-proxy-agent": {
-      "version": "4.0.1",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "@tootallnate/once": "1",
-        "agent-base": "6",
-        "debug": "4"
-      },
-      "engines": {
-        "node": ">= 6"
-      }
-    },
     "node_modules/http2-wrapper": {
       "version": "2.1.10",
       "resolved": "https://registry.npmjs.org/http2-wrapper/-/http2-wrapper-2.1.10.tgz",
@@ -2003,18 +1912,6 @@
       },
       "engines": {
         "node": ">=10.19.0"
-      }
-    },
-    "node_modules/https-proxy-agent": {
-      "version": "5.0.0",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "agent-base": "6",
-        "debug": "4"
-      },
-      "engines": {
-        "node": ">= 6"
       }
     },
     "node_modules/iconv-lite": {
@@ -2055,14 +1952,6 @@
       "license": "MIT",
       "engines": {
         "node": ">= 4"
-      }
-    },
-    "node_modules/ignore-walk": {
-      "version": "3.0.4",
-      "dev": true,
-      "license": "ISC",
-      "dependencies": {
-        "minimatch": "^3.0.4"
       }
     },
     "node_modules/import-fresh": {
@@ -2534,18 +2423,6 @@
       "dev": true,
       "engines": {
         "node": ">=0.10.0"
-      }
-    },
-    "node_modules/js-yaml": {
-      "version": "3.14.1",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "argparse": "^1.0.7",
-        "esprima": "^4.0.0"
-      },
-      "bin": {
-        "js-yaml": "bin/js-yaml.js"
       }
     },
     "node_modules/json-buffer": {
@@ -3410,11 +3287,6 @@
       "dev": true,
       "license": "ISC"
     },
-    "node_modules/sprintf-js": {
-      "version": "1.0.3",
-      "dev": true,
-      "license": "BSD-3-Clause"
-    },
     "node_modules/stop-iteration-iterator": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/stop-iteration-iterator/-/stop-iteration-iterator-1.0.0.tgz",
@@ -3425,14 +3297,6 @@
       },
       "engines": {
         "node": ">= 0.4"
-      }
-    },
-    "node_modules/stream-events": {
-      "version": "1.0.5",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "stubs": "^3.0.0"
       }
     },
     "node_modules/strict-event-emitter": {
@@ -3551,11 +3415,6 @@
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
-    "node_modules/stubs": {
-      "version": "3.0.0",
-      "dev": true,
-      "license": "MIT"
-    },
     "node_modules/supports-color": {
       "version": "7.2.0",
       "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
@@ -3613,29 +3472,6 @@
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
-      }
-    },
-    "node_modules/teeny-request": {
-      "version": "7.1.1",
-      "dev": true,
-      "license": "Apache-2.0",
-      "dependencies": {
-        "http-proxy-agent": "^4.0.0",
-        "https-proxy-agent": "^5.0.0",
-        "node-fetch": "^2.6.1",
-        "stream-events": "^1.0.5",
-        "uuid": "^8.0.0"
-      },
-      "engines": {
-        "node": ">=10"
-      }
-    },
-    "node_modules/teeny-request/node_modules/uuid": {
-      "version": "8.3.2",
-      "dev": true,
-      "license": "MIT",
-      "bin": {
-        "uuid": "dist/bin/uuid"
       }
     },
     "node_modules/test-exclude": {
@@ -3757,14 +3593,6 @@
       "license": "BSD-2-Clause",
       "dependencies": {
         "punycode": "^2.1.0"
-      }
-    },
-    "node_modules/urlgrey": {
-      "version": "1.0.0",
-      "dev": true,
-      "license": "BSD-2-Clause",
-      "dependencies": {
-        "fast-url-parser": "^1.1.3"
       }
     },
     "node_modules/util": {
@@ -4242,10 +4070,6 @@
         "defer-to-connect": "^2.0.1"
       }
     },
-    "@tootallnate/once": {
-      "version": "1.1.2",
-      "dev": true
-    },
     "@types/cookie": {
       "version": "0.4.1",
       "resolved": "https://registry.npmjs.org/@types/cookie/-/cookie-0.4.1.tgz",
@@ -4325,13 +4149,6 @@
       "dev": true,
       "requires": {}
     },
-    "agent-base": {
-      "version": "6.0.2",
-      "dev": true,
-      "requires": {
-        "debug": "4"
-      }
-    },
     "ajv": {
       "version": "6.12.6",
       "dev": true,
@@ -4384,17 +4201,6 @@
         "normalize-path": "^3.0.0",
         "picomatch": "^2.0.4"
       }
-    },
-    "argparse": {
-      "version": "1.0.10",
-      "dev": true,
-      "requires": {
-        "sprintf-js": "~1.0.2"
-      }
-    },
-    "argv": {
-      "version": "0.0.2",
-      "dev": true
     },
     "array.prototype.every": {
       "version": "1.1.4",
@@ -4599,17 +4405,6 @@
       "resolved": "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz",
       "integrity": "sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==",
       "dev": true
-    },
-    "codecov": {
-      "version": "3.8.3",
-      "dev": true,
-      "requires": {
-        "argv": "0.0.2",
-        "ignore-walk": "3.0.4",
-        "js-yaml": "3.14.1",
-        "teeny-request": "7.1.1",
-        "urlgrey": "1.0.0"
-      }
     },
     "color-convert": {
       "version": "2.0.1",
@@ -4954,10 +4749,6 @@
         "eslint-visitor-keys": "^3.4.1"
       }
     },
-    "esprima": {
-      "version": "4.0.1",
-      "dev": true
-    },
     "esquery": {
       "version": "1.4.2",
       "resolved": "https://registry.npmjs.org/esquery/-/esquery-1.4.2.tgz",
@@ -5009,19 +4800,6 @@
     },
     "fast-levenshtein": {
       "version": "2.0.6"
-    },
-    "fast-url-parser": {
-      "version": "1.1.3",
-      "dev": true,
-      "requires": {
-        "punycode": "^1.3.2"
-      },
-      "dependencies": {
-        "punycode": {
-          "version": "1.4.1",
-          "dev": true
-        }
-      }
     },
     "fastq": {
       "version": "1.13.0",
@@ -5355,15 +5133,6 @@
       "resolved": "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz",
       "integrity": "sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ=="
     },
-    "http-proxy-agent": {
-      "version": "4.0.1",
-      "dev": true,
-      "requires": {
-        "@tootallnate/once": "1",
-        "agent-base": "6",
-        "debug": "4"
-      }
-    },
     "http2-wrapper": {
       "version": "2.1.10",
       "resolved": "https://registry.npmjs.org/http2-wrapper/-/http2-wrapper-2.1.10.tgz",
@@ -5371,14 +5140,6 @@
       "requires": {
         "quick-lru": "^5.1.1",
         "resolve-alpn": "^1.2.0"
-      }
-    },
-    "https-proxy-agent": {
-      "version": "5.0.0",
-      "dev": true,
-      "requires": {
-        "agent-base": "6",
-        "debug": "4"
       }
     },
     "iconv-lite": {
@@ -5399,13 +5160,6 @@
     "ignore": {
       "version": "5.2.0",
       "dev": true
-    },
-    "ignore-walk": {
-      "version": "3.0.4",
-      "dev": true,
-      "requires": {
-        "minimatch": "^3.0.4"
-      }
     },
     "import-fresh": {
       "version": "3.3.0",
@@ -5708,14 +5462,6 @@
       "resolved": "https://registry.npmjs.org/js-levenshtein/-/js-levenshtein-1.1.6.tgz",
       "integrity": "sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==",
       "dev": true
-    },
-    "js-yaml": {
-      "version": "3.14.1",
-      "dev": true,
-      "requires": {
-        "argparse": "^1.0.7",
-        "esprima": "^4.0.0"
-      }
     },
     "json-buffer": {
       "version": "3.0.1",
@@ -6267,10 +6013,6 @@
       "version": "3.0.2",
       "dev": true
     },
-    "sprintf-js": {
-      "version": "1.0.3",
-      "dev": true
-    },
     "stop-iteration-iterator": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/stop-iteration-iterator/-/stop-iteration-iterator-1.0.0.tgz",
@@ -6278,13 +6020,6 @@
       "dev": true,
       "requires": {
         "internal-slot": "^1.0.4"
-      }
-    },
-    "stream-events": {
-      "version": "1.0.5",
-      "dev": true,
-      "requires": {
-        "stubs": "^3.0.0"
       }
     },
     "strict-event-emitter": {
@@ -6365,10 +6100,6 @@
       "version": "3.1.1",
       "dev": true
     },
-    "stubs": {
-      "version": "3.0.0",
-      "dev": true
-    },
     "supports-color": {
       "version": "7.2.0",
       "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
@@ -6411,23 +6142,6 @@
         "resumer": "^0.0.0",
         "string.prototype.trim": "^1.2.7",
         "through": "^2.3.8"
-      }
-    },
-    "teeny-request": {
-      "version": "7.1.1",
-      "dev": true,
-      "requires": {
-        "http-proxy-agent": "^4.0.0",
-        "https-proxy-agent": "^5.0.0",
-        "node-fetch": "^2.6.1",
-        "stream-events": "^1.0.5",
-        "uuid": "^8.0.0"
-      },
-      "dependencies": {
-        "uuid": {
-          "version": "8.3.2",
-          "dev": true
-        }
       }
     },
     "test-exclude": {
@@ -6519,13 +6233,6 @@
       "dev": true,
       "requires": {
         "punycode": "^2.1.0"
-      }
-    },
-    "urlgrey": {
-      "version": "1.0.0",
-      "dev": true,
-      "requires": {
-        "fast-url-parser": "^1.1.3"
       }
     },
     "util": {

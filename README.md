@@ -5,7 +5,7 @@
 
 [![Build Status](https://app.travis-ci.com/paazmaya/maezato.svg?branch=master)](https://app.travis-ci.com/paazmaya/maezato)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
-[![Node.js v14 CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
+[![Node.js v18 CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
 [![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=paazmaya_maezato&metric=code_smells)](https://sonarcloud.io/dashboard?id=paazmaya_maezato)
 
@@ -29,7 +29,7 @@ npm install --global maezato
 
 Please note that `git` should be available in the system where this tool is planned to be used.
 
-Please note that the minimum supported version of [Node.js](https://nodejs.org/en/) is `16.13.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
+Please note that the minimum supported version of [Node.js](https://nodejs.org/en/) is `18.12.0`, which is [the active Long Term Support (LTS) version](https://github.com/nodejs/Release#release-schedule).
 
 ## Usage
 
