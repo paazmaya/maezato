@@ -10,10 +10,10 @@
  * Licensed under the MIT license
  */
 
-import path from 'path';
+import path from 'node:path';
 import {
   exec
-} from 'child_process';
+} from 'node:child_process';
 
 import each from 'promise-each';
 import Progress from 'progress';
