@@ -5,7 +5,7 @@
 
 [![Build Status](https://app.travis-ci.com/paazmaya/maezato.svg?branch=master)](https://app.travis-ci.com/paazmaya/maezato)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
-[![Node.js v18 CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
+[![Node.js v20 CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
 [![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=paazmaya_maezato&metric=code_smells)](https://sonarcloud.io/dashboard?id=paazmaya_maezato)
 
