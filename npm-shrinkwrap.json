@@ -23,7 +23,7 @@
         "c8": "9.1.0",
         "eslint": "8.57.0",
         "eslint-config-paazmaya": "9.0.1",
-        "msw": "2.2.1",
+        "msw": "2.2.2",
         "tape": "5.7.5"
       },
       "engines": {
@@ -2436,9 +2436,9 @@
       "license": "MIT"
     },
     "node_modules/msw": {
-      "version": "2.2.1",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.2.1.tgz",
-      "integrity": "sha512-DCsZAQwan+2onEcpD86fiEnCKW4IvYzqcwDq/2TIoeNrmBqNp/mJW4wHQyxcoYrRPwgujin7wDFflqiSO1iT/w==",
+      "version": "2.2.2",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.2.2.tgz",
+      "integrity": "sha512-Vn3RGCmp14Oy1Lo9yGJMk4+qV/WdK8opNyHt0jdBnvzQ8OEhFvQ2AeM9EXOgQtGLvzUWzqrrwlfwmsCkFViUlg==",
       "dev": true,
       "hasInstallScript": true,
       "dependencies": {
@@ -2480,9 +2480,9 @@
       }
     },
     "node_modules/msw/node_modules/type-fest": {
-      "version": "4.10.2",
-      "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-4.10.2.tgz",
-      "integrity": "sha512-anpAG63wSpdEbLwOqH8L84urkL6PiVIov3EMmgIhhThevh9aiMQov+6Btx0wldNcvm4wV+e2/Rt1QdDwKHFbHw==",
+      "version": "4.10.3",
+      "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-4.10.3.tgz",
+      "integrity": "sha512-JLXyjizi072smKGGcZiAJDCNweT8J+AuRxmPZ1aG7TERg4ijx9REl8CNhbr36RV4qXqL1gO1FF9HL8OkVmmrsA==",
       "dev": true,
       "engines": {
         "node": ">=16"
@@ -5112,9 +5112,9 @@
       "dev": true
     },
     "msw": {
-      "version": "2.2.1",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.2.1.tgz",
-      "integrity": "sha512-DCsZAQwan+2onEcpD86fiEnCKW4IvYzqcwDq/2TIoeNrmBqNp/mJW4wHQyxcoYrRPwgujin7wDFflqiSO1iT/w==",
+      "version": "2.2.2",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.2.2.tgz",
+      "integrity": "sha512-Vn3RGCmp14Oy1Lo9yGJMk4+qV/WdK8opNyHt0jdBnvzQ8OEhFvQ2AeM9EXOgQtGLvzUWzqrrwlfwmsCkFViUlg==",
       "dev": true,
       "requires": {
         "@bundled-es-modules/cookie": "^2.0.0",
@@ -5137,9 +5137,9 @@
       },
       "dependencies": {
         "type-fest": {
-          "version": "4.10.2",
-          "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-4.10.2.tgz",
-          "integrity": "sha512-anpAG63wSpdEbLwOqH8L84urkL6PiVIov3EMmgIhhThevh9aiMQov+6Btx0wldNcvm4wV+e2/Rt1QdDwKHFbHw==",
+          "version": "4.10.3",
+          "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-4.10.3.tgz",
+          "integrity": "sha512-JLXyjizi072smKGGcZiAJDCNweT8J+AuRxmPZ1aG7TERg4ijx9REl8CNhbr36RV4qXqL1gO1FF9HL8OkVmmrsA==",
           "dev": true
         }
       }
