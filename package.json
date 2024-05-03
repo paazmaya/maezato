@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "c8": "9.1.0",
-    "eslint": "8.57.0",
+    "eslint": "9.2.0",
     "eslint-config-paazmaya": "9.0.1",
     "msw": "2.2.13",
     "tape": "5.7.5"
