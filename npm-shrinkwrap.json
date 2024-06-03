@@ -9,7 +9,7 @@
       "version": "0.13.0",
       "license": "MIT",
       "dependencies": {
-        "@octokit/graphql": "7.0.2",
+        "@octokit/graphql": "7.1.0",
         "got": "14.2.1",
         "mkdirp": "3.0.1",
         "optionator": "0.9.4",
@@ -380,12 +380,12 @@
       }
     },
     "node_modules/@octokit/endpoint": {
-      "version": "9.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-9.0.0.tgz",
-      "integrity": "sha512-szrQhiqJ88gghWY2Htt8MqUDO6++E/EIXqJ2ZEp5ma3uGS46o7LZAzSLt49myB7rT+Hfw5Y6gO3LmOxGzHijAQ==",
+      "version": "9.0.5",
+      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-9.0.5.tgz",
+      "integrity": "sha512-ekqR4/+PCLkEBF6qgj8WqJfvDq65RH85OAgrtnVp1mSxaXF03u2xW/hUdweGS5654IlC0wkNYC18Z50tSYTAFw==",
+      "license": "MIT",
       "dependencies": {
-        "@octokit/types": "^11.0.0",
-        "is-plain-object": "^5.0.0",
+        "@octokit/types": "^13.1.0",
         "universal-user-agent": "^6.0.0"
       },
       "engines": {
@@ -393,45 +393,34 @@
       }
     },
     "node_modules/@octokit/graphql": {
-      "version": "7.0.2",
-      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-7.0.2.tgz",
-      "integrity": "sha512-OJ2iGMtj5Tg3s6RaXH22cJcxXRi7Y3EBqbHTBRq+PQAqfaS8f/236fUrWhfSn8P4jovyzqucxme7/vWSSZBX2Q==",
+      "version": "7.1.0",
+      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-7.1.0.tgz",
+      "integrity": "sha512-r+oZUH7aMFui1ypZnAvZmn0KSqAUgE1/tUXIWaqUCa1758ts/Jio84GZuzsvUkme98kv0WFY8//n0J1Z+vsIsQ==",
+      "license": "MIT",
       "dependencies": {
-        "@octokit/request": "^8.0.1",
-        "@octokit/types": "^12.0.0",
+        "@octokit/request": "^8.3.0",
+        "@octokit/types": "^13.0.0",
         "universal-user-agent": "^6.0.0"
       },
       "engines": {
         "node": ">= 18"
       }
     },
-    "node_modules/@octokit/graphql/node_modules/@octokit/openapi-types": {
-      "version": "19.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-19.0.0.tgz",
-      "integrity": "sha512-PclQ6JGMTE9iUStpzMkwLCISFn/wDeRjkZFIKALpvJQNBGwDoYYi2fFvuHwssoQ1rXI5mfh6jgTgWuddeUzfWw=="
-    },
-    "node_modules/@octokit/graphql/node_modules/@octokit/types": {
-      "version": "12.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-12.0.0.tgz",
-      "integrity": "sha512-EzD434aHTFifGudYAygnFlS1Tl6KhbTynEWELQXIbTY8Msvb5nEqTZIm7sbPEt4mQYLZwu3zPKVdeIrw0g7ovg==",
-      "dependencies": {
-        "@octokit/openapi-types": "^19.0.0"
-      }
-    },
     "node_modules/@octokit/openapi-types": {
-      "version": "18.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-18.0.0.tgz",
-      "integrity": "sha512-V8GImKs3TeQRxRtXFpG2wl19V7444NIOTDF24AWuIbmNaNYOQMWRbjcGDXV5B+0n887fgDcuMNOmlul+k+oJtw=="
+      "version": "22.2.0",
+      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-22.2.0.tgz",
+      "integrity": "sha512-QBhVjcUa9W7Wwhm6DBFu6ZZ+1/t/oYxqc2tp81Pi41YNuJinbFRx8B133qVOrAaBbF7D/m0Et6f9/pZt9Rc+tg==",
+      "license": "MIT"
     },
     "node_modules/@octokit/request": {
-      "version": "8.0.4",
-      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-8.0.4.tgz",
-      "integrity": "sha512-YZ1XeDRil4ejHKoBP8BgROgP4auOH5A9lLZH96l39GKKEmsKOccQxKP5M7m+Punblg1bFw8LrdeKIDwIzQ8afA==",
+      "version": "8.4.0",
+      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-8.4.0.tgz",
+      "integrity": "sha512-9Bb014e+m2TgBeEJGEbdplMVWwPmL1FPtggHQRkV+WVsMggPtEkLKPlcVYm/o8xKLkpJ7B+6N8WfQMtDLX2Dpw==",
+      "license": "MIT",
       "dependencies": {
-        "@octokit/endpoint": "^9.0.0",
-        "@octokit/request-error": "^5.0.0",
-        "@octokit/types": "^11.0.0",
-        "is-plain-object": "^5.0.0",
+        "@octokit/endpoint": "^9.0.1",
+        "@octokit/request-error": "^5.1.0",
+        "@octokit/types": "^13.1.0",
         "universal-user-agent": "^6.0.0"
       },
       "engines": {
@@ -439,11 +428,12 @@
       }
     },
     "node_modules/@octokit/request-error": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-5.0.0.tgz",
-      "integrity": "sha512-1ue0DH0Lif5iEqT52+Rf/hf0RmGO9NWFjrzmrkArpG9trFfDM/efx00BJHdLGuro4BR/gECxCU2Twf5OKrRFsQ==",
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-5.1.0.tgz",
+      "integrity": "sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==",
+      "license": "MIT",
       "dependencies": {
-        "@octokit/types": "^11.0.0",
+        "@octokit/types": "^13.1.0",
         "deprecation": "^2.0.0",
         "once": "^1.4.0"
       },
@@ -452,11 +442,12 @@
       }
     },
     "node_modules/@octokit/types": {
-      "version": "11.1.0",
-      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-11.1.0.tgz",
-      "integrity": "sha512-Fz0+7GyLm/bHt8fwEqgvRBWwIV1S6wRRyq+V6exRKLVWaKGsuy6H9QFYeBVDV7rK6fO3XwHgQOPxv+cLj2zpXQ==",
+      "version": "13.5.0",
+      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-13.5.0.tgz",
+      "integrity": "sha512-HdqWTf5Z3qwDVlzCrP8UJquMwunpDiMPt5er+QjGzL4hqr/vBVY/MauQgS1xWxCDT1oMx1EULyqxncdCY/NVSQ==",
+      "license": "MIT",
       "dependencies": {
-        "@octokit/openapi-types": "^18.0.0"
+        "@octokit/openapi-types": "^22.2.0"
       }
     },
     "node_modules/@open-draft/deferred-promise": {
@@ -1032,7 +1023,8 @@
     "node_modules/deprecation": {
       "version": "2.3.1",
       "resolved": "https://registry.npmjs.org/deprecation/-/deprecation-2.3.1.tgz",
-      "integrity": "sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ=="
+      "integrity": "sha512-xmHIy4F3scKVwMsQ4WnVaS8bHOx0DmVwRywosKhaILI0ywMDWPtBSku2HNxRvF7jtwDRsoEwYQSfbxj8b7RlJQ==",
+      "license": "ISC"
     },
     "node_modules/doctrine": {
       "version": "3.0.0",
@@ -2090,14 +2082,6 @@
       "dev": true,
       "engines": {
         "node": ">=8"
-      }
-    },
-    "node_modules/is-plain-object": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-5.0.0.tgz",
-      "integrity": "sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==",
-      "engines": {
-        "node": ">=0.10.0"
       }
     },
     "node_modules/is-regex": {
@@ -3688,73 +3672,56 @@
       }
     },
     "@octokit/endpoint": {
-      "version": "9.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-9.0.0.tgz",
-      "integrity": "sha512-szrQhiqJ88gghWY2Htt8MqUDO6++E/EIXqJ2ZEp5ma3uGS46o7LZAzSLt49myB7rT+Hfw5Y6gO3LmOxGzHijAQ==",
+      "version": "9.0.5",
+      "resolved": "https://registry.npmjs.org/@octokit/endpoint/-/endpoint-9.0.5.tgz",
+      "integrity": "sha512-ekqR4/+PCLkEBF6qgj8WqJfvDq65RH85OAgrtnVp1mSxaXF03u2xW/hUdweGS5654IlC0wkNYC18Z50tSYTAFw==",
       "requires": {
-        "@octokit/types": "^11.0.0",
-        "is-plain-object": "^5.0.0",
+        "@octokit/types": "^13.1.0",
         "universal-user-agent": "^6.0.0"
       }
     },
     "@octokit/graphql": {
-      "version": "7.0.2",
-      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-7.0.2.tgz",
-      "integrity": "sha512-OJ2iGMtj5Tg3s6RaXH22cJcxXRi7Y3EBqbHTBRq+PQAqfaS8f/236fUrWhfSn8P4jovyzqucxme7/vWSSZBX2Q==",
+      "version": "7.1.0",
+      "resolved": "https://registry.npmjs.org/@octokit/graphql/-/graphql-7.1.0.tgz",
+      "integrity": "sha512-r+oZUH7aMFui1ypZnAvZmn0KSqAUgE1/tUXIWaqUCa1758ts/Jio84GZuzsvUkme98kv0WFY8//n0J1Z+vsIsQ==",
       "requires": {
-        "@octokit/request": "^8.0.1",
-        "@octokit/types": "^12.0.0",
+        "@octokit/request": "^8.3.0",
+        "@octokit/types": "^13.0.0",
         "universal-user-agent": "^6.0.0"
-      },
-      "dependencies": {
-        "@octokit/openapi-types": {
-          "version": "19.0.0",
-          "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-19.0.0.tgz",
-          "integrity": "sha512-PclQ6JGMTE9iUStpzMkwLCISFn/wDeRjkZFIKALpvJQNBGwDoYYi2fFvuHwssoQ1rXI5mfh6jgTgWuddeUzfWw=="
-        },
-        "@octokit/types": {
-          "version": "12.0.0",
-          "resolved": "https://registry.npmjs.org/@octokit/types/-/types-12.0.0.tgz",
-          "integrity": "sha512-EzD434aHTFifGudYAygnFlS1Tl6KhbTynEWELQXIbTY8Msvb5nEqTZIm7sbPEt4mQYLZwu3zPKVdeIrw0g7ovg==",
-          "requires": {
-            "@octokit/openapi-types": "^19.0.0"
-          }
-        }
       }
     },
     "@octokit/openapi-types": {
-      "version": "18.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-18.0.0.tgz",
-      "integrity": "sha512-V8GImKs3TeQRxRtXFpG2wl19V7444NIOTDF24AWuIbmNaNYOQMWRbjcGDXV5B+0n887fgDcuMNOmlul+k+oJtw=="
+      "version": "22.2.0",
+      "resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-22.2.0.tgz",
+      "integrity": "sha512-QBhVjcUa9W7Wwhm6DBFu6ZZ+1/t/oYxqc2tp81Pi41YNuJinbFRx8B133qVOrAaBbF7D/m0Et6f9/pZt9Rc+tg=="
     },
     "@octokit/request": {
-      "version": "8.0.4",
-      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-8.0.4.tgz",
-      "integrity": "sha512-YZ1XeDRil4ejHKoBP8BgROgP4auOH5A9lLZH96l39GKKEmsKOccQxKP5M7m+Punblg1bFw8LrdeKIDwIzQ8afA==",
+      "version": "8.4.0",
+      "resolved": "https://registry.npmjs.org/@octokit/request/-/request-8.4.0.tgz",
+      "integrity": "sha512-9Bb014e+m2TgBeEJGEbdplMVWwPmL1FPtggHQRkV+WVsMggPtEkLKPlcVYm/o8xKLkpJ7B+6N8WfQMtDLX2Dpw==",
       "requires": {
-        "@octokit/endpoint": "^9.0.0",
-        "@octokit/request-error": "^5.0.0",
-        "@octokit/types": "^11.0.0",
-        "is-plain-object": "^5.0.0",
+        "@octokit/endpoint": "^9.0.1",
+        "@octokit/request-error": "^5.1.0",
+        "@octokit/types": "^13.1.0",
         "universal-user-agent": "^6.0.0"
       }
     },
     "@octokit/request-error": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-5.0.0.tgz",
-      "integrity": "sha512-1ue0DH0Lif5iEqT52+Rf/hf0RmGO9NWFjrzmrkArpG9trFfDM/efx00BJHdLGuro4BR/gECxCU2Twf5OKrRFsQ==",
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/@octokit/request-error/-/request-error-5.1.0.tgz",
+      "integrity": "sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==",
       "requires": {
-        "@octokit/types": "^11.0.0",
+        "@octokit/types": "^13.1.0",
         "deprecation": "^2.0.0",
         "once": "^1.4.0"
       }
     },
     "@octokit/types": {
-      "version": "11.1.0",
-      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-11.1.0.tgz",
-      "integrity": "sha512-Fz0+7GyLm/bHt8fwEqgvRBWwIV1S6wRRyq+V6exRKLVWaKGsuy6H9QFYeBVDV7rK6fO3XwHgQOPxv+cLj2zpXQ==",
+      "version": "13.5.0",
+      "resolved": "https://registry.npmjs.org/@octokit/types/-/types-13.5.0.tgz",
+      "integrity": "sha512-HdqWTf5Z3qwDVlzCrP8UJquMwunpDiMPt5er+QjGzL4hqr/vBVY/MauQgS1xWxCDT1oMx1EULyqxncdCY/NVSQ==",
       "requires": {
-        "@octokit/openapi-types": "^18.0.0"
+        "@octokit/openapi-types": "^22.2.0"
       }
     },
     "@open-draft/deferred-promise": {
@@ -4890,11 +4857,6 @@
       "resolved": "https://registry.npmjs.org/is-path-inside/-/is-path-inside-3.0.3.tgz",
       "integrity": "sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==",
       "dev": true
-    },
-    "is-plain-object": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-5.0.0.tgz",
-      "integrity": "sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q=="
     },
     "is-regex": {
       "version": "1.1.4",

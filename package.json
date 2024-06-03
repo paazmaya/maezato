@@ -37,7 +37,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@octokit/graphql": "7.0.2",
+    "@octokit/graphql": "7.1.0",
     "got": "14.2.1",
     "mkdirp": "3.0.1",
     "optionator": "0.9.4",
