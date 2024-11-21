@@ -5,6 +5,8 @@ It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
 ## Unreleased
 
+- Ability to get all repositories from GitHub organizations too
+- Show progress bar only when the output is not verbose, to avoid progress bar cutting off
 - Minimum supported Node.js version lifted from `14.15.0` to `18.12.0`, along with minimum npm version from `6.14.8` to `8.19.2`
 
 ## `v0.13.0` (2023-06-07)
