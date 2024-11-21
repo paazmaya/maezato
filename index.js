@@ -2,7 +2,7 @@
  * maezato
  * https://github.com/paazmaya/maezato
  *
- * Clone all repositories of a given user at GitHub,
+ * Clone all repositories of a given user or organization at GitHub,
  * by ordering them according to fork/contributing/mine
  * @see https://developer.github.com/v3/repos/#list-user-repositories
  *
@@ -10,23 +10,11 @@
  * Licensed under the MIT license
  */
 
-import path from 'node:path';
-import {
-  exec
-} from 'node:child_process';
-
 import each from 'promise-each';
 import Progress from 'progress';
 
-import {
-  mkdirp
-} from 'mkdirp';
-
 import getRepos from './lib/get-repos.js';
-import addRemote from './lib/add-remote.js';
-import literals from './lib/literals.js';
-
-let progressBar;
+import cloneRepo from './lib/clone-repo.js';
 
 /**
  * Safe parsing JSON
@@ -48,75 +36,6 @@ export const parseJson = (text) => {
 };
 
 /**
- * Clone a repository
- *
- * @param {object}  item             Meta data for the given repository
- * @param {object}  options          Options
- * @param {string}  options.token    GitHub API token
- * @param {boolean} options.verbose  Enable more verbose output
- * @param {boolean} options.omitUsername Skip creating the username directory
- * @param {boolean} options.includeArchived Include also repositories that have been archived
- * @param {string}  options.username GitHub username
- * @param {string}  options.cloneBaseDir Base directory for cloning
- *
- * @returns {Promise} Promise that solved when git has cloned
- */
-export const cloneRepo = (item, options) => {
-  const type = item.fork ?
-    'fork' :
-    item.owner === options.username ?
-      'mine' :
-      'contributing';
-
-  const clonePath = options.omitUsername ?
-    path.join(options.cloneBaseDir, type) :
-    path.join(options.cloneBaseDir, options.username, type);
-
-  mkdirp.sync(clonePath);
-
-  const command = `git clone ${item.ssh_url}`,
-    opts = {
-      cwd: clonePath,
-      env: process.env,
-      encoding: 'utf8'
-    };
-
-  if (options.verbose) {
-    console.log(`Cloning repository ${item.ssh_url}`);
-  }
-
-  return new Promise((fulfill, reject) => {
-    exec(command, opts, (error, stdout, stderr) => {
-      progressBar.tick();
-      progressBar.render();
-
-      // TODO: how about terminals with other languages?
-      if (error && stderr.indexOf('already exists and is not an empty directory') === literals.INDEX_NOT_FOUND) {
-        console.error(`Failed to clone "${item.ssh_url}"`);
-        reject(error, stderr);
-      }
-      else {
-        fulfill(item);
-      }
-    });
-  }).then((data) => {
-
-    progressBar.tick();
-    progressBar.render();
-
-    if (data.fork) {
-      const forkPath = path.join(clonePath, data.name);
-
-      return addRemote(data, forkPath, 'upstream', data.parent.ssh_url, options);
-    }
-
-    return data;
-  }).catch((error) => {
-    console.error(error);
-  });
-};
-
-/**
  *
  * @param {array} list  List of repositories for the given user
  * @param {object} options Options
@@ -124,7 +43,7 @@ export const cloneRepo = (item, options) => {
  * @param {boolean} options.verbose Enable more verbose output
  * @param {boolean} options.omitUsername Skip creating the username directory
  * @param {boolean} options.includeArchived Include also repositories that have been archived
- * @param {string} options.username GitHub username
+ * @param {string} options.username GitHub username or organization if it begins with @
  * @param {string} options.cloneBaseDir Base directory for cloning
  *
  * @returns {Promise} Promise that should have resolved everything
@@ -137,13 +56,13 @@ export const handleRepos = (list, options) => {
   }
 
   // Show command line progress.
-  progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
+  const progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
     total: list.length * 2,
     complete: '#',
     incomplete: '-'
   });
 
-  return Promise.resolve(list).then(each((item) => cloneRepo(item, options)));
+  return Promise.resolve(list).then(each((item) => cloneRepo(item, progressBar, options)));
 };
 
 /**
@@ -154,7 +73,7 @@ export const handleRepos = (list, options) => {
  * @param {boolean} options.verbose Enable more verbose output
  * @param {boolean} options.omitUsername Skip creating the username directory
  * @param {boolean} options.includeArchived Include also repositories that have been archived
- * @param {string} options.username GitHub username
+ * @param {string} options.username GitHub username or organization if it begins with @
  * @param {string} options.cloneBaseDir Base directory for cloning
  *
  * @returns {void}

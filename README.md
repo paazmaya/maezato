@@ -1,6 +1,6 @@
 # maezato (前里)
 
-> Clone all repositories of a given user at GitHub or Bitbucket,
+> Clone all repositories of a given user or organization at GitHub or Bitbucket,
 > by ordering them according to fork/contributing/mine
 
 [![Build Status](https://app.travis-ci.com/paazmaya/maezato.svg?branch=master)](https://app.travis-ci.com/paazmaya/maezato)
@@ -50,7 +50,7 @@ export GITHUB_TOKEN=123456789123456789123456789123456789
 Use via command line, always with exactly two arguments and with possible options:
 
 ```sh
-maezato [options] <username> <target path, defaults to current directory>
+maezato [options] <username | @organization> <target path, defaults to current directory>
 ```
 
 The cloning of a given repository uses the `ssh_url` property, hence
@@ -67,17 +67,23 @@ Possible command line options are:
 -O, --omit-username     Omit the username directory when creating directory structure
 ```
 
-For example getting all of the repositories of `@nodejs` under `~/github`:
+For example getting all of the repositories of user `nodejs` under `~/github`:
 
 ```sh
 maezato nodejs ~/github
+```
+
+Another example of getting all repositories belonging to an organization called `koodiklinikka` in the current folder:
+
+```sh
+maezato @koodiklinikka
 ```
 
 ## Directory structure and git remotes
 
 ```sh
 <target path>/
-    <username>/
+    <username or organization name>/
         contributing/
             [repositories that are not owned nor forks]
         forks/

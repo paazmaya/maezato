@@ -4,9 +4,8 @@
  * maezato
  * https://github.com/paazmaya/maezato
  *
- * Clone all repositories of a given user at GitHub,
+ * Clone all repositories of a given user or organization at GitHub,
  * by ordering them according to fork/contributing/mine
- * @see https://developer.github.com/v3/repos/#list-user-repositories
  *
  * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (https://paazmaya.fi)
  * Licensed under the MIT license
@@ -24,7 +23,7 @@ const packageFile = new URL('../package.json', import.meta.url);
 const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
 
 const optsParser = optionator({
-  prepend: `Usage: ${pkg.name} [options] <username> <target path, defaults to current directory>`,
+  prepend: `Usage: ${pkg.name} [options] <username | @organization> <target path, defaults to current directory>`,
   append: `Version ${pkg.version}`,
   options: [
     {
@@ -98,7 +97,7 @@ if (opts.help) {
 }
 
 if (opts._.length !== 1 && opts._.length !== 2) {
-  console.log('Seem to be missing <username> or <target path>');
+  console.log('Seem to be missing <username | @organization> or <target path>');
   console.log(optsParser.generateHelp());
   process.exit(1);
 }

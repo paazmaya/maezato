@@ -2,9 +2,8 @@
  * maezato
  * https://github.com/paazmaya/maezato
  *
- * Clone all repositories of a given user at GitHub,
+ * Clone all repositories of a given user or organization at GitHub,
  * by ordering them according to fork/contributing/mine
- * @see https://developer.github.com/v3/repos/#list-user-repositories
  *
  * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (https://paazmaya.fi)
  * Licensed under the MIT license
@@ -41,7 +40,7 @@ tape('cli should output help by default', (test) => {
     if (error) {
       test.ok('Exists with non-zero code');
     }
-    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
+    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username | @organization> <target path') !== -1, 'Help appeared');
   });
 
 });
@@ -53,7 +52,7 @@ tape('cli should output help when requested', (test) => {
     if (error) {
       test.fail(error);
     }
-    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username> <target path') !== -1, 'Help appeared');
+    test.ok(stdout.trim().indexOf('Usage: maezato [options] <username | @organization> <target path') !== -1, 'Help appeared');
   });
 
 });
