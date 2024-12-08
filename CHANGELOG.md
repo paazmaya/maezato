@@ -3,7 +3,7 @@
 This changelog covers the version history and possible upcoming changes.
 It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
-## Unreleased
+## `v0.14.0` (2024-12-09)
 
 - Ability to get all repositories from GitHub organizations too, by using `@` before the org name
 - Show progress bar only when the output is not verbose, to avoid progress bar cutting off
