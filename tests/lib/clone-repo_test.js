@@ -1,6 +1,5 @@
 import tape from 'tape';
 import { setupServer } from 'msw/node';
-import { handlers } from './mock-handler.js';
 import cloneRepo from '../../lib/clone-repo.js';
 
 // Mock progress bar
@@ -36,9 +35,11 @@ const execMock = (command, opts, callback) => {
     .catch((err) => callback(err, '', err.message));
 };
 
-const server = setupServer(...handlers);
+//const server = setupServer([]);
+
 /*
-tape('cloneRepo - successful clone for own repository', async (t) => {
+tape('cloneRepo - successful clone for own repository', async (test) => {
+  test.plan(1);
   server.listen();
 
   const item = {
@@ -58,18 +59,16 @@ tape('cloneRepo - successful clone for own repository', async (t) => {
 
   try {
     const result = await cloneRepo(item, progressBarMock, options);
-    t.deepEqual(result, item, 'Should return the original item after successful clone');
-    t.end();
+    test.deepEqual(result, item, 'Should return the original item after successful clone');
   } catch (err) {
-    t.fail(`Should not throw an error: ${err.message}`);
-    t.end();
+    test.fail(`Should not throw an error: ${err.message}`);
   } finally {
     server.close();
   }
 });
 */
 /*
-tape('cloneRepo - failed clone due to existing directory', async (t) => {
+tape('cloneRepo - failed clone due to existing directory', async (test) => {
   server.listen();
 
   const item = {
@@ -89,16 +88,51 @@ tape('cloneRepo - failed clone due to existing directory', async (t) => {
 
   try {
     await cloneRepo(item, progressBarMock, options);
-    t.fail('Should throw an error for git clone failure');
-    t.end();
+    test.fail('Should throw an error for git clone failure');
+    test.end();
   } catch (err) {
-    t.equal(
+    test.equal(
       err.message,
       'Repository already exists and is not empty',
       'Should throw the correct error message'
     );
-    t.end();
+    test.end();
   } finally {
+    server.close();
+  }
+});
+*/
+/*
+tape('cloneRepo - verbose output', async (test) => {
+  test.plan(1);
+  server.listen();
+
+  const item = {
+    ssh_url: 'git@github.com:user/repo.git',
+    fork: false,
+    owner: 'user',
+    name: 'repo',
+  };
+
+  const options = {
+    token: 'dummy-token',
+    verbose: true,
+    omitUsername: true,
+    username: 'user',
+    cloneBaseDir: '/base/dir',
+  };
+
+  const originalLog = console.log;
+  let logOutput = '';
+  console.log = (message) => { logOutput += message; };
+
+  try {
+    await cloneRepo(item, progressBarMock, options);
+    test.ok(logOutput.includes('Cloning repository git@github.com:user/repo.git'), 'Should log verbose output');
+  } catch (err) {
+    test.fail(`Should not throw an error: ${err.message}`);
+  } finally {
+    console.log = originalLog;
     server.close();
   }
 });

@@ -32,3 +32,29 @@ tape('addRemote - adding remote hoplaa to a non-existing project', (test) => {
   });
 
 });
+/*
+tape('addRemote - verbose output', async (test) => {
+  test.plan(1);
+
+  const item = {};
+  const forkPath = 'fork/cloned/somewhere/here';
+  const remoteName = 'upstream';
+  const sshUrl = 'git@github.com:user/repo.git';
+  const options = {
+    verbose: true,
+  };
+
+  const originalLog = console.log;
+  let logOutput = '';
+  console.log = (message) => { logOutput += message; };
+
+  try {
+    await addRemote(item, forkPath, remoteName, sshUrl, options);
+    test.ok(logOutput.includes(`Adding remote information "${remoteName}" = "${sshUrl}"`), 'Should log verbose output');
+  } catch (err) {
+    test.fail(`Should not throw an error: ${err.message}`);
+  } finally {
+    console.log = originalLog;
+  }
+});
+*/

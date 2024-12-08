@@ -140,3 +140,28 @@ tape('getRepos - fetch repositories', async (test) => {
 
 });
 
+tape('getRepos - verbose output', async (test) => {
+  test.plan(1);
+  server.listen();
+
+  const options = {
+    username: 'testuser',
+    token: 'valid-token',
+    verbose: true,
+  };
+
+  const originalLog = console.log;
+  let logOutput = '';
+  console.log = (message) => { logOutput += message; };
+
+  try {
+    await getRepos(options);
+    test.ok(logOutput.includes('Fetching information about all the user repositories for "testuser"'), 'Should log verbose output');
+  } catch (err) {
+    test.fail('Should not throw an error for valid request');
+  } finally {
+    console.log = originalLog;
+    server.close();
+  }
+});
+
