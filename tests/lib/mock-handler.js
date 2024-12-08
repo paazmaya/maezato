@@ -35,9 +35,13 @@ export const handlers = [
     //return HttpResponse.json({ error: 'Unknown error' }, { status: 500 });
 
 
-    if (authHeader.includes('bearer')) {
-      return HttpResponse.json(response);
+    if (authHeader.includes('bearer valid-token')) {
+      return HttpResponse.json({ data: response });
     }
+    else if (authHeader.includes('bearer invalid-token')) {
+      return HttpResponse.json({ message: 'Bad credentials' }, { status: 401 });
+    }
+
 
     return HttpResponse.json({ message: 'Bad credentials' }, { status: 401 });
   })

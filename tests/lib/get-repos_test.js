@@ -26,63 +26,34 @@ tape('getRepos - exposes function', (test) => {
   test.equal(getRepos.length, 1, 'takes one argument');
 });
 
-const TOKEN = 'hoplaa';
-const USERNAME = 'paazmaya';
-
-tape('getRepos - stuff is fetched', (test) => {
-  test.plan(1);
+tape('performRequest - valid request', async (test) => {
+  test.plan(2);
   server.listen();
-
-  return getRepos({
-    username: USERNAME,
-    token: TOKEN,
-    verbose: true
-  }).then((output) => {
-    test.equal(output.length, 66);
-  }).catch((error) => {
-    test.fail(error.message);
-  }).finally(() => {
-    server.close();
-  });
-});
-
-
-/*
-tape('MSW + Tape: performRequest - valid request', async (t) => {
-  server.listen(); // Start MSW
 
   const options = {
     username: 'testuser',
     token: 'valid-token',
     query: literals.QUERY_USER_REPOS,
   };
+  const response = await performRequest(options);
+  test.equal(response.nodes.length, 38);
 
   try {
-    const response = await performRequest(options);
-
-    t.deepEqual(
-      response.nodes,
-      [
-        {
-          nameWithOwner: 'owner/repo1',
-          isFork: false,
-          isArchived: false,
-          sshUrl: 'ssh://repo1',
-          parent: null,
-        },
-      ],
+    test.deepEqual(
+      response.nodes[0],
+      { nameWithOwner: 'paazmaya/renshuu.paazmaya.fi', sshUrl: 'git@github.com:paazmaya/renshuu.paazmaya.fi.git', isFork: false, parent: null },
       'Should return the correct repository nodes'
     );
   } catch (err) {
-    t.fail('Should not throw an error for valid request');
+    test.fail('Should not throw an error for valid request');
   } finally {
-    server.close(); // Stop MSW
-    t.end();
+    server.close();
   }
 });
 
-tape('MSW + Tape: performRequest - invalid token', async (t) => {
-  server.listen(); // Start MSW
+tape('performRequest - invalid token', async (test) => {
+  test.plan(1);
+  server.listen();
 
   const options = {
     username: 'testuser',
@@ -92,28 +63,26 @@ tape('MSW + Tape: performRequest - invalid token', async (t) => {
 
   try {
     await performRequest(options);
-    t.fail('Should throw an error for invalid token');
+    test.fail('Should throw an error for invalid token');
   } catch (err) {
-    t.equal(err.message, 'Bad credentials - https://docs.github.com/graphql', 'Should return a "Bad credentials" error');
+    test.equal(err.message, 'Bad credentials', 'Should return a "Bad credentials" error');
   } finally {
-    server.close(); // Stop MSW
-    t.end();
+    server.close();
   }
 });
 
-tape('MSW + Tape: handleList - transform repository list', (t) => {
+tape('handleList - transform repository list', (test) => {
+  test.plan(1);
   const list = [
     {
       nameWithOwner: 'owner/repo1',
       isFork: false,
-      isArchived: false,
       sshUrl: 'ssh://repo1',
       parent: null,
     },
     {
       nameWithOwner: 'owner/repo2',
       isFork: true,
-      isArchived: false,
       sshUrl: 'ssh://repo2',
       parent: { sshUrl: 'ssh://parent-repo2' },
     },
@@ -121,12 +90,11 @@ tape('MSW + Tape: handleList - transform repository list', (t) => {
 
   const result = handleList(list);
 
-  t.deepEqual(
+  test.deepEqual(
     result,
     [
       {
         fork: false,
-        archived: false,
         owner: 'owner',
         name: 'repo1',
         ssh_url: 'ssh://repo1',
@@ -134,7 +102,6 @@ tape('MSW + Tape: handleList - transform repository list', (t) => {
       },
       {
         fork: true,
-        archived: false,
         owner: 'owner',
         name: 'repo2',
         ssh_url: 'ssh://repo2',
@@ -143,40 +110,33 @@ tape('MSW + Tape: handleList - transform repository list', (t) => {
     ],
     'Should transform the repository list correctly'
   );
-  t.end();
 });
 
-tape('MSW + Tape: getRepos - fetch repositories', async (t) => {
-  server.listen(); // Start MSW
+tape('getRepos - fetch repositories', async (test) => {
+  test.plan(1);
+  server.listen();
 
   const options = {
     username: 'testuser',
     token: 'valid-token',
     verbose: false,
   };
+  const result = await getRepos(options);
 
   try {
-    const result = await getRepos(options);
 
-    t.deepEqual(
-      result,
-      [
-        {
-          fork: false,
-          archived: false,
-          owner: 'owner',
-          name: 'repo1',
-          ssh_url: 'ssh://repo1',
-          parent: { ssh_url: null },
-        },
-      ],
-      'Should fetch and transform repository data'
+    test.deepEqual(
+      result[0],
+
+      { fork: false, owner: 'paazmaya', name: 'renshuu.paazmaya.fi', ssh_url: 'git@github.com:paazmaya/renshuu.paazmaya.fi.git', parent: { ssh_url: null } }
+,
+            'Should fetch and transform repository data'
     );
   } catch (err) {
-    t.fail('Should not throw an error for valid request');
+    test.fail('Should not throw an error for valid request');
   } finally {
-    server.close(); // Stop MSW
-    t.end();
+    server.close();
   }
+
 });
-*/
+
