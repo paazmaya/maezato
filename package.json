@@ -38,7 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "@octokit/graphql": "7.1.0",
-    "got": "14.4.4",
+    "got": "14.4.5",
     "mkdirp": "3.0.1",
     "optionator": "0.9.4",
     "progress": "2.0.3",
@@ -48,7 +48,7 @@
     "c8": "9.1.0",
     "eslint": "8.57.0",
     "eslint-config-paazmaya": "9.0.1",
-    "msw": "2.6.5",
+    "msw": "2.6.8",
     "tape": "5.9.0"
   }
 }
