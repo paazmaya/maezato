@@ -24,7 +24,7 @@ const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
 tape('cli should output version number', (test) => {
   test.plan(1);
 
-  execFile('node', [pkg.bin, '-V'], null, (error, stdout) => {
+  execFile('node', [pkg.bin[pkg.name], '-V'], null, (error, stdout) => {
     if (error) {
       test.fail(error);
     }
@@ -36,7 +36,7 @@ tape('cli should output version number', (test) => {
 tape('cli should output help by default', (test) => {
   test.plan(2);
 
-  execFile('node', [pkg.bin], null, (error, stdout) => {
+  execFile('node', [pkg.bin[pkg.name]], null, (error, stdout) => {
     if (error) {
       test.ok('Exists with non-zero code');
     }
@@ -48,7 +48,7 @@ tape('cli should output help by default', (test) => {
 tape('cli should output help when requested', (test) => {
   test.plan(1);
 
-  execFile('node', [pkg.bin, '--help'], null, (error, stdout) => {
+  execFile('node', [pkg.bin[pkg.name], '--help'], null, (error, stdout) => {
     if (error) {
       test.fail(error);
     }

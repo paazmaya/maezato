@@ -13,7 +13,7 @@ import fs from 'node:fs';
 
 import { graphql, HttpResponse } from 'msw';
 
-const payload = fs.readFileSync('tests/fixtures/users-paazmaya-repos.json', 'utf8');
+const payload = fs.readFileSync(new URL('../fixtures/users-paazmaya-repos.json', import.meta.url), 'utf8');
 const response = JSON.parse(payload);
 
 // Mock server that catches all GraphQL requests
