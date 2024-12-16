@@ -44,7 +44,7 @@ tape('performRequest - valid request', async (test) => {
       { nameWithOwner: 'paazmaya/renshuu.paazmaya.fi', sshUrl: 'git@github.com:paazmaya/renshuu.paazmaya.fi.git', isFork: false, parent: null },
       'Should return the correct repository nodes'
     );
-  } catch (err) {
+  } catch {
     test.fail('Should not throw an error for valid request');
   } finally {
     server.close();
