@@ -3,7 +3,6 @@
 > Clone all repositories of a given user or organization at GitHub or Bitbucket,
 > by ordering them according to fork/contributing/mine
 
-[![Build Status](https://app.travis-ci.com/paazmaya/maezato.svg?branch=master)](https://app.travis-ci.com/paazmaya/maezato)
 [![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
 [![Node.js v22 CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
 [![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
