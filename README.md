@@ -10,13 +10,15 @@
 
 ![maezato project logo](icon.png)
 
-## Background for the name
+## Background for the project name
 
 The name of this project, `maezato` is a tribute to the late [Mr Shinken Taira](https://en.wikipedia.org/wiki/Taira_Shinken) (平 信賢)
 from Kumejima, Okinawa, Japan, who was one of the greatest individuals for preserving
 the history of the Ryukyu Martial Arts and thus enabling the students of those arts
 to study them today. Without his efforts, it is very likely that several pieces of information
 would have been lost for good.
+
+[Read more about why these martial arts are important for me at `karatejukka.fi`.](https://karatejukka.fi)
 
 ## Installation
 
