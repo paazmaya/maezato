@@ -9,14 +9,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js v22
       uses: actions/setup-node@v4
       with:
         node-version: '22.x'
-    - run: npm ci
-    - run: npm run lint
-    - run: npm test
-    - run: npm run coverage
 
-    - name: Upload unit test coverage report to Codecov
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Lint and test
+      run: |
+        npm run lint
+        npm test
+        npm run coverage
+
+    - name: Upload code coverage to codecov
+      # https://github.com/marketplace/actions/codecov
       uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: coverage.lcov
