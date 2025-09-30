@@ -14,9 +14,6 @@ init:
 
 clone_depth: 1
 
-matrix:
-  fast_finish: true
-
 cache:
   - node_modules
 
