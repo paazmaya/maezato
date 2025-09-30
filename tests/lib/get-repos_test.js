@@ -156,7 +156,7 @@ tape('getRepos - verbose output', async (test) => {
 
   try {
     await getRepos(options);
-    test.ok(logOutput.includes('Fetching information about all the user repositories for "testuser"'), 'Should log verbose output');
+    test.ok(logOutput.includes('Fetching information on user repositories for "testuser"'), 'Should log verbose output');
   } catch (err) {
     test.fail('Should not throw an error for valid request');
   } finally {

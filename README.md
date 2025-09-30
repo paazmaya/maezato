@@ -95,8 +95,8 @@ maezato @koodiklinikka
 
 The fork repositories will have several git remote urls:
 
-* `origin` is the given fork repository
-* `upstream` is the repository from which this is a direct fork
+- `origin` is the given fork repository
+- `upstream` is the repository from which this is a direct fork
 
 There remote urls can be seen with the `git` command:
 
