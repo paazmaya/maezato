@@ -24,7 +24,7 @@
         "eslint": "9.37.0",
         "eslint-config-paazmaya": "9.0.1",
         "eslint-plugin-n": "17.23.1",
-        "msw": "2.11.4",
+        "msw": "2.11.5",
         "tape": "5.9.0"
       },
       "engines": {
@@ -1084,6 +1084,16 @@
       "license": "MIT",
       "dependencies": {
         "safe-buffer": "~5.1.1"
+      }
+    },
+    "node_modules/cookie": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz",
+      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
       }
     },
     "node_modules/cross-spawn": {
@@ -2918,9 +2928,9 @@
       "license": "MIT"
     },
     "node_modules/msw": {
-      "version": "2.11.4",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.11.4.tgz",
-      "integrity": "sha512-CtRZ76gHVoTZiEhAM4zFJpglZ4Ptbg9g7qHn3wbKe55gCoWucC2CErXv/lAUPvOIr1kQw/V8AH4taOsREiNN/Q==",
+      "version": "2.11.5",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.11.5.tgz",
+      "integrity": "sha512-atFI4GjKSJComxcigz273honh8h4j5zzpk5kwG4tGm0TPcYne6bqmVrufeRll6auBeouIkXqZYXxVbWSWxM3RA==",
       "dev": true,
       "hasInstallScript": true,
       "license": "MIT",
@@ -2960,16 +2970,6 @@
         "typescript": {
           "optional": true
         }
-      }
-    },
-    "node_modules/msw/node_modules/cookie": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz",
-      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==",
-      "dev": true,
-      "license": "MIT",
-      "engines": {
-        "node": ">=18"
       }
     },
     "node_modules/msw/node_modules/type-fest": {
@@ -4976,6 +4976,12 @@
         "safe-buffer": "~5.1.1"
       }
     },
+    "cookie": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz",
+      "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==",
+      "dev": true
+    },
     "cross-spawn": {
       "version": "7.0.6",
       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
@@ -6165,9 +6171,9 @@
       "dev": true
     },
     "msw": {
-      "version": "2.11.4",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.11.4.tgz",
-      "integrity": "sha512-CtRZ76gHVoTZiEhAM4zFJpglZ4Ptbg9g7qHn3wbKe55gCoWucC2CErXv/lAUPvOIr1kQw/V8AH4taOsREiNN/Q==",
+      "version": "2.11.5",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.11.5.tgz",
+      "integrity": "sha512-atFI4GjKSJComxcigz273honh8h4j5zzpk5kwG4tGm0TPcYne6bqmVrufeRll6auBeouIkXqZYXxVbWSWxM3RA==",
       "dev": true,
       "requires": {
         "@inquirer/confirm": "^5.0.0",
@@ -6190,12 +6196,6 @@
         "yargs": "^17.7.2"
       },
       "dependencies": {
-        "cookie": {
-          "version": "1.0.2",
-          "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz",
-          "integrity": "sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==",
-          "dev": true
-        },
         "type-fest": {
           "version": "4.41.0",
           "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-4.41.0.tgz",
