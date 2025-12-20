@@ -3,6 +3,12 @@
 This changelog covers the version history and possible upcoming changes.
 It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
+## Unreleased
+
+- GitHub template repositories are now cloned separately into a `templates` directory
+- Refactored `cloneRepo` function into smaller, focused helper functions for better testability
+- Improved unit test coverage to 85.71%
+
 ## `v0.15.0` (2025-09-30)
 
 - Minimum supported Node.js version lifted from `22.11.0` to `24.12.0`

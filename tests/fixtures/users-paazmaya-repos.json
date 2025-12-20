@@ -6,169 +6,197 @@
           "nameWithOwner": "paazmaya/renshuu.paazmaya.fi",
           "sshUrl": "git@github.com:paazmaya/renshuu.paazmaya.fi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/naginata.fi",
           "sshUrl": "git@github.com:paazmaya/naginata.fi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/creative-suite-to-qml",
           "sshUrl": "git@github.com:paazmaya/creative-suite-to-qml.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/grunt-trimtrailingspaces",
           "sshUrl": "git@github.com:paazmaya/grunt-trimtrailingspaces.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/WP-Member-Register",
           "sshUrl": "git@github.com:paazmaya/WP-Member-Register.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/matsumura-rohai",
           "sshUrl": "git@github.com:paazmaya/matsumura-rohai.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "mgreter/sass2scss",
           "sshUrl": "git@github.com:mgreter/sass2scss.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/grunt-yaml-validator",
           "sshUrl": "git@github.com:paazmaya/grunt-yaml-validator.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/shigehachi",
           "sshUrl": "git@github.com:paazmaya/shigehachi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/hamahiga",
           "sshUrl": "git@github.com:paazmaya/hamahiga.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "nodeschool/helsinki",
           "sshUrl": "git@github.com:nodeschool/helsinki.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/maezato",
           "sshUrl": "git@github.com:paazmaya/maezato.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/image-flatify",
           "sshUrl": "git@github.com:paazmaya/image-flatify.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/image-foldarizer",
           "sshUrl": "git@github.com:paazmaya/image-foldarizer.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/code-examples",
           "sshUrl": "git@github.com:paazmaya/code-examples.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/papervision3d",
           "sshUrl": "git@github.com:paazmaya/papervision3d.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/shuji",
           "sshUrl": "git@github.com:paazmaya/shuji.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/yaml-validator",
           "sshUrl": "git@github.com:paazmaya/yaml-validator.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/eslint-config-paazmaya",
           "sshUrl": "git@github.com:paazmaya/eslint-config-paazmaya.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/image-duplicate-remover",
           "sshUrl": "git@github.com:paazmaya/image-duplicate-remover.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/tawata",
           "sshUrl": "git@github.com:paazmaya/tawata.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/espoo.kobujutsu.fi",
           "sshUrl": "git@github.com:paazmaya/espoo.kobujutsu.fi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/tozan",
           "sshUrl": "git@github.com:paazmaya/tozan.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/paazmaya.github.io",
           "sshUrl": "git@github.com:paazmaya/paazmaya.github.io.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/paazmaya.com",
           "sshUrl": "git@github.com:paazmaya/paazmaya.com.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/salo.kobujutsu.fi",
           "sshUrl": "git@github.com:paazmaya/salo.kobujutsu.fi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/electron-based-interface-for-tozan",
           "sshUrl": "git@github.com:paazmaya/electron-based-interface-for-tozan.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/hideo",
           "sshUrl": "git@github.com:paazmaya/hideo.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/exiv2node",
@@ -176,43 +204,50 @@
           "isFork": true,
           "parent": {
             "sshUrl": "git@github.com:dberesford/exiv2node.git"
-          }
+          },
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/.github",
           "sshUrl": "git@github.com:paazmaya/.github.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/juoksevajohtaja.fi",
           "sshUrl": "git@github.com:paazmaya/juoksevajohtaja.fi.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/swc-plugin-ignore-import",
           "sshUrl": "git@github.com:paazmaya/swc-plugin-ignore-import.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "Visual-Regression-Tracker/vrt-monorepo",
           "sshUrl": "git@github.com:Visual-Regression-Tracker/vrt-monorepo.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/vrt-backend-rust-poc",
           "sshUrl": "git@github.com:paazmaya/vrt-backend-rust-poc.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/filecounter-to-lear-rust",
           "sshUrl": "git@github.com:paazmaya/filecounter-to-lear-rust.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/argos",
@@ -220,7 +255,8 @@
           "isFork": true,
           "parent": {
             "sshUrl": "git@github.com:argos-ci/argos.git"
-          }
+          },
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/fddf",
@@ -228,13 +264,15 @@
           "isFork": true,
           "parent": {
             "sshUrl": "git@github.com:birkenfeld/fddf.git"
-          }
+          },
+          "isTemplate": false
         },
         {
           "nameWithOwner": "paazmaya/mainichikatarenshu",
           "sshUrl": "git@github.com:paazmaya/mainichikatarenshu.git",
           "isFork": false,
-          "parent": null
+          "parent": null,
+          "isTemplate": false
         }
       ],
       "totalCount": 38,

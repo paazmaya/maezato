@@ -10,9 +10,8 @@
  */
 
 import fs from 'node:fs';
-import path from 'node:path';
 import {
-    execFile
+  execFile
 } from 'node:child_process';
 
 import tape from 'tape';

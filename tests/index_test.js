@@ -10,7 +10,9 @@
  */
 
 import tape from 'tape';
-import maezato, {handleRepos, parseJson} from '../index.js';
+import maezato, {
+  handleRepos, parseJson
+} from '../index.js';
 
 tape('several functions are exported', (test) => {
   test.plan(4);
@@ -38,12 +40,21 @@ const mockConsoleError = () => {
   const originalConsoleError = console.error;
   const errorMessages = [];
   console.error = (message) => errorMessages.push(message);
-  return { errorMessages, restore: () => (console.error = originalConsoleError) };
+
+  return {
+    errorMessages,
+    restore: () => {
+      console.error = originalConsoleError;
+    }
+  };
 };
 
 tape('parseJson - should parse valid JSON string', (t) => {
   const jsonString = '{"name": "John", "age": 30}';
-  const expected = { name: 'John', age: 30 };
+  const expected = {
+    name: 'John',
+    age: 30
+  };
 
   const result = parseJson(jsonString);
 
@@ -52,7 +63,9 @@ tape('parseJson - should parse valid JSON string', (t) => {
 });
 
 tape('parseJson - should return undefined for invalid JSON string', (t) => {
-  const { errorMessages, restore } = mockConsoleError();
+  const {
+    errorMessages, restore
+  } = mockConsoleError();
   const invalidJsonString = '{"name": "John", "age":}';
 
   const result = parseJson(invalidJsonString);
@@ -70,7 +83,9 @@ tape('parseJson - should return undefined for invalid JSON string', (t) => {
 });
 
 tape('parseJson - should return undefined for empty string', (t) => {
-  const { errorMessages, restore } = mockConsoleError();
+  const {
+    errorMessages, restore
+  } = mockConsoleError();
   const emptyString = '';
 
   const result = parseJson(emptyString);

@@ -91,6 +91,8 @@ maezato @koodiklinikka
             [fork repositories ...]
         mine/
             [repositories which the user owns but are not forks]
+        templates/
+            [template repositories]
 ```
 
 The fork repositories will have several git remote urls:

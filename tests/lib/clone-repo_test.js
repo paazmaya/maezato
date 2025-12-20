@@ -1,139 +1,243 @@
 import tape from 'tape';
-import { setupServer } from 'msw/node';
-import cloneRepo from '../../lib/clone-repo.js';
+import path from 'node:path';
+import {
+  getRepositoryType,
+  buildClonePath,
+  buildGitCloneCommand,
+  buildExecOptions,
+  handleExecCallback
+} from '../../lib/clone-repo.js';
 
-// Mock progress bar
-const progressBarMock = {
-  tick: () => {},
-  render: () => {},
-};
-
-// Mock `mkdirp.sync`
-const mkdirpMock = {
-  sync: (dir) => dir, // Pretend the directory was created
-};
-
-// Mock `addRemote`
-const addRemoteMock = (data, forkPath, remoteName, sshUrl, options) =>
-  Promise.resolve(`${remoteName} added`);
-
-// Mock `exec` to interact with our fake Git server
-const execMock = (command, opts, callback) => {
-  const sshUrl = command.split(' ')[2]; // Extract SSH URL from the command
-
-  // Simulate an HTTP POST to the fake Git server
-  fetch('https://fake-git-server/clone', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ssh_url: sshUrl }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (response.ok) callback(null, data.message, '');
-      else callback(new Error(data.error), '', data.error);
-    })
-    .catch((err) => callback(err, '', err.message));
-};
-
-//const server = setupServer([]);
-
-/*
-tape('cloneRepo - successful clone for own repository', async (test) => {
+/**
+ * Tests for getRepositoryType
+ */
+tape('getRepositoryType - template repository', (test) => {
   test.plan(1);
-  server.listen();
 
   const item = {
-    ssh_url: 'git@github.com:user/repo.git',
+    template: true,
     fork: false,
-    owner: 'user',
-    name: 'repo',
+    owner: 'user'
   };
-
   const options = {
-    token: 'dummy-token',
-    verbose: false,
-    omitUsername: true,
-    username: 'user',
-    cloneBaseDir: '/base/dir',
+    username: 'user'
   };
 
-  try {
-    const result = await cloneRepo(item, progressBarMock, options);
-    test.deepEqual(result, item, 'Should return the original item after successful clone');
-  } catch (err) {
-    test.fail(`Should not throw an error: ${err.message}`);
-  } finally {
-    server.close();
-  }
+  const result = getRepositoryType(item, options);
+  test.equal(result, 'templates', 'Should return "templates" for template repositories');
 });
-*/
-/*
-tape('cloneRepo - failed clone due to existing directory', async (test) => {
-  server.listen();
+
+tape('getRepositoryType - fork repository', (test) => {
+  test.plan(1);
 
   const item = {
-    ssh_url: 'git@github.com:user/clone-error.git',
-    fork: false,
-    owner: 'user',
-    name: 'error',
+    template: false,
+    fork: true,
+    owner: 'other-user'
+  };
+  const options = {
+    username: 'user'
   };
 
+  const result = getRepositoryType(item, options);
+  test.equal(result, 'fork', 'Should return "fork" for forked repositories');
+});
+
+tape('getRepositoryType - own repository', (test) => {
+  test.plan(1);
+
+  const item = {
+    template: false,
+    fork: false,
+    owner: 'user'
+  };
   const options = {
-    token: 'dummy-token',
-    verbose: false,
+    username: 'user'
+  };
+
+  const result = getRepositoryType(item, options);
+  test.equal(result, 'mine', 'Should return "mine" for own repositories');
+});
+
+tape('getRepositoryType - contributing repository', (test) => {
+  test.plan(1);
+
+  const item = {
+    template: false,
+    fork: false,
+    owner: 'other-user'
+  };
+  const options = {
+    username: 'user'
+  };
+
+  const result = getRepositoryType(item, options);
+  test.equal(result, 'contributing', 'Should return "contributing" for repositories of other users');
+});
+
+tape('getRepositoryType - template takes precedence over fork', (test) => {
+  test.plan(1);
+
+  const item = {
+    template: true,
+    fork: true,
+    owner: 'user'
+  };
+  const options = {
+    username: 'user'
+  };
+
+  const result = getRepositoryType(item, options);
+  test.equal(result, 'templates', 'Template should take precedence over fork');
+});
+
+/**
+ * Tests for buildClonePath
+ */
+tape('buildClonePath - with username in path', (test) => {
+  test.plan(1);
+
+  const type = 'mine';
+  const options = {
     omitUsername: false,
-    username: 'user',
-    cloneBaseDir: '/base/dir',
+    username: 'testuser',
+    cloneBaseDir: '/base/dir'
   };
 
-  try {
-    await cloneRepo(item, progressBarMock, options);
-    test.fail('Should throw an error for git clone failure');
-    test.end();
-  } catch (err) {
-    test.equal(
-      err.message,
-      'Repository already exists and is not empty',
-      'Should throw the correct error message'
-    );
-    test.end();
-  } finally {
-    server.close();
-  }
+  const result = buildClonePath(type, options);
+  const expected = path.join('/base/dir', 'testuser', 'mine');
+
+  test.equal(result, expected, 'Should build path with username');
 });
-*/
-/*
-tape('cloneRepo - verbose output', async (test) => {
+
+tape('buildClonePath - without username in path', (test) => {
   test.plan(1);
-  server.listen();
 
-  const item = {
-    ssh_url: 'git@github.com:user/repo.git',
-    fork: false,
-    owner: 'user',
-    name: 'repo',
-  };
-
+  const type = 'fork';
   const options = {
-    token: 'dummy-token',
-    verbose: true,
     omitUsername: true,
-    username: 'user',
-    cloneBaseDir: '/base/dir',
+    username: 'testuser',
+    cloneBaseDir: '/base/dir'
   };
 
-  const originalLog = console.log;
-  let logOutput = '';
-  console.log = (message) => { logOutput += message; };
+  const result = buildClonePath(type, options);
+  const expected = path.join('/base/dir', 'fork');
 
-  try {
-    await cloneRepo(item, progressBarMock, options);
-    test.ok(logOutput.includes('Cloning repository git@github.com:user/repo.git'), 'Should log verbose output');
-  } catch (err) {
-    test.fail(`Should not throw an error: ${err.message}`);
-  } finally {
-    console.log = originalLog;
-    server.close();
-  }
+  test.equal(result, expected, 'Should build path without username when omitUsername is true');
 });
-*/
+
+tape('buildClonePath - for templates type', (test) => {
+  test.plan(1);
+
+  const type = 'templates';
+  const options = {
+    omitUsername: false,
+    username: 'testuser',
+    cloneBaseDir: '/home/user'
+  };
+
+  const result = buildClonePath(type, options);
+  const expected = path.join('/home/user', 'testuser', 'templates');
+
+  test.equal(result, expected, 'Should build path for templates type');
+});
+
+tape('buildClonePath - for contributing type', (test) => {
+  test.plan(1);
+
+  const type = 'contributing';
+  const options = {
+    omitUsername: false,
+    username: 'testuser',
+    cloneBaseDir: '/repos'
+  };
+
+  const result = buildClonePath(type, options);
+  const expected = path.join('/repos', 'testuser', 'contributing');
+
+  test.equal(result, expected, 'Should build path for contributing type');
+});
+
+/**
+ * Tests for buildGitCloneCommand
+ */
+tape('buildGitCloneCommand - constructs command with SSH URL', (test) => {
+  test.plan(1);
+
+  const sshUrl = 'git@github.com:user/repo.git';
+  const result = buildGitCloneCommand(sshUrl);
+  const expected = 'git clone git@github.com:user/repo.git';
+
+  test.equal(result, expected, 'Should construct git clone command');
+});
+
+tape('buildGitCloneCommand - handles different URL formats', (test) => {
+  test.plan(2);
+
+  const sshUrl1 = 'git@github.com:org/project.git';
+  const result1 = buildGitCloneCommand(sshUrl1);
+  test.ok(result1.startsWith('git clone'), 'Command should start with git clone');
+  test.ok(result1.includes(sshUrl1), 'Command should include the SSH URL');
+});
+
+/**
+ * Tests for buildExecOptions
+ */
+tape('buildExecOptions - creates options with correct properties', (test) => {
+  test.plan(4);
+
+  const clonePath = '/path/to/clone';
+  const result = buildExecOptions(clonePath);
+
+  test.equal(result.cwd, clonePath, 'Should set cwd to clonePath');
+  test.equal(result.env, process.env, 'Should set env to process.env');
+  test.equal(result.encoding, 'utf8', 'Should set encoding to utf8');
+  test.ok(result.cwd && result.env && result.encoding, 'Should have all required properties');
+});
+
+/**
+ * Tests for handleExecCallback
+ */
+tape('handleExecCallback - fulfills on success', (test) => {
+  test.plan(1);
+
+  let fulfilled = false;
+  const fulfill = () => {
+    fulfilled = true;
+  };
+  const reject = () => {};
+
+  handleExecCallback(null, '', '', 'git@test.git', fulfill, reject);
+
+  test.ok(fulfilled, 'Should call fulfill on successful execution');
+});
+
+tape('handleExecCallback - rejects on error not about existing directory', (test) => {
+  test.plan(1);
+
+  let rejected = false;
+  const fulfill = () => {};
+  const reject = () => {
+    rejected = true;
+  };
+
+  const error = new Error('Some git error');
+  handleExecCallback(error, '', 'fatal: unable to create directory', 'git@test.git', fulfill, reject);
+
+  test.ok(rejected, 'Should call reject on git clone error');
+});
+
+tape('handleExecCallback - fulfills on already exists error', (test) => {
+  test.plan(1);
+
+  let fulfilled = false;
+  const fulfill = () => {
+    fulfilled = true;
+  };
+  const reject = () => {};
+
+  const error = new Error('Directory exists');
+  handleExecCallback(error, '', 'already exists and is not an empty directory', 'git@test.git', fulfill, reject);
+
+  test.ok(fulfilled, 'Should fulfill when directory already exists');
+});
