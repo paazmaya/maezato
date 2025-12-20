@@ -3,7 +3,7 @@
 This changelog covers the version history and possible upcoming changes.
 It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
-## Unreleased
+## `v0.16.0` (2025-12-20)
 
 - GitHub template repositories are now cloned separately into a `templates` directory
 - Refactored `cloneRepo` function into smaller, focused helper functions for better testability
