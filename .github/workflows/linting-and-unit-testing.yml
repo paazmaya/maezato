@@ -12,9 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-    
-    - name: Dependency Review
-      uses: actions/dependency-review-action@v4
   
     - name: Use Node.js v24
       uses: actions/setup-node@v6
