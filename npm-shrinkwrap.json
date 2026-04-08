@@ -24,7 +24,7 @@
         "eslint": "9.39.4",
         "eslint-config-paazmaya": "9.0.1",
         "eslint-plugin-n": "17.24.0",
-        "msw": "2.13.1",
+        "msw": "2.13.2",
         "tape": "5.9.0"
       },
       "engines": {
@@ -2960,9 +2960,9 @@
       "license": "MIT"
     },
     "node_modules/msw": {
-      "version": "2.13.1",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.13.1.tgz",
-      "integrity": "sha512-4wjFzJ+osaUDS2OakrXSl5tCFBUbzsaHbi5QRycRtVciOuYmnWn16CpNxcqh3UyslFkHbzKaj/GfYr7Hn67QPQ==",
+      "version": "2.13.2",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.13.2.tgz",
+      "integrity": "sha512-go2H1TIERKkC48pXiwec5l6sbNqYuvqOk3/vHGo1Zd+pq/H63oFawDQerH+WQdUw/flJFHDG7F+QdWMwhntA/A==",
       "dev": true,
       "hasInstallScript": true,
       "license": "MIT",
@@ -6239,9 +6239,9 @@
       "dev": true
     },
     "msw": {
-      "version": "2.13.1",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.13.1.tgz",
-      "integrity": "sha512-4wjFzJ+osaUDS2OakrXSl5tCFBUbzsaHbi5QRycRtVciOuYmnWn16CpNxcqh3UyslFkHbzKaj/GfYr7Hn67QPQ==",
+      "version": "2.13.2",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.13.2.tgz",
+      "integrity": "sha512-go2H1TIERKkC48pXiwec5l6sbNqYuvqOk3/vHGo1Zd+pq/H63oFawDQerH+WQdUw/flJFHDG7F+QdWMwhntA/A==",
       "dev": true,
       "requires": {
         "@inquirer/confirm": "^5.0.0",
