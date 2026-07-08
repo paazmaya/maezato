@@ -21,7 +21,7 @@
       },
       "devDependencies": {
         "c8": "11.0.0",
-        "msw": "2.14.6",
+        "msw": "2.14.7",
         "oxlint": "1.73.0",
         "tape": "5.10.2"
       },
@@ -2557,9 +2557,9 @@
       }
     },
     "node_modules/msw": {
-      "version": "2.14.6",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.14.6.tgz",
-      "integrity": "sha512-ALe+N10S72cyx94cMcy3Zs4HhXCj35sgeAL4c+WTvKi0zWnbd8/h0lcFqv0mb2P+aSgAdD7p9HzvA0DiUPxsyg==",
+      "version": "2.14.7",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.14.7.tgz",
+      "integrity": "sha512-HrQZpxtwMhindpMvlu0fAeSwvRzXhBQnOoS8g0/9Z0tQ3V5o4u2QAwo8bMrnharfZaseYimeh21u/7hVl7eJrg==",
       "dev": true,
       "hasInstallScript": true,
       "license": "MIT",
@@ -5530,9 +5530,9 @@
       }
     },
     "msw": {
-      "version": "2.14.6",
-      "resolved": "https://registry.npmjs.org/msw/-/msw-2.14.6.tgz",
-      "integrity": "sha512-ALe+N10S72cyx94cMcy3Zs4HhXCj35sgeAL4c+WTvKi0zWnbd8/h0lcFqv0mb2P+aSgAdD7p9HzvA0DiUPxsyg==",
+      "version": "2.14.7",
+      "resolved": "https://registry.npmjs.org/msw/-/msw-2.14.7.tgz",
+      "integrity": "sha512-HrQZpxtwMhindpMvlu0fAeSwvRzXhBQnOoS8g0/9Z0tQ3V5o4u2QAwo8bMrnharfZaseYimeh21u/7hVl7eJrg==",
       "dev": true,
       "requires": {
         "@inquirer/confirm": "^6.0.11",
