@@ -22,6 +22,16 @@ import maezato from '../index.js';
 const packageFile = new URL('../package.json', import.meta.url);
 const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
 
+interface ParsedOptions {
+  help?: boolean;
+  version?: boolean;
+  verbose?: boolean;
+  token?: string;
+  'include-archived'?: boolean;
+  'omit-username'?: boolean;
+  _: string[];
+}
+
 const optsParser = optionator({
   prepend: `Usage: ${pkg.name} [options] <username | @organization> <target path, defaults to current directory>`,
   append: `Version ${pkg.version}`,
@@ -62,25 +72,16 @@ const optsParser = optionator({
       alias: 'O',
       type: 'Boolean',
       description: 'Omit the username directory when creating directory structure'
-    }/* ,
-   {
-      option: 'exclude',
-      alias: 'x',
-      type: 'String',
-      description: 'Exclude certain type of repositories, [fork]'
     }
-    */
   ]
 });
 
-
-let opts;
+let opts: ParsedOptions;
 
 try {
-  opts = optsParser.parse(process.argv);
-}
-catch (error) {
-  console.error(error.message);
+  opts = optsParser.parse(process.argv) as ParsedOptions;
+} catch (error) {
+  console.error((error as Error).message);
   process.exit(1);
 }
 
@@ -96,7 +97,7 @@ if (opts.help) {
   process.exit(0);
 }
 
-if (opts._.length !== 1 && opts._.length !== 2) {
+if (opts._.length !== 1 && opts._.length !== 2) {
   console.log('Seem to be missing <username | @organization> or <target path>');
   console.log(optsParser.generateHelp());
   process.exit(1);
@@ -117,15 +118,9 @@ if (!token) {
 
 maezato({
   token: token,
-  verbose: typeof opts.verbose === 'boolean' ?
-    opts.verbose :
-    false,
-  includeArchived: typeof opts.includeArchived === 'boolean' ?
-    opts.includeArchived :
-    false,
-  omitUsername: typeof opts.omitUsername === 'boolean' ?
-    opts.omitUsername :
-    false,
+  verbose: typeof opts.verbose === 'boolean' ? opts.verbose : false,
+  includeArchived: typeof opts['include-archived'] === 'boolean' ? opts['include-archived'] : false,
+  omitUsername: typeof opts['omit-username'] === 'boolean' ? opts['omit-username'] : false,
   username: opts._[0],
   cloneBaseDir: path.resolve(opts._[1])
 });

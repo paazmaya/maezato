@@ -4,19 +4,44 @@
   "description": "Clone all repositories of a given user or organization at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
   "bin": {
-    "maezato": "bin/maezato.js"
+    "maezato": "dist/bin/maezato.js"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./lib/clone-repo": {
+      "import": "./dist/lib/clone-repo.js",
+      "types": "./dist/lib/clone-repo.d.ts"
+    },
+    "./lib/add-remote": {
+      "import": "./dist/lib/add-remote.js",
+      "types": "./dist/lib/add-remote.d.ts"
+    },
+    "./lib/get-repos": {
+      "import": "./dist/lib/get-repos.js",
+      "types": "./dist/lib/get-repos.d.ts"
+    },
+    "./lib/literals": {
+      "import": "./dist/lib/literals.js",
+      "types": "./dist/lib/literals.d.ts"
+    }
+  },
   "type": "module",
   "scripts": {
-    "test": "c8 --exclude tests tape tests/*_test.js tests/lib/*_test.js",
-    "coverage": "c8 --exclude tests report --reporter=text-lcov > coverage.lcov",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
     "lint": "oxlint"
   },
   "files": [
+    "dist",
     "bin",
     "lib",
-    "index.js",
     "npm-shrinkwrap.json",
     "package.json",
     "LICENSE"
@@ -39,7 +64,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@octokit/graphql": "9.0.3",
+    "@octokit/graphql": "9.0.5",
     "got": "15.1.0",
     "mkdirp": "3.0.1",
     "optionator": "0.9.4",
@@ -47,9 +72,13 @@
     "promise-each": "2.2.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.3",
+    "@types/progress": "^2.0.7",
     "c8": "11.0.0",
     "msw": "2.15.0",
+    "oxlint": "1.83.0",
     "tape": "5.10.2",
-    "oxlint": "1.73.0"
+    "typescript": "^5.5.0",
+    "vitest": "^5.0.1"
   }
 }

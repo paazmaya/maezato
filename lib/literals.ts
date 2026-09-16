@@ -10,12 +10,23 @@
  */
 
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-/* import PKG from '../package.json' assert { type: 'json' };*/
-const packageFile = new URL('../package.json', import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const packageFile = path.resolve(__dirname, '../package.json');
 const PKG = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
 
-export default {
+export interface Literals {
+  GITHUB_API_URL: string;
+  INDEX_NOT_FOUND: number;
+  USER_AGENT: string;
+  QUERY_USER_REPOS: string;
+  QUERY_ORG_REPOS: string;
+}
+
+const literals: Literals = {
   GITHUB_API_URL: 'https://api.github.com',
   INDEX_NOT_FOUND: -1,
   USER_AGENT: 'https://github.com/paazmaya/maezato v' + PKG.version,
@@ -64,5 +75,6 @@ export default {
       }
     }
   }`
-
 };
+
+export default literals;

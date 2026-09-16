@@ -34,3 +34,4 @@ flow
 *.cpuprofile
 *.heapsnapshot
 memwatch.*
+dist/
