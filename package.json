@@ -78,7 +78,7 @@
     "msw": "2.15.0",
     "oxlint": "1.83.0",
     "tape": "5.10.2",
-    "typescript": "^5.5.0",
+    "typescript": "^7.0.0",
     "vitest": "^5.0.1"
   }
 }
