@@ -17,7 +17,7 @@ import {
   buildGitCloneCommand,
   buildExecOptions,
   handleExecCallback,
-} from "../../dist/lib/clone-repo.js";
+} from "../../lib/clone-repo.ts";
 
 describe("clone-repo", () => {
   describe("getRepositoryType", () => {

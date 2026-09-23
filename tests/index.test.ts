@@ -10,7 +10,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import maezato, { handleRepos, parseJson } from "../dist/index.js";
+import maezato, { handleRepos, parseJson } from "../index.ts";
 
 describe("index", () => {
   it("several functions are exported", () => {

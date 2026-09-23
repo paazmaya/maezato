@@ -11,7 +11,7 @@
 
 import { exec } from "node:child_process";
 
-import literals from "./literals.js";
+import literals from "./literals.ts";
 
 export interface Options {
   token: string;

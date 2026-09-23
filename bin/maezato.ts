@@ -16,7 +16,7 @@ import path from "node:path";
 
 import optionator from "optionator";
 
-import maezato from "../index.js";
+import maezato from "../index.ts";
 
 /* import pkg from '../package.json' assert { type: 'json' };*/
 const packageFile = new URL("../package.json", import.meta.url);

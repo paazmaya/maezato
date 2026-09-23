@@ -14,8 +14,8 @@ import { exec } from "node:child_process";
 
 import { mkdirp } from "mkdirp";
 
-import addRemote from "./add-remote.js";
-import literals from "./literals.js";
+import addRemote from "./add-remote.ts";
+import literals from "./literals.ts";
 
 export interface Options {
   token: string;

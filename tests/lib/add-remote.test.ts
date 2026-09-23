@@ -10,7 +10,7 @@
  */
 
 import { describe, it, expect } from "vitest";
-import addRemote from "../../dist/lib/add-remote.js";
+import addRemote from "../../lib/add-remote.ts";
 
 describe("add-remote", () => {
   it("exposes function", () => {
@@ -20,6 +20,7 @@ describe("add-remote", () => {
 
   it("addRemote - adding remote hoplaa to a non-existing project", () => {
     return addRemote({}, "fork cloned somewhere here", "hoplaa", "git:////////hoplaa", {
+      token: "",
       verbose: true,
     })
       .then(() => {

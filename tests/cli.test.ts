@@ -18,7 +18,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const packageFile = new URL("../package.json", import.meta.url);
 const pkg = JSON.parse(fs.readFileSync(packageFile, "utf8"));
 
-const cliPath = pkg.bin.maezato;
+const cliPath = 'bin/maezato.ts';
 
 describe("cli", () => {
   it("should output version number", () => {

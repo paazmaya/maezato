@@ -13,8 +13,8 @@
 import each from "promise-each";
 import Progress from "progress";
 
-import getRepos from "./lib/get-repos.js";
-import cloneRepo from "./lib/clone-repo.js";
+import getRepos from "./lib/get-repos.ts";
+import cloneRepo from "./lib/clone-repo.ts";
 
 export interface Options {
   token: string;

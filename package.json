@@ -21,8 +21,6 @@
   },
   "files": [
     "dist",
-    "bin",
-    "lib",
     "npm-shrinkwrap.json",
     "package.json",
     "LICENSE"
@@ -71,8 +69,6 @@
   "devDependencies": {
     "@types/node": "24.13.6",
     "@types/progress": "2.0.7",
-    "c8": "11.0.0",
-    "msw": "2.15.0",
     "oxfmt": "0.70.0",
     "oxlint": "1.83.0",
     "tape": "5.10.2",

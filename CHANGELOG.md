@@ -3,6 +3,11 @@
 This changelog covers the version history and possible upcoming changes.
 It follows the guidance from https://keepachangelog.com/en/1.0.0/.
 
+## `v0.17.0` (2026-09-)
+
+- Convert to Typescript
+- Migrate tests to vitest
+
 ## `v0.16.0` (2025-12-20)
 
 - GitHub template repositories are now cloned separately into a `templates` directory

@@ -33,8 +33,8 @@ vi.mock("@octokit/graphql", () => ({
   }),
 }));
 
-import getRepos, { performRequest, handleList } from "../../dist/lib/get-repos.js";
-import literals from "../../dist/lib/literals.js";
+import getRepos, { performRequest, handleList } from "../../lib/get-repos.ts";
+import literals from "../../lib/literals.ts";
 
 describe("get-repos", () => {
   it("exposes function", () => {
