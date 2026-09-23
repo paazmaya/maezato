@@ -9,36 +9,38 @@
  * Licensed under the MIT license
  */
 
-import { describe, it, expect } from 'vitest';
-import addRemote from '../../dist/lib/add-remote.js';
+import { describe, it, expect } from "vitest";
+import addRemote from "../../dist/lib/add-remote.js";
 
-describe('add-remote', () => {
-  it('exposes function', () => {
-    expect(typeof addRemote).toBe('function');
+describe("add-remote", () => {
+  it("exposes function", () => {
+    expect(typeof addRemote).toBe("function");
     expect(addRemote.length).toBe(5);
   });
 
-  it('addRemote - adding remote hoplaa to a non-existing project', () => {
-    return addRemote({}, 'fork cloned somewhere here', 'hoplaa', 'git:////////hoplaa', {
-      verbose: true
-    }).then(() => {
-      expect.fail('Should have failed');
-    }).catch(() => {
-      // Expected to fail
-    });
+  it("addRemote - adding remote hoplaa to a non-existing project", () => {
+    return addRemote({}, "fork cloned somewhere here", "hoplaa", "git:////////hoplaa", {
+      verbose: true,
+    })
+      .then(() => {
+        expect.fail("Should have failed");
+      })
+      .catch(() => {
+        // Expected to fail
+      });
   });
 
-  it('addRemote - verbose output', async () => {
+  it("addRemote - verbose output", async () => {
     const item = {};
-    const forkPath = 'fork/cloned/somewhere/here';
-    const remoteName = 'upstream';
-    const sshUrl = 'git@github.com:user/repo.git';
+    const forkPath = "fork/cloned/somewhere/here";
+    const remoteName = "upstream";
+    const sshUrl = "git@github.com:user/repo.git";
     const options = {
-      verbose: true
+      verbose: true,
     };
 
     const originalLog = console.log;
-    let logOutput = '';
+    let logOutput = "";
     console.log = (message) => {
       logOutput += message;
     };

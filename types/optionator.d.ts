@@ -1,9 +1,9 @@
 // Type definitions for optionator
-declare module 'optionator' {
+declare module "optionator" {
   interface Option {
     option: string;
     alias?: string;
-    type: 'Boolean' | 'String' | 'Number';
+    type: "Boolean" | "String" | "Number";
     description: string;
     example?: string;
   }

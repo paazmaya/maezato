@@ -9,21 +9,21 @@
  * Licensed under the MIT license
  */
 
-import fs from 'node:fs';
-import { execFile } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-import { describe, it, expect } from 'vitest';
+import fs from "node:fs";
+import { execFile } from "node:child_process";
+import { fileURLToPath } from "node:url";
+import { describe, it, expect } from "vitest";
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const packageFile = new URL('../package.json', import.meta.url);
-const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const packageFile = new URL("../package.json", import.meta.url);
+const pkg = JSON.parse(fs.readFileSync(packageFile, "utf8"));
 
 const cliPath = pkg.bin.maezato;
 
-describe('cli', () => {
-  it('should output version number', () => {
+describe("cli", () => {
+  it("should output version number", () => {
     return new Promise<void>((resolve, reject) => {
-      execFile('node', [cliPath, '-V'], null, (error, stdout) => {
+      execFile("node", [cliPath, "-V"], null, (error, stdout) => {
         if (error) {
           reject(error);
         } else {
@@ -34,23 +34,29 @@ describe('cli', () => {
     });
   });
 
-  it('should output help by default', () => {
+  it("should output help by default", () => {
     return new Promise<void>((resolve, _reject) => {
-      execFile('node', [cliPath], null, (error, stdout) => {
+      execFile("node", [cliPath], null, (error, stdout) => {
         expect(error).toBeTruthy();
-        expect(stdout.trim().indexOf('Usage: maezato [options] <username | @organization> <target path')).not.toBe(-1);
+        expect(
+          stdout.trim().indexOf("Usage: maezato [options] <username | @organization> <target path"),
+        ).not.toBe(-1);
         resolve();
       });
     });
   });
 
-  it('should output help when requested', () => {
+  it("should output help when requested", () => {
     return new Promise<void>((resolve, reject) => {
-      execFile('node', [cliPath, '--help'], null, (error, stdout) => {
+      execFile("node", [cliPath, "--help"], null, (error, stdout) => {
         if (error) {
           reject(error);
         } else {
-          expect(stdout.trim().indexOf('Usage: maezato [options] <username | @organization> <target path')).not.toBe(-1);
+          expect(
+            stdout
+              .trim()
+              .indexOf("Usage: maezato [options] <username | @organization> <target path"),
+          ).not.toBe(-1);
           resolve();
         }
       });

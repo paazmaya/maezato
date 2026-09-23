@@ -10,11 +10,11 @@
  * Licensed under the MIT license
  */
 
-import each from 'promise-each';
-import Progress from 'progress';
+import each from "promise-each";
+import Progress from "progress";
 
-import getRepos from './lib/get-repos.js';
-import cloneRepo from './lib/clone-repo.js';
+import getRepos from "./lib/get-repos.js";
+import cloneRepo from "./lib/clone-repo.js";
 
 export interface Options {
   token: string;
@@ -70,8 +70,8 @@ export const handleRepos = (list: RepositoryItem[], options: Options): Promise<v
   // Show command line progress.
   const progressBar = new Progress(`Processing ${list.length} repositories [:bar] :percent`, {
     total: list.length * 2,
-    complete: '#',
-    incomplete: '-'
+    complete: "#",
+    incomplete: "-",
   });
 
   const promise = each(list, (item: RepositoryItem) => cloneRepo(item, progressBar, options));
@@ -92,10 +92,10 @@ const run = (options: Options): void => {
   getRepos(options)
     .then((data) => handleRepos(data, options))
     .then(() => {
-      console.log('All done, thank you!');
+      console.log("All done, thank you!");
     })
     .catch((error) => {
-      console.error('Something failed here.');
+      console.error("Something failed here.");
       if (options.verbose) {
         console.error(error);
       }

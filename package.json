@@ -3,9 +3,31 @@
   "version": "0.16.0",
   "description": "Clone all repositories of a given user or organization at GitHub",
   "homepage": "https://github.com/paazmaya/maezato",
+  "bugs": {
+    "url": "https://github.com/paazmaya/maezato/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Juga Paazmaya",
+    "email": "paazmaya@yahoo.com",
+    "url": "https://paazmaya.fi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/paazmaya/maezato.git"
+  },
   "bin": {
     "maezato": "dist/bin/maezato.js"
   },
+  "files": [
+    "dist",
+    "bin",
+    "lib",
+    "npm-shrinkwrap.json",
+    "package.json",
+    "LICENSE"
+  ],
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -30,39 +52,14 @@
       "types": "./dist/lib/literals.d.ts"
     }
   },
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "format": "oxfmt"
   },
-  "files": [
-    "dist",
-    "bin",
-    "lib",
-    "npm-shrinkwrap.json",
-    "package.json",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=24.12.0",
-    "npm": ">=10.9.0"
-  },
-  "author": {
-    "name": "Juga Paazmaya",
-    "email": "paazmaya@yahoo.com",
-    "url": "https://paazmaya.fi"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/paazmaya/maezato.git"
-  },
-  "bugs": {
-    "url": "https://github.com/paazmaya/maezato/issues"
-  },
-  "license": "MIT",
   "dependencies": {
     "@octokit/graphql": "9.0.5",
     "got": "15.1.0",
@@ -76,9 +73,14 @@
     "@types/progress": "^2.0.7",
     "c8": "11.0.0",
     "msw": "2.15.0",
+    "oxfmt": "0.70.0",
     "oxlint": "1.83.0",
     "tape": "5.10.2",
     "typescript": "^5.5.0",
     "vitest": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=24.12.0",
+    "npm": ">=10.9.0"
   }
 }

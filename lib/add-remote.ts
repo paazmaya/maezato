@@ -9,9 +9,9 @@
  * Licensed under the MIT license
  */
 
-import { exec } from 'node:child_process';
+import { exec } from "node:child_process";
 
-import literals from './literals.js';
+import literals from "./literals.js";
 
 export interface Options {
   token: string;
@@ -43,13 +43,13 @@ const addRemote = (
   forkPath: string,
   name: string,
   url: string,
-  options: Options
+  options: Options,
 ): Promise<RepositoryItem> => {
   const command = `git remote add ${name} ${url}`;
   const opts = {
     cwd: forkPath,
     env: process.env,
-    encoding: 'utf8'
+    encoding: "utf8",
   };
 
   if (options.verbose) {

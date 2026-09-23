@@ -11,24 +11,24 @@
  * Licensed under the MIT license
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-import optionator from 'optionator';
+import optionator from "optionator";
 
-import maezato from '../index.js';
+import maezato from "../index.js";
 
 /* import pkg from '../package.json' assert { type: 'json' };*/
-const packageFile = new URL('../package.json', import.meta.url);
-const pkg = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+const packageFile = new URL("../package.json", import.meta.url);
+const pkg = JSON.parse(fs.readFileSync(packageFile, "utf8"));
 
 interface ParsedOptions {
   help?: boolean;
   version?: boolean;
   verbose?: boolean;
   token?: string;
-  'include-archived'?: boolean;
-  'omit-username'?: boolean;
+  "include-archived"?: boolean;
+  "omit-username"?: boolean;
   _: string[];
 }
 
@@ -37,43 +37,43 @@ const optsParser = optionator({
   append: `Version ${pkg.version}`,
   options: [
     {
-      option: 'help',
-      alias: 'h',
-      type: 'Boolean',
-      description: 'Help and usage instructions'
+      option: "help",
+      alias: "h",
+      type: "Boolean",
+      description: "Help and usage instructions",
     },
     {
-      option: 'version',
-      alias: 'V',
-      type: 'Boolean',
-      description: 'Version number',
-      example: '-V'
+      option: "version",
+      alias: "V",
+      type: "Boolean",
+      description: "Version number",
+      example: "-V",
     },
     {
-      option: 'verbose',
-      alias: 'v',
-      type: 'Boolean',
-      description: 'Verbose output, will print which file is currently being processed'
+      option: "verbose",
+      alias: "v",
+      type: "Boolean",
+      description: "Verbose output, will print which file is currently being processed",
     },
     {
-      option: 'token',
-      alias: 't',
-      type: 'String',
-      description: 'GitHub API personal authentication token'
+      option: "token",
+      alias: "t",
+      type: "String",
+      description: "GitHub API personal authentication token",
     },
     {
-      option: 'include-archived',
-      alias: 'a',
-      type: 'Boolean',
-      description: 'Include also repositories that have been archived'
+      option: "include-archived",
+      alias: "a",
+      type: "Boolean",
+      description: "Include also repositories that have been archived",
     },
     {
-      option: 'omit-username',
-      alias: 'O',
-      type: 'Boolean',
-      description: 'Omit the username directory when creating directory structure'
-    }
-  ]
+      option: "omit-username",
+      alias: "O",
+      type: "Boolean",
+      description: "Omit the username directory when creating directory structure",
+    },
+  ],
 });
 
 let opts: ParsedOptions;
@@ -98,29 +98,29 @@ if (opts.help) {
 }
 
 if (opts._.length !== 1 && opts._.length !== 2) {
-  console.log('Seem to be missing <username | @organization> or <target path>');
+  console.log("Seem to be missing <username | @organization> or <target path>");
   console.log(optsParser.generateHelp());
   process.exit(1);
 }
 
 // Default path shall be current working directory
 if (opts._.length === 1) {
-  opts._.push('.');
+  opts._.push(".");
 }
 
 const token = opts.token || process.env.GITHUB_TOKEN;
 
 if (!token) {
-  console.log('GitHub authentication token missing');
-  console.log('Please set it via GITHUB_TOKEN environment variable or --token option');
+  console.log("GitHub authentication token missing");
+  console.log("Please set it via GITHUB_TOKEN environment variable or --token option");
   process.exit(1);
 }
 
 maezato({
   token: token,
-  verbose: typeof opts.verbose === 'boolean' ? opts.verbose : false,
-  includeArchived: typeof opts['include-archived'] === 'boolean' ? opts['include-archived'] : false,
-  omitUsername: typeof opts['omit-username'] === 'boolean' ? opts['omit-username'] : false,
+  verbose: typeof opts.verbose === "boolean" ? opts.verbose : false,
+  includeArchived: typeof opts["include-archived"] === "boolean" ? opts["include-archived"] : false,
+  omitUsername: typeof opts["omit-username"] === "boolean" ? opts["omit-username"] : false,
   username: opts._[0],
-  cloneBaseDir: path.resolve(opts._[1])
+  cloneBaseDir: path.resolve(opts._[1]),
 });

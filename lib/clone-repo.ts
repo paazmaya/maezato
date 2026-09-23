@@ -9,13 +9,13 @@
  * Licensed under the MIT license
  */
 
-import path from 'node:path';
-import { exec } from 'node:child_process';
+import path from "node:path";
+import { exec } from "node:child_process";
 
-import { mkdirp } from 'mkdirp';
+import { mkdirp } from "mkdirp";
 
-import addRemote from './add-remote.js';
-import literals from './literals.js';
+import addRemote from "./add-remote.js";
+import literals from "./literals.js";
 
 export interface Options {
   token: string;
@@ -52,16 +52,16 @@ export interface ProgressBar {
  */
 const getRepositoryType = (item: RepositoryItem, options: Options): string => {
   if (item.template) {
-    return 'templates';
+    return "templates";
   }
   if (item.fork) {
-    return 'fork';
+    return "fork";
   }
   if (item.owner === options.username) {
-    return 'mine';
+    return "mine";
   }
 
-  return 'contributing';
+  return "contributing";
 };
 
 /**
@@ -93,11 +93,13 @@ const buildGitCloneCommand = (sshUrl: string): string => {
  * @param clonePath Path where to clone
  * @returns Exec options
  */
-const buildExecOptions = (clonePath: string): { cwd: string; env: NodeJS.ProcessEnv; encoding: BufferEncoding } => {
+const buildExecOptions = (
+  clonePath: string,
+): { cwd: string; env: NodeJS.ProcessEnv; encoding: BufferEncoding } => {
   return {
     cwd: clonePath,
     env: process.env,
-    encoding: 'utf8'
+    encoding: "utf8",
   };
 };
 
@@ -117,10 +119,13 @@ const handleExecCallback = (
   stderr: string,
   sshUrl: string,
   fulfill: (value?: void) => void,
-  reject: (reason?: unknown) => void
+  reject: (reason?: unknown) => void,
 ): void => {
   // TODO: how about terminals with other languages than english?
-  if (error && stderr.indexOf('already exists and is not an empty directory') === literals.INDEX_NOT_FOUND) {
+  if (
+    error &&
+    stderr.indexOf("already exists and is not an empty directory") === literals.INDEX_NOT_FOUND
+  ) {
     console.error(`Failed to clone "${sshUrl}"`);
     reject(error);
   } else {
@@ -159,10 +164,14 @@ const executeGitClone = (sshUrl: string, clonePath: string, options: Options): P
  * @param options Options for execution
  * @returns Promise that resolves when remote is added
  */
-const handleForkRemote = (data: RepositoryItem, clonePath: string, options: Options): Promise<void> => {
-  const forkPath = path.join(clonePath, data.name || '');
+const handleForkRemote = (
+  data: RepositoryItem,
+  clonePath: string,
+  options: Options,
+): Promise<void> => {
+  const forkPath = path.join(clonePath, data.name || "");
 
-  return addRemote(data, forkPath, 'upstream', data.parent?.ssh_url || '', options).then(() => {
+  return addRemote(data, forkPath, "upstream", data.parent?.ssh_url || "", options).then(() => {
     // Ignore the returned item, we just need the promise to resolve
   });
 };
@@ -178,14 +187,14 @@ const handleForkRemote = (data: RepositoryItem, clonePath: string, options: Opti
 const cloneRepo = (
   item: RepositoryItem,
   progressBar: ProgressBar,
-  options: Options
+  options: Options,
 ): Promise<void> => {
   const type = getRepositoryType(item, options);
   const clonePath = buildClonePath(type, options);
 
   mkdirp.sync(clonePath);
 
-  return executeGitClone(item.ssh_url || '', clonePath, options)
+  return executeGitClone(item.ssh_url || "", clonePath, options)
     .then(() => {
       if (!options.verbose) {
         progressBar.tick();
@@ -217,5 +226,5 @@ export {
   buildExecOptions,
   handleExecCallback,
   executeGitClone,
-  handleForkRemote
+  handleForkRemote,
 };
