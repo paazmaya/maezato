@@ -8,17 +8,17 @@
  * Copyright (c) Juga Paazmaya <paazmaya@yahoo.com> (https://paazmaya.fi)
  * Licensed under the MIT license
  */
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const packageFile = path.resolve(__dirname, '../package.json');
-const PKG = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+const packageFile = path.resolve(__dirname, "../package.json");
+const PKG = JSON.parse(fs.readFileSync(packageFile, "utf8"));
 const literals = {
-    GITHUB_API_URL: 'https://api.github.com',
+    GITHUB_API_URL: "https://api.github.com",
     INDEX_NOT_FOUND: -1,
-    USER_AGENT: 'https://github.com/paazmaya/maezato v' + PKG.version,
+    USER_AGENT: "https://github.com/paazmaya/maezato v" + PKG.version,
     // https://docs.github.com/en/graphql/reference/queries#user
     // https://docs.github.com/en/graphql/reference/queries#repository
     QUERY_USER_REPOS: `query GetUserRepos($username: String!, $nextCursor: String) {
@@ -61,7 +61,7 @@ const literals = {
         }
       }
     }
-  }`
+  }`,
 };
 export default literals;
 //# sourceMappingURL=literals.js.map
