@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@octokit/graphql": "9.0.5",
-    "got": "15.1.0",
+    "got": "16.0.0",
     "mkdirp": "3.0.1",
     "optionator": "0.9.4",
     "progress": "2.0.3",
