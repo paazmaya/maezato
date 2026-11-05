@@ -14,16 +14,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/paazmaya/maezato.git"
+    "url": "git+https://github.com/paazmaya/maezato.git"
   },
+  "keywords": [
+    "git",
+    "github",
+    "bitbucket",
+    "clone",
+    "repository",
+    "backup"
+  ],
   "bin": {
     "maezato": "dist/bin/maezato.js"
   },
   "files": [
     "dist",
-    "npm-shrinkwrap.json",
-    "package.json",
-    "LICENSE"
+    "npm-shrinkwrap.json"
   ],
   "type": "module",
   "main": "dist/index.js",

@@ -15,11 +15,12 @@ init:
 clone_depth: 1
 
 cache:
-  - node_modules
+  - node_modules -> npm-shrinkwrap.json, appveyor.yml
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm ci
+  - npm ci --ignore-scripts
+  - npm run build
 
 test_script:
   - node --version

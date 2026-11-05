@@ -3,9 +3,9 @@
 > Clone all repositories of a given user or organization at GitHub or Bitbucket,
 > by ordering them according to fork/contributing/mine
 
-[![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/master?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/master)
+[![Windows build status](https://ci.appveyor.com/api/projects/status/563ksgaandoqalx1/branch/main?svg=true)](https://ci.appveyor.com/project/paazmaya/maezato/branch/main)
 [![Node.js CI](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml/badge.svg)](https://github.com/paazmaya/maezato/actions/workflows/linting-and-unit-testing.yml)
-[![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=master)](https://codecov.io/github/paazmaya/maezato?branch=master)
+[![codecov.io](https://codecov.io/github/paazmaya/maezato/coverage.svg?branch=main)](https://codecov.io/github/paazmaya/maezato?branch=main)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=paazmaya_maezato&metric=code_smells)](https://sonarcloud.io/dashboard?id=paazmaya_maezato)
 
 ![maezato project logo](icon.png)
