@@ -110,8 +110,8 @@ git remote -v
 
 First thing to do is to file [an issue](https://github.com/paazmaya/maezato/issues).
 Then possibly open a Pull Request for solving the given issue.
-[ESLint](http://eslint.org/) is used for linting the code and
-[tape](https://www.npmjs.com/package/tape) for unit testing.
+[Oxlint](https://oxc.rs/docs/guide/usage/linter.html) is used for linting the code and
+[vitest](https://www.npmjs.com/package/vitest) for unit testing.
 Please use them by doing:
 
 ```sh
@@ -120,12 +120,12 @@ npm run lint
 npm test
 ```
 
-["A Beginner's Guide to Open Source: The Best Advice for Making your First Contribution"](http://www.erikaheidi.com/blog/a-beginners-guide-to-open-source-the-best-advice-for-making-your-first-contribution/).
+["A Beginner's Guide to Open Source: The Best Advice for Making your First Contribution"](https://www.erikaheidi.com/blog/a-beginners-guide-to-open-source-the-best-advice-for-making-your-first-contribution/).
 
 [Also there is a blog post about "45 Github Issues Dos and Don’ts"](https://davidwalsh.name/45-github-issues-dos-donts).
 
-Linting is done with [ESLint](http://eslint.org) and can be executed with `npm run lint`.
-There should be no errors appearing after any JavaScript file changes.
+Linting is done with [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) and can be executed with `npm run lint`.
+There should be no errors appearing after any TypeScript file changes.
 
 Unit tests are written with [`tape`](https://github.com/substack/tape) and can be executed with `npm test`.
 Code coverage is inspected with [`c8`](https://github.com/bcoe/c8) and
