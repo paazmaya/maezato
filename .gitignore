@@ -35,3 +35,4 @@ flow
 *.heapsnapshot
 memwatch.*
 dist/
+.DS_Store
