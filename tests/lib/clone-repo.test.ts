@@ -151,10 +151,10 @@ describe("clone-repo", () => {
   });
 
   describe("buildGitCloneCommand", () => {
-    it("should construct command with SSH URL", () => {
+    it("should construct command with SSH URL and core.longpaths enabled", () => {
       const sshUrl = "git@github.com:user/repo.git";
       const result = buildGitCloneCommand(sshUrl);
-      const expected = "git clone git@github.com:user/repo.git";
+      const expected = "git clone -c core.longpaths=true git@github.com:user/repo.git";
 
       expect(result).toBe(expected);
     });
@@ -162,7 +162,7 @@ describe("clone-repo", () => {
     it("should handle different URL formats", () => {
       const sshUrl1 = "git@github.com:org/project.git";
       const result1 = buildGitCloneCommand(sshUrl1);
-      expect(result1.startsWith("git clone")).toBe(true);
+      expect(result1.startsWith("git clone -c core.longpaths=true")).toBe(true);
       expect(result1).toContain(sshUrl1);
     });
   });

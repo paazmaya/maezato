@@ -84,7 +84,7 @@ const buildClonePath = (type: string, options: Options): string => {
  * @returns Git clone command
  */
 const buildGitCloneCommand = (sshUrl: string): string => {
-  return `git clone ${sshUrl}`;
+  return `git clone -c core.longpaths=true ${sshUrl}`;
 };
 
 /**
